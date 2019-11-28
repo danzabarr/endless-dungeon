@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2276f27c7b2d94ea0ef35020111235, type: 3}
+  m_Name: Dungeon00_32x32
+  m_EditorClassIdentifier: 
+  size: {x: 32, y: 32}
+  startRoom:
+    prefab: {fileID: 5704358031240251430, guid: f3fc3ac01ba05ca49943e68e1829e99d,
+      type: 3}
+    locations:
+    - {x: 2, y: 2}
+    - {x: 26, y: 2}
+    - {x: 26, y: 26}
+    - {x: 2, y: 26}
+  endRoom:
+    prefab: {fileID: 5704358031240251430, guid: f3fc3ac01ba05ca49943e68e1829e99d,
+      type: 3}
+    locations:
+    - {x: 2, y: 2}
+    - {x: 26, y: 2}
+    - {x: 26, y: 26}
+    - {x: 2, y: 26}
+  uniqueRooms:
+  - prefab: {fileID: 5704358031240251430, guid: f3fc3ac01ba05ca49943e68e1829e99d,
+      type: 3}
+    locations:
+    - {x: 14, y: 14}
+  randomRooms:
+  - {fileID: -2678464010584588231, guid: 28f8c9ffbc6b2824a927ab6983318d46, type: 3}
+  maxRandomRooms: 20
+  corridorMaxTries: 500
+  corridorMaxDistance: 200
+  corridorNewPathCost: -500
+  corridorDiagonalness1Cost: 100
+  corridorDiagonalness2Cost: 100
+  corridorFloors:
+  - {fileID: 5885987855515286123, guid: 5a6c0f21c559f8d4888505b0c5168fbf, type: 3}
+  - {fileID: 5885987855515286123, guid: 5a6c0f21c559f8d4888505b0c5168fbf, type: 3}
+  - {fileID: 5885987855515286123, guid: 5a6c0f21c559f8d4888505b0c5168fbf, type: 3}
+  - {fileID: 5047028010912267942, guid: 19c31ab5364cc3d41bfa60ae42bf6ed4, type: 3}
+  corridorEdges:
+  - {fileID: 958539101466079814, guid: 54bf18cb934758940b5372d5b9445337, type: 3}
+  corridorCorners:
+  - {fileID: 1170311447988008439, guid: 2db68d1a86d00704cafc49745421aea6, type: 3}
+  - {fileID: 3818715819134803528, guid: c60c43313a902a9499d24578681a0205, type: 3}
+  corridorPassages:
+  - {fileID: -3404840186923494172, guid: 3a8d80d89aaf76142805e651a2597f0c, type: 3}
+  corridorDeadends:
+  - {fileID: -2239180641123455585, guid: ced39bf7966b5eb40819851d5b13d4a9, type: 3}
+  pillarPrefab: {fileID: 6648342670000786292, guid: 138ddd079cf81764fa4756c2faa0d921,
+    type: 3}
+  minCorridorMobSpawns: 0
+  maxCorridorMobSpawns: 0
+  minCorridorMobDistance: 0

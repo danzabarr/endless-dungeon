@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856e9dac400fd13499b1162240006869, type: 3}
+  m_Name: Lightning
+  m_EditorClassIdentifier: 
+  name: 
+  icon: {fileID: 2800000, guid: 20eb289bbb57c9e4ab3739e0f47cb2ae, type: 3}
+  description: 
+  weaponHand: 0
+  mainHandRequirement: -1
+  offHandRequirement: -1
+  activeHandRequirement: -1
+  animations:
+  - {fileID: 11400000, guid: 158a8fc8d3f5b694c8a304ee1aa3ea72, type: 2}
+  cooldown: 0
+  speed: 1
+  abilityType: 1
+  channelled: 0
+  affects: 1
+  damage: {x: 5, y: 10}
+  damageType: 3
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  throwable: {fileID: 0}
+  placeable: {fileID: 0}
+  maxObjects: 0
+  maxObjectsReached: 0
+  usePattern: 0
+  pattern: _XXX
+  range: 100
+  arc: 0
+  useWeaponRange: 0
+  lightningPrefab: {fileID: 3798520399068464273, guid: 01f1d74dee9e40241b446d0f58735ea5,
+    type: 3}
+  particles: {fileID: 5107669742571478054, guid: 4a5ed87f055c41247be7d933a65e4049,
+    type: 3}
+  chainCount: 2
+  chainRange: 50

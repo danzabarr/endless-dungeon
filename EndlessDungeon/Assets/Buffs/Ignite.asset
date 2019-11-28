@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4414b56769e4044bb1ff7e0fac3b07a, type: 3}
+  m_Name: Ignite
+  m_EditorClassIdentifier: 
+  name: Ignite
+  icon: {fileID: 0}
+  particles: {fileID: 1651711155833280910, guid: 3e810fda162d12f4ebc1b43314d8bb32,
+    type: 3}
+  description: 
+  duration: 5
+  tickInterval: 0.25
+  maxStacks: 20
+  resetTimerOnAddStack: 1
+  removeStackOnExpire: 0
+  allowDuplicates: 1
+  damageType: 1
+  damageAmount: {x: 1, y: 4}
+  additionalStackDamageMultiplier: 1

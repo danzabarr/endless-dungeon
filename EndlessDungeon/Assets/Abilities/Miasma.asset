@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43599ec57f1b194da5a7d8e91c3052d, type: 3}
+  m_Name: Miasma
+  m_EditorClassIdentifier: 
+  name: Miasma
+  icon: {fileID: 2800000, guid: ee531b065763b434a8623df7151bddc0, type: 3}
+  description: 
+  weaponHand: 0
+  mainHandRequirement: -1
+  offHandRequirement: -1
+  activeHandRequirement: -1
+  animations:
+  - {fileID: 11400000, guid: 158a8fc8d3f5b694c8a304ee1aa3ea72, type: 2}
+  cooldown: 8
+  speed: 1
+  abilityType: 7
+  affects: -1
+  damage: {x: 3, y: 3}
+  damageType: 4
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  throwable: {fileID: 0}
+  placeable: {fileID: -6296466060041583977, guid: 4ea44863f1b90ed4dac0d2a51da3edc0,
+    type: 3}
+  maxObjects: 0
+  maxObjectsReached: 0
+  usePattern: 0
+  pattern: 
+  range: 50
+  arc: 0
+  useWeaponRange: 0

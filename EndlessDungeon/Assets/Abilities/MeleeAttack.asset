@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ca25be24caa534d8bf24077c35e053, type: 3}
+  m_Name: MeleeAttack
+  m_EditorClassIdentifier: 
+  name: MeleeAttack
+  icon: {fileID: 2800000, guid: 2684893d10780fa428408d9085407b97, type: 3}
+  description: Standard attack, dealing melee weapon damage.
+  weaponHand: 4
+  mainHandRequirement: -1
+  offHandRequirement: -1
+  activeHandRequirement: 4094
+  animations:
+  - {fileID: 11400000, guid: 2d328044dc1ee734ba9d2fa0f54c199b, type: 2}
+  - {fileID: 11400000, guid: 221af12e5d1709b498d2f66ab6fea461, type: 2}
+  - {fileID: 11400000, guid: 0c04ef57d092b9b4bb324614218aa1ea, type: 2}
+  cooldown: 0
+  speed: 1
+  abilityType: 2
+  channelled: 0
+  affects: 1
+  damage: {x: 0, y: 0}
+  damageType: 0
+  projectile: {fileID: 6481209160861100350, guid: 979fe9f0a41d9d04e898566650c560db,
+    type: 3}
+  projectileSpeed: 0
+  throwable: {fileID: 0}
+  placeable: {fileID: 0}
+  maxObjects: 0
+  maxObjectsReached: 0
+  usePattern: 0
+  pattern: _X
+  range: 2
+  arc: 180
+  useWeaponRange: 1

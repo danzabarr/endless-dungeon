@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d9ee8a19652c1b4fb582f6ef41fe1ff, type: 3}
+  m_Name: Firebomb
+  m_EditorClassIdentifier: 
+  name: Firebomb
+  icon: {fileID: 2800000, guid: 72891106f2d950b47bd4b78edf86ef52, type: 3}
+  description: 
+  weaponHand: 0
+  mainHandRequirement: -1
+  offHandRequirement: -1
+  activeHandRequirement: -1
+  animations:
+  - {fileID: 11400000, guid: 2d328044dc1ee734ba9d2fa0f54c199b, type: 2}
+  cooldown: 1
+  speed: 3
+  abilityType: 6
+  channelled: 0
+  affects: -1
+  damage: {x: 5, y: 10}
+  damageType: 1
+  projectile: {fileID: 0}
+  projectileSpeed: 0
+  throwable: {fileID: 962966722055162918, guid: c0c7f5a5367dc2f4e85c8ae50b673960,
+    type: 3}
+  placeable: {fileID: 0}
+  maxObjects: 0
+  maxObjectsReached: 0
+  usePattern: 1
+  pattern: _X
+  range: 30
+  arc: 0
+  useWeaponRange: 0

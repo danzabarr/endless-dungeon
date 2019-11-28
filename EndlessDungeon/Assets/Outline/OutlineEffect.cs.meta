@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d7279ce482097da4e8ce09607625c322
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - WhiteMaker: {fileID: 2100000, guid: cc5bfecd6e2d6cc4481b8382e72f5dee, type: 2}
+  - PostOutline: {fileID: 2100000, guid: 191be379aa0f4c84190b8325e0a82785, type: 2}
+  - GaussianBlur: {fileID: 2100000, guid: 8430e364166147f4fb30afb4ef122523, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

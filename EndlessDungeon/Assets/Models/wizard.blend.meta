@@ -1,0 +1,1955 @@
+fileFormatVersion: 2
+guid: f036e6ed2851e6a4dbd9d2f96e411a59
+ModelImporter:
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      74: 3374748389425109202
+    second: rig|rigAction
+  - first:
+      74: -2797876182276630717
+    second: rig|Legs.Forward
+  - first:
+      74: -4497449655987564406
+    second: rig|Torso.Cast
+  - first:
+      74: 7623476096177806632
+    second: rig|Cast
+  - first:
+      74: -5014011218975568201
+    second: rig|Idle.Legs
+  - first:
+      74: -4143417021048708774
+    second: rig|Idle.Torso
+  - first:
+      74: 6040153784580315902
+    second: rig|Ready.Legs
+  - first:
+      74: 3083569301058908941
+    second: rig|Ready.Torso
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: rig|Run.Legs
+      takeName: rig|Run
+      internalID: -2797876182276630717
+      firstFrame: 2
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 0
+      - path: hand_shape
+        weight: 0
+      - path: Lamp
+        weight: 0
+      - path: rig
+        weight: 0
+      - path: rig/foot_controller.IK.L
+        weight: 1
+      - path: rig/foot_controller.IK.L/foot_controller.IK.L_end
+        weight: 1
+      - path: rig/foot_controller.IK.R
+        weight: 1
+      - path: rig/foot_controller.IK.R/foot_controller.IK.R_end
+        weight: 1
+      - path: rig/hand.IK.L
+        weight: 0
+      - path: rig/hand.IK.L/hand.IK.L_end
+        weight: 0
+      - path: rig/hand.IK.R
+        weight: 0
+      - path: rig/hand.IK.R/hand.IK.R_end
+        weight: 0
+      - path: rig/hips
+        weight: 1
+      - path: rig/hips/leg.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 1
+      - path: rig/hips/leg.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 1
+      - path: rig/hips/spine
+        weight: 0
+      - path: rig/hips/spine/chest
+        weight: 0
+      - path: rig/hips/spine/chest/neck
+        weight: 0
+      - path: rig/hips/spine/chest/neck/head
+        weight: 0
+      - path: rig/hips/spine/chest/neck/head/head_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 0
+      - path: rig/knee.pole.IK.L
+        weight: 1
+      - path: rig/knee.pole.IK.L/knee.pole.IK.L_end
+        weight: 1
+      - path: rig/knee.pole.IK.R
+        weight: 1
+      - path: rig/knee.pole.IK.R/knee.pole.IK.R_end
+        weight: 1
+      - path: rig/upper_arm.IK.L
+        weight: 0
+      - path: rig/upper_arm.IK.L/upper_arm.IK.L_end
+        weight: 0
+      - path: rig/upper_arm.IK.R
+        weight: 0
+      - path: rig/upper_arm.IK.R/upper_arm.IK.R_end
+        weight: 0
+      - path: wizard
+        weight: 0
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 7db829d1a4fbf1145a9e4fd853cb22f1, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig|Run.Torso
+      takeName: rig|Run
+      internalID: -4497449655987564406
+      firstFrame: 2
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 0
+      - path: hand_shape
+        weight: 0
+      - path: Lamp
+        weight: 0
+      - path: rig
+        weight: 1
+      - path: rig/foot_controller.IK.L
+        weight: 0
+      - path: rig/foot_controller.IK.L/foot_controller.IK.L_end
+        weight: 0
+      - path: rig/foot_controller.IK.R
+        weight: 0
+      - path: rig/foot_controller.IK.R/foot_controller.IK.R_end
+        weight: 0
+      - path: rig/hand.IK.L
+        weight: 1
+      - path: rig/hand.IK.L/hand.IK.L_end
+        weight: 1
+      - path: rig/hand.IK.R
+        weight: 1
+      - path: rig/hand.IK.R/hand.IK.R_end
+        weight: 1
+      - path: rig/hips
+        weight: 0
+      - path: rig/hips/leg.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 0
+      - path: rig/hips/leg.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 0
+      - path: rig/hips/spine
+        weight: 1
+      - path: rig/hips/spine/chest
+        weight: 1
+      - path: rig/hips/spine/chest/neck
+        weight: 1
+      - path: rig/hips/spine/chest/neck/head
+        weight: 1
+      - path: rig/hips/spine/chest/neck/head/head_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 1
+      - path: rig/knee.pole.IK.L
+        weight: 0
+      - path: rig/knee.pole.IK.L/knee.pole.IK.L_end
+        weight: 0
+      - path: rig/knee.pole.IK.R
+        weight: 0
+      - path: rig/knee.pole.IK.R/knee.pole.IK.R_end
+        weight: 0
+      - path: rig/upper_arm.IK.L
+        weight: 1
+      - path: rig/upper_arm.IK.L/upper_arm.IK.L_end
+        weight: 1
+      - path: rig/upper_arm.IK.R
+        weight: 1
+      - path: rig/upper_arm.IK.R/upper_arm.IK.R_end
+        weight: 1
+      - path: wizard
+        weight: 0
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 800402fb98bb5de49a04a667f5500125, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig|Cast
+      takeName: rig|Cast
+      internalID: 7623476096177806632
+      firstFrame: 2
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 0
+      - path: hand_shape
+        weight: 0
+      - path: Lamp
+        weight: 0
+      - path: rig
+        weight: 1
+      - path: rig/foot_controller.IK.L
+        weight: 0
+      - path: rig/foot_controller.IK.L/foot_controller.IK.L_end
+        weight: 0
+      - path: rig/foot_controller.IK.R
+        weight: 0
+      - path: rig/foot_controller.IK.R/foot_controller.IK.R_end
+        weight: 0
+      - path: rig/hand.IK.L
+        weight: 1
+      - path: rig/hand.IK.L/hand.IK.L_end
+        weight: 1
+      - path: rig/hand.IK.R
+        weight: 1
+      - path: rig/hand.IK.R/hand.IK.R_end
+        weight: 1
+      - path: rig/hips
+        weight: 0
+      - path: rig/hips/leg.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 0
+      - path: rig/hips/leg.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 0
+      - path: rig/hips/spine
+        weight: 1
+      - path: rig/hips/spine/chest
+        weight: 1
+      - path: rig/hips/spine/chest/neck
+        weight: 1
+      - path: rig/hips/spine/chest/neck/head
+        weight: 1
+      - path: rig/hips/spine/chest/neck/head/head_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 1
+      - path: rig/knee.pole.IK.L
+        weight: 0
+      - path: rig/knee.pole.IK.L/knee.pole.IK.L_end
+        weight: 0
+      - path: rig/knee.pole.IK.R
+        weight: 0
+      - path: rig/knee.pole.IK.R/knee.pole.IK.R_end
+        weight: 0
+      - path: rig/upper_arm.IK.L
+        weight: 1
+      - path: rig/upper_arm.IK.L/upper_arm.IK.L_end
+        weight: 1
+      - path: rig/upper_arm.IK.R
+        weight: 1
+      - path: rig/upper_arm.IK.R/upper_arm.IK.R_end
+        weight: 1
+      - path: wizard
+        weight: 0
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 800402fb98bb5de49a04a667f5500125, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig|Idle.Legs
+      takeName: rig|Idle
+      internalID: -5014011218975568201
+      firstFrame: 2
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 0
+      - path: hand_shape
+        weight: 0
+      - path: Lamp
+        weight: 0
+      - path: rig
+        weight: 0
+      - path: rig/foot_controller.IK.L
+        weight: 1
+      - path: rig/foot_controller.IK.L/foot_controller.IK.L_end
+        weight: 1
+      - path: rig/foot_controller.IK.R
+        weight: 1
+      - path: rig/foot_controller.IK.R/foot_controller.IK.R_end
+        weight: 1
+      - path: rig/hand.IK.L
+        weight: 0
+      - path: rig/hand.IK.L/hand.IK.L_end
+        weight: 0
+      - path: rig/hand.IK.R
+        weight: 0
+      - path: rig/hand.IK.R/hand.IK.R_end
+        weight: 0
+      - path: rig/hips
+        weight: 1
+      - path: rig/hips/leg.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 1
+      - path: rig/hips/leg.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 1
+      - path: rig/hips/spine
+        weight: 0
+      - path: rig/hips/spine/chest
+        weight: 0
+      - path: rig/hips/spine/chest/neck
+        weight: 0
+      - path: rig/hips/spine/chest/neck/head
+        weight: 0
+      - path: rig/hips/spine/chest/neck/head/head_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 0
+      - path: rig/knee.pole.IK.L
+        weight: 1
+      - path: rig/knee.pole.IK.L/knee.pole.IK.L_end
+        weight: 1
+      - path: rig/knee.pole.IK.R
+        weight: 1
+      - path: rig/knee.pole.IK.R/knee.pole.IK.R_end
+        weight: 1
+      - path: rig/upper_arm.IK.L
+        weight: 0
+      - path: rig/upper_arm.IK.L/upper_arm.IK.L_end
+        weight: 0
+      - path: rig/upper_arm.IK.R
+        weight: 0
+      - path: rig/upper_arm.IK.R/upper_arm.IK.R_end
+        weight: 0
+      - path: wizard
+        weight: 0
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 7db829d1a4fbf1145a9e4fd853cb22f1, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig|Idle.Torso
+      takeName: rig|Idle
+      internalID: -4143417021048708774
+      firstFrame: 2
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 0
+      - path: hand_shape
+        weight: 0
+      - path: Lamp
+        weight: 0
+      - path: rig
+        weight: 1
+      - path: rig/foot_controller.IK.L
+        weight: 0
+      - path: rig/foot_controller.IK.L/foot_controller.IK.L_end
+        weight: 0
+      - path: rig/foot_controller.IK.R
+        weight: 0
+      - path: rig/foot_controller.IK.R/foot_controller.IK.R_end
+        weight: 0
+      - path: rig/hand.IK.L
+        weight: 1
+      - path: rig/hand.IK.L/hand.IK.L_end
+        weight: 1
+      - path: rig/hand.IK.R
+        weight: 1
+      - path: rig/hand.IK.R/hand.IK.R_end
+        weight: 1
+      - path: rig/hips
+        weight: 0
+      - path: rig/hips/leg.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 0
+      - path: rig/hips/leg.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 0
+      - path: rig/hips/spine
+        weight: 1
+      - path: rig/hips/spine/chest
+        weight: 1
+      - path: rig/hips/spine/chest/neck
+        weight: 1
+      - path: rig/hips/spine/chest/neck/head
+        weight: 1
+      - path: rig/hips/spine/chest/neck/head/head_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 1
+      - path: rig/knee.pole.IK.L
+        weight: 0
+      - path: rig/knee.pole.IK.L/knee.pole.IK.L_end
+        weight: 0
+      - path: rig/knee.pole.IK.R
+        weight: 0
+      - path: rig/knee.pole.IK.R/knee.pole.IK.R_end
+        weight: 0
+      - path: rig/upper_arm.IK.L
+        weight: 1
+      - path: rig/upper_arm.IK.L/upper_arm.IK.L_end
+        weight: 1
+      - path: rig/upper_arm.IK.R
+        weight: 1
+      - path: rig/upper_arm.IK.R/upper_arm.IK.R_end
+        weight: 1
+      - path: wizard
+        weight: 0
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 800402fb98bb5de49a04a667f5500125, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig|Ready.Legs
+      takeName: rig|Ready
+      internalID: 6040153784580315902
+      firstFrame: 2
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 0
+      - path: hand_shape
+        weight: 0
+      - path: Lamp
+        weight: 0
+      - path: rig
+        weight: 0
+      - path: rig/foot_controller.IK.L
+        weight: 1
+      - path: rig/foot_controller.IK.L/foot_controller.IK.L_end
+        weight: 1
+      - path: rig/foot_controller.IK.R
+        weight: 1
+      - path: rig/foot_controller.IK.R/foot_controller.IK.R_end
+        weight: 1
+      - path: rig/hand.IK.L
+        weight: 0
+      - path: rig/hand.IK.L/hand.IK.L_end
+        weight: 0
+      - path: rig/hand.IK.R
+        weight: 0
+      - path: rig/hand.IK.R/hand.IK.R_end
+        weight: 0
+      - path: rig/hips
+        weight: 1
+      - path: rig/hips/leg.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L
+        weight: 1
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 1
+      - path: rig/hips/leg.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R
+        weight: 1
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 1
+      - path: rig/hips/spine
+        weight: 0
+      - path: rig/hips/spine/chest
+        weight: 0
+      - path: rig/hips/spine/chest/neck
+        weight: 0
+      - path: rig/hips/spine/chest/neck/head
+        weight: 0
+      - path: rig/hips/spine/chest/neck/head/head_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
+        weight: 0
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 0
+      - path: rig/knee.pole.IK.L
+        weight: 1
+      - path: rig/knee.pole.IK.L/knee.pole.IK.L_end
+        weight: 1
+      - path: rig/knee.pole.IK.R
+        weight: 1
+      - path: rig/knee.pole.IK.R/knee.pole.IK.R_end
+        weight: 1
+      - path: rig/upper_arm.IK.L
+        weight: 0
+      - path: rig/upper_arm.IK.L/upper_arm.IK.L_end
+        weight: 0
+      - path: rig/upper_arm.IK.R
+        weight: 0
+      - path: rig/upper_arm.IK.R/upper_arm.IK.R_end
+        weight: 0
+      - path: wizard
+        weight: 0
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 7db829d1a4fbf1145a9e4fd853cb22f1, type: 2}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig|Ready.Torso
+      takeName: rig|Ready
+      internalID: 3083569301058908941
+      firstFrame: 2
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Camera
+        weight: 0
+      - path: hand_shape
+        weight: 0
+      - path: Lamp
+        weight: 0
+      - path: rig
+        weight: 1
+      - path: rig/foot_controller.IK.L
+        weight: 0
+      - path: rig/foot_controller.IK.L/foot_controller.IK.L_end
+        weight: 0
+      - path: rig/foot_controller.IK.R
+        weight: 0
+      - path: rig/foot_controller.IK.R/foot_controller.IK.R_end
+        weight: 0
+      - path: rig/hand.IK.L
+        weight: 1
+      - path: rig/hand.IK.L/hand.IK.L_end
+        weight: 1
+      - path: rig/hand.IK.R
+        weight: 1
+      - path: rig/hand.IK.R/hand.IK.R_end
+        weight: 1
+      - path: rig/hips
+        weight: 0
+      - path: rig/hips/leg.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L
+        weight: 0
+      - path: rig/hips/leg.L/shin.L/foot.L/toe.L/toe.L_end
+        weight: 0
+      - path: rig/hips/leg.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R
+        weight: 0
+      - path: rig/hips/leg.R/shin.R/foot.R/toe.R/toe.R_end
+        weight: 0
+      - path: rig/hips/spine
+        weight: 1
+      - path: rig/hips/spine/chest
+        weight: 1
+      - path: rig/hips/spine/chest/neck
+        weight: 1
+      - path: rig/hips/spine/chest/neck/head
+        weight: 1
+      - path: rig/hips/spine/chest/neck/head/head_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
+        weight: 1
+      - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 1
+      - path: rig/knee.pole.IK.L
+        weight: 0
+      - path: rig/knee.pole.IK.L/knee.pole.IK.L_end
+        weight: 0
+      - path: rig/knee.pole.IK.R
+        weight: 0
+      - path: rig/knee.pole.IK.R/knee.pole.IK.R_end
+        weight: 0
+      - path: rig/upper_arm.IK.L
+        weight: 1
+      - path: rig/upper_arm.IK.L/upper_arm.IK.L_end
+        weight: 1
+      - path: rig/upper_arm.IK.R
+        weight: 1
+      - path: rig/upper_arm.IK.R/upper_arm.IK.R_end
+        weight: 1
+      - path: wizard
+        weight: 0
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 800402fb98bb5de49a04a667f5500125, type: 2}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 15
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 3
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 2
+  referencedClips: []
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: wizard(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Camera
+      parentName: wizard(Clone)
+      position: {x: 2.3602006, y: 7.1091204, z: -13.048025}
+      rotation: {x: 0.09254378, y: 0.62500566, z: 0.11353247, w: 0.76675546}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000004}
+    - name: hand_shape
+      parentName: wizard(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 0.6359939, y: 0.9206623, z: 0.9206623}
+    - name: Lamp
+      parentName: wizard(Clone)
+      position: {x: 0.45487165, y: 5.903862, z: -3.5660844}
+      rotation: {x: 0.1690757, y: -0.7558804, z: 0.27217135, w: 0.5709475}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: rig
+      parentName: wizard(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.00000009415696, y: 0.7071068, z: 0.7071067, w: 0.00000009415697}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hips
+      parentName: rig
+      position: {x: -0.00022555652, y: 0.021227995, z: 0.32322347}
+      rotation: {x: 0.77897257, y: -0.00000005886744, z: -0.000000102978355, w: 0.627058}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: spine
+      parentName: hips
+      position: {x: 1.6014745e-11, y: 0.06841633, z: -0.000000005535097}
+      rotation: {x: -0.05466784, y: 0.000000015784998, z: 0.000000021398817, w: 0.9985046}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: chest
+      parentName: spine
+      position: {x: -1.9052572e-12, y: 0.061142046, z: -0.0000000021086652}
+      rotation: {x: -0.13864952, y: -0.00000012436146, z: 0.0000000691176, w: 0.99034154}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: neck
+      parentName: chest
+      position: {x: 9.434862e-10, y: 0.13339975, z: 0.0015147255}
+      rotation: {x: 0.2538256, y: -0.00000006214131, z: -0.00000017501503, w: 0.96725}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: head
+      parentName: neck
+      position: {x: 7.985612e-12, y: 0.03961287, z: -0.00000001104315}
+      rotation: {x: -0.024018167, y: 0.00000012895323, z: 0.000000015238147, w: 0.9997116}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: head_end
+      parentName: head
+      position: {x: -0, y: 0.061616447, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: shoulder.L
+      parentName: chest
+      position: {x: 0.015209901, y: 0.08855712, z: 0.05147129}
+      rotation: {x: -0.5379514, y: -0.32830873, z: -0.36862394, w: 0.6833287}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.9999999}
+    - name: upper_arm.L
+      parentName: shoulder.L
+      position: {x: 0.009339101, y: 0.12280098, z: -0.020353884}
+      rotation: {x: 0.21495335, y: 0.94116014, z: -0.24172278, w: -0.0978917}
+      scale: {x: 1.0000004, y: 0.99999875, z: 0.9999998}
+    - name: forearm.L
+      parentName: upper_arm.L
+      position: {x: 0.000000007450581, y: 0.11767496, z: -0.0000000146683306}
+      rotation: {x: -0.61326736, y: 0.720458, z: -0.20015146, w: -0.25452498}
+      scale: {x: 1.0000008, y: 0.999999, z: 1.0000008}
+    - name: hand.L
+      parentName: forearm.L
+      position: {x: -0, y: 0.12647669, z: 0}
+      rotation: {x: -0.04450872, y: 0.6366979, z: 0.13839601, w: 0.7572855}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: f_index.01.L
+      parentName: hand.L
+      position: {x: -0.009640148, y: 0.04537247, z: 0.0131123625}
+      rotation: {x: 0.14734045, y: 0.010917174, z: 0.018203516, w: 0.98885804}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: f_index.02.L
+      parentName: f_index.01.L
+      position: {x: 0.00000001071021, y: 0.044047043, z: 0.000000011175871}
+      rotation: {x: 0.055745315, y: 0.22947402, z: -0.04193326, w: 0.9708119}
+      scale: {x: 1, y: 0.99999994, z: 0.9999999}
+    - name: f_index.03.L
+      parentName: f_index.02.L
+      position: {x: 0.000000026077032, y: 0.03379898, z: 0.000000007566996}
+      rotation: {x: 0.08744785, y: -0.28414497, z: -0.04426609, w: 0.9537584}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: f_index.03.L_end
+      parentName: f_index.03.L
+      position: {x: -0, y: 0.024816766, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: thumb.01.L
+      parentName: hand.L
+      position: {x: -0.010639763, y: 0.023773367, z: 0.032560628}
+      rotation: {x: 0.36166367, y: 0.5512509, z: 0.23808685, w: 0.7131876}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: thumb.02.L
+      parentName: thumb.01.L
+      position: {x: 0.000000007450581, y: 0.03443135, z: 0.000000026077032}
+      rotation: {x: -0.0007388228, y: 0.06831441, z: -0.06117502, w: 0.99578625}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: thumb.03.L
+      parentName: thumb.02.L
+      position: {x: -0.000000029802322, y: 0.02225196, z: -0.000000040978193}
+      rotation: {x: 0.017956207, y: 0.103507265, z: -0.057018783, w: 0.9928307}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: thumb.03.L_end
+      parentName: thumb.03.L
+      position: {x: -0, y: 0.021586185, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: f_middle.01.L
+      parentName: hand.L
+      position: {x: -0.00022813026, y: 0.049381755, z: 0.0012924336}
+      rotation: {x: 0.06882651, y: 0.078447774, z: 0.003140982, w: 0.9945346}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+    - name: f_middle.02.L
+      parentName: f_middle.01.L
+      position: {x: 0.0000000037252903, y: 0.040679447, z: -0.000000022351742}
+      rotation: {x: 0.09623955, y: 0.068258844, z: -0.018918796, w: 0.99283475}
+      scale: {x: 0.9999999, y: 1, z: 0.9999999}
+    - name: f_middle.03.L
+      parentName: f_middle.02.L
+      position: {x: 0.0000000037252903, y: 0.039974537, z: 0.000000029802322}
+      rotation: {x: 0.17119274, y: 0.31152874, z: 0.042617377, w: 0.9337166}
+      scale: {x: 1, y: 1, z: 1}
+    - name: f_middle.03.L_end
+      parentName: f_middle.03.L
+      position: {x: -0, y: 0.030013021, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: f_ring.01.L
+      parentName: hand.L
+      position: {x: 0.014361279, y: 0.04831052, z: 0.000072913244}
+      rotation: {x: 0.056624338, y: 0.14043008, z: -0.014819258, w: 0.988359}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: f_ring.02.L
+      parentName: f_ring.01.L
+      position: {x: 0.000000070780516, y: 0.03876399, z: 0.000000018626451}
+      rotation: {x: 0.046104327, y: -0.012717237, z: -0.020832198, w: 0.99863845}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999999}
+    - name: f_ring.03.L
+      parentName: f_ring.02.L
+      position: {x: 0.000000037252903, y: 0.03597545, z: 0.000000033527613}
+      rotation: {x: 0.23051515, y: 0.051153053, z: 0.030496847, w: 0.97124463}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1}
+    - name: f_ring.03.L_end
+      parentName: f_ring.03.L
+      position: {x: -0, y: 0.033668, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: f_pinky.01.L
+      parentName: hand.L
+      position: {x: 0.027084362, y: 0.03659991, z: -0.001719512}
+      rotation: {x: 0.043714736, y: 0.25582066, z: -0.039811727, w: 0.96491444}
+      scale: {x: 1.0000001, y: 0.9999998, z: 0.99999994}
+    - name: f_pinky.02.L
+      parentName: f_pinky.01.L
+      position: {x: 0.000000037252903, y: 0.04432462, z: 0.000000007450581}
+      rotation: {x: 0.08663925, y: -0.24467206, z: 0.04229119, w: 0.96480083}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: f_pinky.03.L
+      parentName: f_pinky.02.L
+      position: {x: 0.000000024214387, y: 0.034653485, z: 0.0000000055879354}
+      rotation: {x: 0.08529748, y: -0.15098229, z: -0.017479705, w: 0.9846945}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
+    - name: f_pinky.03.L_end
+      parentName: f_pinky.03.L
+      position: {x: -0, y: 0.023012595, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: shoulder.R
+      parentName: chest
+      position: {x: -0.014758746, y: 0.08855712, z: 0.051471304}
+      rotation: {x: -0.53795135, y: 0.32830903, z: 0.36862427, w: 0.6833284}
+      scale: {x: 1, y: 1, z: 1}
+    - name: upper_arm.R
+      parentName: shoulder.R
+      position: {x: -0.00933914, y: 0.122801, z: -0.020354064}
+      rotation: {x: -0.21494985, y: 0.9411614, z: -0.24172054, w: 0.0978927}
+      scale: {x: 1.0000002, y: 0.9999995, z: 0.9999992}
+    - name: forearm.R
+      parentName: upper_arm.R
+      position: {x: 0.000000029802322, y: 0.11767502, z: 0.00000005844049}
+      rotation: {x: 0.61326885, y: 0.7204572, z: -0.2001517, w: 0.25452325}
+      scale: {x: 0.9999993, y: 0.99999917, z: 1.0000013}
+    - name: hand.R
+      parentName: forearm.R
+      position: {x: 0.00000004377216, y: 0.12647668, z: -0.000000009313226}
+      rotation: {x: -0.044508662, y: -0.63669795, z: -0.13839598, w: 0.7572855}
+      scale: {x: 1, y: 1, z: 0.9999999}
+    - name: f_index.01.R
+      parentName: hand.R
+      position: {x: 0.009640075, y: 0.045372486, z: 0.01311237}
+      rotation: {x: 0.14734043, y: -0.010917121, z: -0.018203512, w: 0.98885804}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: f_index.02.R
+      parentName: f_index.01.R
+      position: {x: 0.000000011175871, y: 0.044047058, z: -0.0000000055879354}
+      rotation: {x: 0.05574536, y: -0.22947404, z: 0.041933257, w: 0.9708119}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: f_index.03.R
+      parentName: f_index.02.R
+      position: {x: 0.000000037252903, y: 0.033798978, z: 0.00000003108289}
+      rotation: {x: 0.08744782, y: 0.2841449, z: 0.044266064, w: 0.9537584}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+    - name: f_index.03.R_end
+      parentName: f_index.03.R
+      position: {x: -0, y: 0.024816766, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: thumb.01.R
+      parentName: hand.R
+      position: {x: 0.010639694, y: 0.023773368, z: 0.032560643}
+      rotation: {x: 0.3616636, y: -0.55125076, z: -0.23808688, w: 0.7131877}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: thumb.02.R
+      parentName: thumb.01.R
+      position: {x: 0.000000011175871, y: 0.03443133, z: 0}
+      rotation: {x: -0.0007387832, y: -0.068314515, z: 0.061175067, w: 0.99578625}
+      scale: {x: 1.0000001, y: 1, z: 0.9999999}
+    - name: thumb.03.R
+      parentName: thumb.02.R
+      position: {x: 0.000000011175871, y: 0.022251947, z: 0.000000019557774}
+      rotation: {x: 0.01795617, y: -0.10350728, z: 0.05701875, w: 0.9928307}
+      scale: {x: 1, y: 1, z: 1}
+    - name: thumb.03.R_end
+      parentName: thumb.03.R
+      position: {x: -0, y: 0.021586185, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: f_middle.01.R
+      parentName: hand.R
+      position: {x: 0.00022802781, y: 0.049381763, z: 0.0012924373}
+      rotation: {x: 0.06882652, y: -0.0784477, z: -0.0031409764, w: 0.9945346}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+    - name: f_middle.02.R
+      parentName: f_middle.01.R
+      position: {x: -0.000000033527613, y: 0.040679466, z: 0.000000029802322}
+      rotation: {x: 0.09623956, y: -0.068258874, z: 0.018918773, w: 0.99283475}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: f_middle.03.R
+      parentName: f_middle.02.R
+      position: {x: 0.000000033527613, y: 0.039974537, z: -0.0000000018626451}
+      rotation: {x: 0.17119268, y: -0.31152877, z: -0.04261734, w: 0.9337166}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1}
+    - name: f_middle.03.R_end
+      parentName: f_middle.03.R
+      position: {x: -0, y: 0.030013021, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: f_ring.01.R
+      parentName: hand.R
+      position: {x: -0.014361352, y: 0.04831051, z: 0.00007289648}
+      rotation: {x: 0.05662429, y: -0.14043, z: 0.014819252, w: 0.988359}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: f_ring.02.R
+      parentName: f_ring.01.R
+      position: {x: 0.0000000037252903, y: 0.03876399, z: 0.000000029802322}
+      rotation: {x: 0.046104334, y: 0.012717234, z: 0.02083219, w: 0.99863845}
+      scale: {x: 1, y: 1, z: 1}
+    - name: f_ring.03.R
+      parentName: f_ring.02.R
+      position: {x: -0.000000007450581, y: 0.035975464, z: -0.00000009313226}
+      rotation: {x: 0.2305151, y: -0.051152997, z: -0.03049681, w: 0.97124463}
+      scale: {x: 0.9999998, y: 1, z: 0.99999994}
+    - name: f_ring.03.R_end
+      parentName: f_ring.03.R
+      position: {x: -0, y: 0.033668, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: f_pinky.01.R
+      parentName: hand.R
+      position: {x: -0.027084429, y: 0.03659992, z: -0.0017195232}
+      rotation: {x: 0.043714713, y: -0.25582057, z: 0.03981171, w: 0.96491444}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: f_pinky.02.R
+      parentName: f_pinky.01.R
+      position: {x: 0.0000000037252903, y: 0.044324603, z: -0.000000029802322}
+      rotation: {x: 0.08663927, y: 0.24467203, z: -0.042291127, w: 0.96480083}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1}
+    - name: f_pinky.03.R
+      parentName: f_pinky.02.R
+      position: {x: -0.000000028871, y: 0.034653522, z: -0.000000018626451}
+      rotation: {x: 0.08529749, y: 0.15098226, z: 0.017479682, w: 0.9846945}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: f_pinky.03.R_end
+      parentName: f_pinky.03.R
+      position: {x: -0, y: 0.023012595, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: leg.L
+      parentName: hips
+      position: {x: 0.08564162, y: -0.057959605, z: 0.022908827}
+      rotation: {x: 0.9518015, y: 0.05005463, z: 0.038352225, w: -0.30016264}
+      scale: {x: 0.9999999, y: 0.99999946, z: 0.99999845}
+    - name: shin.L
+      parentName: leg.L
+      position: {x: -0.000000008381903, y: 0.1302962, z: -0.000000015366822}
+      rotation: {x: 0.5564347, y: -0.009188027, z: 0.07247262, w: 0.82767373}
+      scale: {x: 1.0000005, y: 1.0000013, z: 0.99999976}
+    - name: foot.L
+      parentName: shin.L
+      position: {x: -0.0000000069849193, y: 0.15998536, z: -0.0000000067520887}
+      rotation: {x: -0.445618, y: 0.13211119, z: -0.118652225, w: 0.8774354}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: toe.L
+      parentName: foot.L
+      position: {x: 0.0000000027939677, y: 0.073107146, z: 0.000000013038516}
+      rotation: {x: -0.16527946, y: -0.18861634, z: -0.035897426, w: 0.9673768}
+      scale: {x: 1, y: 0.9999998, z: 0.99999994}
+    - name: toe.L_end
+      parentName: toe.L
+      position: {x: -0, y: 0.037145447, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: leg.R
+      parentName: hips
+      position: {x: -0.085190475, y: -0.057959612, z: 0.022908866}
+      rotation: {x: 0.89758694, y: -0.02683315, z: -0.022866804, w: 0.4394256}
+      scale: {x: 1, y: 0.9999998, z: 0.99999803}
+    - name: shin.R
+      parentName: leg.R
+      position: {x: 0.000000008381903, y: 0.13029619, z: 0.0000000060535967}
+      rotation: {x: 0.0032096745, y: 0.011100253, z: -0.0004180357, w: 0.9999332}
+      scale: {x: 1.0000007, y: 1.0000001, z: 1.0000002}
+    - name: foot.R
+      parentName: shin.R
+      position: {x: -0.0000000117579475, y: 0.15998536, z: 0.0000000144355}
+      rotation: {x: -0.6110719, y: -0.111014836, z: 0.1351743, w: 0.772007}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: toe.R
+      parentName: foot.R
+      position: {x: -0, y: 0.073107116, z: 0.000000011175871}
+      rotation: {x: -0.16527948, y: 0.1886163, z: 0.035897426, w: 0.9673768}
+      scale: {x: 1, y: 1, z: 1}
+    - name: toe.R_end
+      parentName: toe.R
+      position: {x: -0, y: 0.037145447, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: upper_arm.IK.L
+      parentName: rig
+      position: {x: 0.229119, y: 0.09809383, z: 0.455926}
+      rotation: {x: -0.035519868, y: -0.0004182244, z: -0.006879491, w: 0.99934524}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: upper_arm.IK.L_end
+      parentName: upper_arm.IK.L
+      position: {x: -0, y: 0.013352959, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hand.IK.L
+      parentName: rig
+      position: {x: 0.2568599, y: -0.08721792, z: 0.45553553}
+      rotation: {x: 0.53173727, y: 0.6754244, z: -0.51009274, w: -0.02937276}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: hand.IK.L_end
+      parentName: hand.IK.L
+      position: {x: -0, y: 0.013391034, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: upper_arm.IK.R
+      parentName: rig
+      position: {x: -0.229119, y: 0.09809383, z: 0.455926}
+      rotation: {x: -0.035519868, y: 0.0004182244, z: 0.006879491, w: 0.99934524}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: upper_arm.IK.R_end
+      parentName: upper_arm.IK.R
+      position: {x: -0, y: 0.013352959, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hand.IK.R
+      parentName: rig
+      position: {x: -0.2568599, y: -0.08721792, z: 0.45553553}
+      rotation: {x: -0.53173727, y: 0.6754244, z: -0.51009274, w: 0.02937276}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: hand.IK.R_end
+      parentName: hand.IK.R
+      position: {x: -0, y: 0.013391034, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: knee.pole.IK.L
+      parentName: rig
+      position: {x: 0.07555823, y: -0.28969312, z: 0.26135337}
+      rotation: {x: 0, y: 0, z: 1, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: knee.pole.IK.L_end
+      parentName: knee.pole.IK.L
+      position: {x: -0, y: 0.016720086, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: foot_controller.IK.L
+      parentName: rig
+      position: {x: 0.09349699, y: 0.25105116, z: 0.24117027}
+      rotation: {x: 0, y: -0, z: -0.000000177167, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: foot_controller.IK.L_end
+      parentName: foot_controller.IK.L
+      position: {x: -0, y: 0.042053998, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: knee.pole.IK.R
+      parentName: rig
+      position: {x: -0.07555823, y: -0.28969312, z: 0.26135337}
+      rotation: {x: 0, y: 0, z: 1, w: -6.123234e-17}
+      scale: {x: 1, y: 1, z: 1}
+    - name: knee.pole.IK.R_end
+      parentName: knee.pole.IK.R
+      position: {x: -0, y: 0.016720086, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: foot_controller.IK.R
+      parentName: rig
+      position: {x: -0.09349699, y: -0.17429164, z: 0.038123906}
+      rotation: {x: 0, y: 0, z: 0.000000177167, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: foot_controller.IK.R_end
+      parentName: foot_controller.IK.R
+      position: {x: -0, y: 0.042053998, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: wizard
+      parentName: wizard(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 6.211317e-15, y: 1, z: -0.00000008146034, w: 0.0000000754979}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: hips
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd26cb7077066d40b44eefe5d0fcddb, type: 3}
+  m_Name: 00_1HSword
+  m_EditorClassIdentifier: 
+  weightSum: 0.33333334
+  stats:
+  - {fileID: 11400000, guid: 884099ca3af43de41b5fe3dcdba3d8c5, type: 2}
+  - {fileID: 11400000, guid: c5596286a53de434280c922a643efa64, type: 2}

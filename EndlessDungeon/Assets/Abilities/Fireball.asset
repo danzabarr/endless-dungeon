@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13c3f26d08e83e4bbd73314b6d8b05d, type: 3}
+  m_Name: Fireball
+  m_EditorClassIdentifier: 
+  name: Fireball
+  icon: {fileID: 2800000, guid: 18bc65f042ff8834585c1ddb463a66a7, type: 3}
+  description: Hurls a fireball which deals 10-15 fire damage in an explosion where
+    it hits.
+  weaponHand: 0
+  mainHandRequirement: -1
+  offHandRequirement: -1
+  activeHandRequirement: -1
+  animations:
+  - {fileID: 11400000, guid: 158a8fc8d3f5b694c8a304ee1aa3ea72, type: 2}
+  cooldown: 0
+  speed: 1
+  abilityType: 5
+  affects: 1
+  damage: {x: 10, y: 5}
+  damageType: 0
+  projectile: {fileID: 6481209160861100350, guid: 979fe9f0a41d9d04e898566650c560db,
+    type: 3}
+  projectileSpeed: 75
+  throwable: {fileID: 0}
+  placeable: {fileID: 0}
+  maxObjects: 0
+  maxObjectsReached: 0
+  usePattern: 0
+  pattern: 
+  range: 0
+  arc: 0
+  useWeaponRange: 0
