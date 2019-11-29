@@ -33,7 +33,7 @@ public class StatsPanelList : MonoBehaviour
         Set("Magic", "{0:0}", stats.Magic, 
             "<b>Magic</b>\nIncreases your <b>Health Regeneration</b> rate and <b>Spell Damage</b>.");
 
-        Title("Defensive Stats");
+        Title("Survivability");
 
         Set("Maximum Health", "{0:0}", stats.MaxHealth, 
             "<b>Maximum Health</b>\nYour total maximum health. More health will help you survive bigger hits and for longer periods of time before healing.");
@@ -44,8 +44,11 @@ public class StatsPanelList : MonoBehaviour
         Set("Chance to Block", "{0:0.##%}", stats.BlockChance, 
             "<b>Chance to Block</b>\nYour chance to block incoming melee and ranged attacks, up to a maximum of 75%. Most damage from spells, periodic and area of effect abilities cannot be blocked. A blocked attack deals no damage.");
 
-        Set("Hit Recovery Time", "{0:0.##}s", stats.HitRecoveryDuration, 
-            "<b>Hit Recovery Time</b>\nThe amount of time you take to recover after blocking, or being hit by a heavy blow.");
+        Set("Block Speed", "{0:0.##}s", stats.BlockDuration,
+            "<b>Hit Recovery Time</b>\nThe amount of time you take to recover after blocking a critical hit.");
+
+        Set("Hit Recovery Speed", "{0:0.##}s", stats.HitRecoveryDuration,
+            "<b>Hit Recovery Time</b>\nThe amount of time you take to recover after being critically hit.");
 
         Set("Armour", "{0:0}", stats.Armour,
             "<b>Armour</b>\nThe combined armour of all your equipment. Armour reduces the amount of physical damage received, up to a maximum of 75%.");
@@ -71,10 +74,32 @@ public class StatsPanelList : MonoBehaviour
         Set("Holy Resistance", "{0:0.#%}", stats.HolyMitigation, 
             "<b>Holy Resistance</b>\nReduces the amount of holy damage received, up to a maximum of 75%.");
 
-        Title("Offensive Stats");
+        Title("Spells");
 
-        Set("Cast Speed", "{0:0.##}/s", stats.AttackSpeed, 
-            "<b>Cast Speed:</b>\nThe number of standard spells cast per second. Certain abilities will take longer or shorter than this to cast. Check the ability tooltip for the actual cast speed for a certain ability.");
+        Set("Cast Speed", "{0:+0.##%}", stats.CastSpeed - 1, 
+            "<b>Cast Speed</b>\nSpeed multiplier for casting and channelling spells.");
+
+
+        Set("Fire Spell Damage", "{0:+0.##%}", stats.FireSpellDamage - 1,
+            "<b>Fire Spell Damage</b>\nDamage multiplier for fire spells.", 30);
+
+        Set("Cold Spell Damage", "{0:+0.##%}", stats.ColdSpellDamage - 1,
+            "<b>Fire Spell Damage</b>\nDamage multiplier for cold spells.");
+
+        Set("Lightning Spell Damage", "{0:+0.##%}", stats.LightningSpellDamage - 1,
+            "<b>Fire Spell Damage</b>\nDamage multiplier for lightning spells.");
+
+        Set("Poison Spell Damage", "{0:+0.##%}", stats.PoisonSpellDamage - 1,
+            "<b>Fire Spell Damage</b>\nDamage multiplier for poison spells.");
+
+        Set("Shadow Spell Damage", "{0:+0.##%}", stats.ShadowSpellDamage - 1,
+            "<b>Fire Spell Damage</b>\nDamage multiplier for shadow spells.");
+
+        Set("Holy Spell Damage", "{0:+0.##%}", stats.HolySpellDamage - 1,
+            "<b>Fire Spell Damage</b>\nDamage multiplier for holy spells.");
+
+
+        Title("Weapons");
 
         //Title("Main Hand Weapon");
         Set("Main Hand Weapon Damage", "{0:0}-{1:0}", stats.MainHandDamage,
@@ -107,7 +132,8 @@ public class StatsPanelList : MonoBehaviour
         Set("Maximum Health", stats.MaxHealth);
         Set("Health Regeneration", stats.RegenHealth);
         Set("Chance to Block", stats.BlockChance);
-        Set("Hit Recovery Time", stats.HitRecoveryDuration);
+        Set("Block Speed", stats.BlockDuration);
+        Set("Hit Recovery Speed", stats.HitRecoveryDuration);
         Set("Armour", stats.Armour);
         Set("Physical Mitigation", stats.PhysicalMitigation);
 
@@ -118,7 +144,19 @@ public class StatsPanelList : MonoBehaviour
         Set("Shadow Resistance", stats.ShadowMitigation);
         Set("Holy Resistance", stats.HolyMitigation);
 
-        Set("Cast Speed", stats.AttackSpeed);
+        Set("Cast Speed", stats.CastSpeed - 1);
+
+        Set("Fire Spell Damage", stats.FireSpellDamage - 1);
+
+        Set("Cold Spell Damage", stats.ColdSpellDamage - 1);
+
+        Set("Lightning Spell Damage", stats.LightningSpellDamage - 1);
+
+        Set("Poison Spell Damage", stats.PoisonSpellDamage - 1);
+
+        Set("Shadow Spell Damage", stats.ShadowSpellDamage - 1);
+
+        Set("Holy Spell Damage", stats.HolySpellDamage - 1);
 
         if (stats.MainHandEquipped && stats.MainHandItemClass.HasMeleeDamage())
         {

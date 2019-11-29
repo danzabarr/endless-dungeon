@@ -210,7 +210,7 @@ public class Player : Unit
             }
         }
 
-        if (!Input.GetMouseButton(0))
+        if (!Input.GetMouseButton(0) && (currentAbilityIndex == -1 || Abilities[currentAbilityIndex].Channelled || !Input.GetKey(abilityBar.GetBinding(currentAbilityIndex))))
         {
             if (!eventSystem.IsPointerOverGameObject() && Physics.SphereCast(mouseRay, .5f, out hitInfo, maxDistance, LayerMask.GetMask("Interactive", "Mobs", "Walls")))
             {
@@ -284,21 +284,6 @@ public class Player : Unit
             queuedFloorTarget = floorTargetNavMeshSample;
             queuedFloorTargetValid = hasFloorTargetNavMeshSample;
             queuedThrowTarget = throwTarget;
-
-            Vector3 t = queuedCastTarget;
-            Vector3 d = GetCastPosition();
-            if (Abilities.Type(queuedAbilityIndex) == Ability.AbilityType.Thrown)
-            {
-                t = queuedThrowTarget;
-                d = GetCastPosition();
-            }
-            else if (Abilities.Type(queuedAbilityIndex) == Ability.AbilityType.Place)
-            {
-                t = queuedFloorTarget;
-                d = transform.position;
-            }
-
-            LookInDirection(t - d);
 
             Abilities.Channel(queuedTarget is Unit ? queuedTarget as Unit : null, queuedCastTarget, queuedThrowTarget, queuedFloorTarget);
         }
@@ -415,9 +400,9 @@ public class Player : Unit
             float lClickRange = Abilities.Range(queuedAbilityIndex);
             if (SquareDistance(GetCastPosition(), queuedTarget.GetCenterPosition()) < lClickRange * lClickRange)
             {
-                LookInDirection(queuedTarget.GetCenterPosition() - GetCastPosition());
                 if (Abilities.CastTimeRemaining <= 0.1f)
                 {
+                    LookInDirection(queuedTarget.GetCenterPosition() - GetCastPosition());
                     Abilities.Cast(queuedAbilityIndex, queuedTarget as Unit, queuedCastTarget, queuedThrowTarget, queuedFloorTarget, queuedFloorTargetValid);
                     currentAbilityIndex = queuedAbilityIndex;
                 }

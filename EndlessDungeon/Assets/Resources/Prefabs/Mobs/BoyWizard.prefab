@@ -1434,7 +1434,7 @@ NavMeshAgent:
   m_Acceleration: 50
   avoidancePriority: 60
   m_AngularSpeed: 5000
-  m_StoppingDistance: 4
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1621,14 +1621,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthBase: 1000
-  maxHealthPerStrength: 10
   healthRegenBase: 1
-  healthRegenPerMagic: 0.01
-  weaponDamagePerStrength: 0.01
+  blockSpeedBase: 1
   hitRecoverySpeedBase: 1
-  hitRecoverySpeedPerStrength: 0.01
-  attackSpeedPerDexterity: 0.001
   walkSpeedBase: 12
+  maxHealthPerStrength: 10
+  weaponDamagePerStrength: 0.01
+  hitRecoverySpeedPerStrength: 0.01
+  blockSpeedPerDexterity: 0.01
+  attackSpeedPerDexterity: 0.001
+  castSpeedPerDexterity: 0.001
+  healthRegenPerMagic: 0.01
   spellDamagePerMagic: 0.01
   strength: 0
   dexterity: 0
@@ -1643,6 +1646,8 @@ MonoBehaviour:
   shadowResist: 0
   holyResist: 0
   attackSpeed: 0
+  castSpeed: 0
+  blockSpeed: 0
   hitRecoverySpeed: 0
   fireDamage: 0
   coldDamage: 0
@@ -1675,21 +1680,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities: []
   errorMessageDisplay: {fileID: 0}
-  mainHandWeaponClass: 0
-  mainHandDamage: {x: 0, y: 0}
-  mainHandAttacksPerSecond: 0
-  mainHandRange: 0
-  offHandWeaponClass: 0
-  offHandDamage: {x: 0, y: 0}
-  offHandAttacksPerSecond: 0
-  offHandRange: 0
-  spellAttacksPerSecond: 1
-  fireSpellDamage: 1
-  coldSpellDamage: 1
-  lightningSpellDamage: 1
-  poisonSpellDamage: 1
-  shadowSpellDamage: 1
-  holySpellDamage: 1
+  snapshot:
+    mainHandWeaponClass: 0
+    mainHandDamage: {x: 0, y: 0}
+    mainHandAttacksPerSecond: 0
+    mainHandRange: 0
+    offHandWeaponClass: 0
+    offHandDamage: {x: 0, y: 0}
+    offHandAttacksPerSecond: 0
+    offHandRange: 0
+    fireSpellDamage: 1
+    coldSpellDamage: 1
+    lightningSpellDamage: 1
+    poisonSpellDamage: 1
+    shadowSpellDamage: 1
+    holySpellDamage: 1
+    castSpeed: 1
 --- !u!114 &3171890668683913671
 MonoBehaviour:
   m_ObjectHideFlags: 0

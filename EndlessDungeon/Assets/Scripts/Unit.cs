@@ -277,12 +277,18 @@ public abstract class Unit : MonoBehaviour
         if (canStun && dealt / Stats.MaxHealth > stunThreshold)
         {
             Abilities.CancelActive();
-            stunTimer = Stats.HitRecoveryDuration;
+            
             Animator.SetFloat("hitrecoveryspeed", 1f / stunTimer);
             if (blocked)
+            {
                 Animator.SetTrigger("block");
+                stunTimer = Stats.BlockDuration;
+            }
             else
+            {
                 Animator.SetTrigger("hit");
+                stunTimer = Stats.HitRecoveryDuration;
+            }
         }
 
         if (blocked)
@@ -304,9 +310,9 @@ public abstract class Unit : MonoBehaviour
 
             if (killingBlow)
             {
-                if (TryAvertDeath(source, attacker, type, amount, out float healthFraction))
+                if (TryAvertDeath(source, attacker, type, amount, out float healthFraction) && healthFraction > 0)
                 {
-                    health = GetMaxHealth() * healthFraction;
+                    Heal(this, GetMaxHealth() * healthFraction - health);
                     deathAverted = true;
                 }
                 else
@@ -326,7 +332,6 @@ public abstract class Unit : MonoBehaviour
 
     private bool TryAvertDeath(object source, Unit attacker, Ability.DamageType type, float amount, out float healthFraction)
     {
-        //TODO death aversion stuff.
 
         healthFraction = 0;
         return false;

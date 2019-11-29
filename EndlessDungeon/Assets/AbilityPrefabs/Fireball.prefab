@@ -9599,7 +9599,7 @@ MonoBehaviour:
   debuffUseResistances: 1
   debuffStacks: 1
   debuffMaxStacks: 10
-  knockbackForce: 50
+  knockbackForce: 5
   knockbackDistanceAttenuate: 1
   knockbackAlignWithProjectile: 0
 --- !u!54 &8010032053821776141

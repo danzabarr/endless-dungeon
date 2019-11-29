@@ -22,9 +22,10 @@ MonoBehaviour:
   animations:
   - {fileID: 11400000, guid: 158a8fc8d3f5b694c8a304ee1aa3ea72, type: 2}
   cooldown: 0
-  speed: 1
+  speed: 3
   abilityType: 1
   channelled: 0
+  channellingTickInterval: 0
   affects: 1
   damage: {x: 5, y: 10}
   damageType: 3

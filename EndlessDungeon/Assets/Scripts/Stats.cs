@@ -16,21 +16,30 @@ public class Stats : MonoBehaviour
     [SerializeField]
     private float maxHealthBase = 20;
     [SerializeField]
-    private float maxHealthPerStrength = 10;
-    [SerializeField]
     private float healthRegenBase = 1;
     [SerializeField]
-    private float healthRegenPerMagic = 0.01f;
-    [SerializeField]
-    private float weaponDamagePerStrength = 0.01f;
+    private float blockSpeedBase = 1;
     [SerializeField]
     private float hitRecoverySpeedBase = 1;
     [SerializeField]
+    private float walkSpeedBase = 12;
+
+    [SerializeField]
+    private float maxHealthPerStrength = 1;
+    [SerializeField]
+    private float weaponDamagePerStrength = 0.01f;
+    [SerializeField]
     private float hitRecoverySpeedPerStrength = 0.01f;
+
+    [SerializeField]
+    private float blockSpeedPerDexterity = 0.001f;
     [SerializeField]
     private float attackSpeedPerDexterity = 0.001f;
     [SerializeField]
-    private float walkSpeedBase = 12;
+    private float castSpeedPerDexterity = 0.001f;
+
+    [SerializeField]
+    private float healthRegenPerMagic = 0.01f;
     [SerializeField]
     private float spellDamagePerMagic = 0.01f;
 
@@ -65,6 +74,10 @@ public class Stats : MonoBehaviour
 
     [SerializeField]
     private int attackSpeed;
+    [SerializeField]
+    private int castSpeed;
+    [SerializeField]
+    private int blockSpeed;
     [SerializeField]
     private int hitRecoverySpeed;
     [SerializeField]
@@ -109,7 +122,9 @@ public class Stats : MonoBehaviour
     public float bonusBlock { get; set; }
     public float bonusWeaponDamage { get; set; }
     public float bonusAttackSpeed { get; set; }
+    public float bonusCastSpeed { get; set; }
     public float bonusHitRecoverySpeed { get; set; }
+    public float bonusBlockSpeed { get; set; }
     public float bonusWalkSpeed { get; set; }
     public int bonusFireResist { get; set; }
     public int bonusColdResist { get; set; }
@@ -154,7 +169,10 @@ public class Stats : MonoBehaviour
     public float HolySpellDamage => Mathf.Max(0, (1 + magic * spellDamagePerMagic) * (1 + holyDamage / 100f) * bonusHolyDamage);
          
     public float AttackSpeed => Mathf.Max(0, (1 + dexterity * attackSpeedPerDexterity) * (1 + attackSpeed / 100f) * bonusAttackSpeed);
-    public float HitRecoverySpeed => Mathf.Max(1, (hitRecoverySpeedBase + strength * hitRecoverySpeedPerStrength) * bonusHitRecoverySpeed);
+    public float CastSpeed => Mathf.Max(0, (1 + dexterity * castSpeedPerDexterity) * (1 + castSpeed / 100f) * bonusCastSpeed);
+    public float BlockSpeed => Mathf.Max(0, (blockSpeedBase + dexterity * blockSpeedPerDexterity) * (1 + blockSpeed / 100f) * bonusBlockSpeed);
+    public float BlockDuration => 1f / BlockSpeed;
+    public float HitRecoverySpeed => Mathf.Max(0, (hitRecoverySpeedBase + strength * hitRecoverySpeedPerStrength) * (1 + hitRecoverySpeed / 100f) * bonusHitRecoverySpeed);
     public float HitRecoveryDuration => 1f / HitRecoverySpeed;
     public float WalkSpeed => Mathf.Max(0, walkSpeedBase * (1 + walkSpeed / 100f) * bonusWalkSpeed);
 
@@ -211,10 +229,9 @@ public class Stats : MonoBehaviour
 #if UNITY_EDITOR
     public void OnValidate()
     {
-        //abilities = GetComponent<AbilityManager>();
-        //ResetBonusStats();
-        //abilities.Equip(this);
-
+        abilities = GetComponent<AbilityManager>();
+        ResetBonusStats();
+        abilities.Equip(this);
     }
 #endif
 
@@ -228,6 +245,8 @@ public class Stats : MonoBehaviour
         bonusBlock = 1;
         bonusWeaponDamage = 1;
         bonusAttackSpeed = 1;
+        bonusCastSpeed = 1;
+        bonusBlockSpeed = 1;
         bonusHitRecoverySpeed = 1;
         bonusWalkSpeed = 1;
         bonusFireResist = 0;
@@ -310,6 +329,8 @@ public class Stats : MonoBehaviour
         regenHealth = 0;
         armour = 0;
         attackSpeed = 0;
+        castSpeed = 0;
+        blockSpeed = 0;
         hitRecoverySpeed = 0;
         walkSpeed = 0;
         fireResist = 0;
@@ -356,8 +377,12 @@ public class Stats : MonoBehaviour
                     regenHealth += s.value;
                 else if (s.type == ItemStat.Type.HitRecoverySpeed)
                     hitRecoverySpeed += s.value;
+                else if (s.type == ItemStat.Type.BlockSpeed)
+                    blockSpeed += s.value;
                 else if (s.type == ItemStat.Type.AttackSpeed)
                     attackSpeed += s.value;
+                else if (s.type == ItemStat.Type.CastSpeed)
+                    castSpeed += s.value;
                 else if (s.type == ItemStat.Type.WalkSpeed)
                     walkSpeed += s.value;
                 else if (s.type == ItemStat.Type.FireSpellDamage)

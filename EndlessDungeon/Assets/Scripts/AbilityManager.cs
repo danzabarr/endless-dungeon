@@ -32,6 +32,10 @@ public class AbilityManager : MonoBehaviour
     [SerializeField]
     private ErrorMessageDisplay errorMessageDisplay;
 
+    [SerializeField]
+    private SnapShot snapshot;
+
+    /*
     [Header("Main Hand")]
     [SerializeField]
     private EquipmentObject.Class mainHandWeaponClass;
@@ -54,7 +58,7 @@ public class AbilityManager : MonoBehaviour
 
     [Header("Spells")]
     [SerializeField]
-    private float spellAttacksPerSecond;
+    private float castSpeed;
     [SerializeField]
     private float fireSpellDamage;
     [SerializeField]
@@ -67,14 +71,14 @@ public class AbilityManager : MonoBehaviour
     private float shadowSpellDamage;
     [SerializeField]
     private float holySpellDamage;
-
+    */
     private Stats stats;
 
     public Ability Active => this[activeIndex];
     public bool Casting => activeIndex != -1;
     public bool Channelling => channelling;
     public float CastTimeRemaining => channelling ? 1 : (swingTime * CastTimeTotal);
-    public float CastTimeTotal => Active == null ? 0 : 1f / GetSpeed(Active);
+    public float CastTimeTotal => Active == null ? 0 : 1f / GetCastSpeed(Active);
     public Ability this[int index] => index < 0 || index >= abilities.Length ? null : abilities[index];
     public int Length => abilities.Length;
 
@@ -113,51 +117,50 @@ public class AbilityManager : MonoBehaviour
     {
         if (stats != null)
         {
-            mainHandWeaponClass = stats.MainHandItemClass;
-            mainHandDamage = stats.MainHandDamage;
-            mainHandAttacksPerSecond = stats.MainHandAttacksPerSecond;
-            mainHandRange = stats.MainHandRange;
+            if (snapshot == null)
+                snapshot = new SnapShot();
 
-            offHandWeaponClass = stats.OffHandItemClass;
-            offHandDamage = stats.OffHandDamage;
-            offHandAttacksPerSecond = stats.OffHandAttacksPerSecond;
-            offHandRange = stats.OffHandRange;
+            snapshot.mainHandWeaponClass = stats.MainHandItemClass;
+            snapshot.mainHandDamage = stats.MainHandDamage;
+            snapshot.mainHandAttacksPerSecond = stats.MainHandAttacksPerSecond;
+            snapshot.mainHandRange = stats.MainHandRange;
 
-            fireSpellDamage = stats.FireSpellDamage;
-            coldSpellDamage = stats.ColdSpellDamage;
-            lightningSpellDamage = stats.LightningSpellDamage;
-            poisonSpellDamage = stats.PoisonSpellDamage;
-            shadowSpellDamage = stats.ShadowSpellDamage;
-            holySpellDamage = stats.HolySpellDamage;
+            snapshot.offHandWeaponClass = stats.OffHandItemClass;
+            snapshot.offHandDamage = stats.OffHandDamage;
+            snapshot.offHandAttacksPerSecond = stats.OffHandAttacksPerSecond;
+            snapshot.offHandRange = stats.OffHandRange;
 
-            spellAttacksPerSecond = stats.AttackSpeed;
+            snapshot.fireSpellDamage = stats.FireSpellDamage;
+            snapshot.coldSpellDamage = stats.ColdSpellDamage;
+            snapshot.lightningSpellDamage = stats.LightningSpellDamage;
+            snapshot.poisonSpellDamage = stats.PoisonSpellDamage;
+            snapshot.shadowSpellDamage = stats.ShadowSpellDamage;
+            snapshot.holySpellDamage = stats.HolySpellDamage;
 
-            if (!mainHandWeaponClass.HasMeleeDamage())
+            snapshot.castSpeed = stats.CastSpeed;
+
+            if (!snapshot.mainHandWeaponClass.HasMeleeDamage())
                 offHandSwing = true;
 
-            if (!offHandWeaponClass.HasMeleeDamage())
+            if (!snapshot.offHandWeaponClass.HasMeleeDamage())
                 offHandSwing = false;
 
             if (Active != null)
-            {
-                anim.SetFloat("attackspeed", GetSpeed(Active));
-            }
+                anim.SetFloat("attackspeed", GetCastSpeed(Active));
         }
 
-        if (Active != null && !Active.Compatible(mainHandWeaponClass, offHandWeaponClass, offHandSwing ? offHandWeaponClass : mainHandWeaponClass))
-        {
+        if (Active != null && !Active.Compatible(snapshot.mainHandWeaponClass, snapshot.offHandWeaponClass, offHandSwing ? snapshot.offHandWeaponClass : snapshot.mainHandWeaponClass))
             CancelActive();
-        }
     }
 
     private void ToggleHandSwing()
     {
         offHandSwing = !offHandSwing;
 
-        if (!offHandSwing && !mainHandWeaponClass.HasMeleeDamage())
+        if (!offHandSwing && !snapshot.mainHandWeaponClass.HasMeleeDamage())
             offHandSwing = true;
 
-        if (offHandSwing && !offHandWeaponClass.HasMeleeDamage())
+        if (offHandSwing && !snapshot.offHandWeaponClass.HasMeleeDamage())
             offHandSwing = false;
     }
 
@@ -208,27 +211,13 @@ public class AbilityManager : MonoBehaviour
                 swingTime,
                 offHandSwing,
                 patternPosition,
-                mainHandWeaponClass,
-                mainHandDamage,
-                mainHandAttacksPerSecond,
-                mainHandRange,
-                offHandWeaponClass,
-                offHandDamage,
-                offHandAttacksPerSecond,
-                offHandRange,
-                fireSpellDamage,
-                coldSpellDamage,
-                lightningSpellDamage,
-                poisonSpellDamage,
-                shadowSpellDamage,
-                holySpellDamage,
-                spellAttacksPerSecond,
-
+                channelling,
+                snapshot,
                 objects[activeIndex]
             );
         }
 
-        if (active != null && active.UsePattern && active.Pattern.Length > 0)
+        if (active != null && !channelling && active.UsePattern && active.Pattern.Length > 0)
         {
             while (swingTime <= 1 - (1 / Mathf.Max(1, active.Pattern.Length - 1) * (patternPosition)) && patternPosition < active.Pattern.Length)
             {
@@ -244,22 +233,8 @@ public class AbilityManager : MonoBehaviour
                         swingTime,
                         offHandSwing,
                         patternPosition,
-                        mainHandWeaponClass,
-                        mainHandDamage,
-                        mainHandAttacksPerSecond,
-                        mainHandRange,
-                        offHandWeaponClass,
-                        offHandDamage,
-                        offHandAttacksPerSecond,
-                        offHandRange,
-                        fireSpellDamage,
-                        coldSpellDamage,
-                        lightningSpellDamage,
-                        poisonSpellDamage,
-                        shadowSpellDamage,
-                        holySpellDamage,
-                        spellAttacksPerSecond,
-
+                        channelling,
+                        snapshot,
                         objects[activeIndex]
                     );
 
@@ -274,6 +249,50 @@ public class AbilityManager : MonoBehaviour
         {
             if (active != null)
             {
+                if (active.Channelled)
+                {
+                    if (!channelling)
+                    {
+                        active.OnStartChannelling
+                        (
+                            caster,
+                            target,
+                            castTarget,
+                            throwTarget,
+                            floorTarget,
+                            swingTime,
+                            offHandSwing,
+                            patternPosition,
+                            channelling,
+                            snapshot, 
+                            objects[activeIndex]
+                        );
+                    }
+                    else
+                    {
+                        active.OnChannellingPulse
+                        (
+                            caster,
+                            target,
+                            castTarget,
+                            throwTarget,
+                            floorTarget,
+                            swingTime,
+                            offHandSwing,
+                            patternPosition,
+                            channelling,
+                            snapshot,
+                            objects[activeIndex]
+                        );
+                    }
+
+                    channelling = true;
+                    swingTime += 1;
+                    patternPosition = 0;
+
+                    return;
+                }
+
                 if (!active.UsePattern)
                 {
                     active.OnPulse
@@ -286,22 +305,8 @@ public class AbilityManager : MonoBehaviour
                         swingTime,
                         offHandSwing,
                         patternPosition,
-                        mainHandWeaponClass,
-                        mainHandDamage,
-                        mainHandAttacksPerSecond,
-                        mainHandRange,
-                        offHandWeaponClass,
-                        offHandDamage,
-                        offHandAttacksPerSecond,
-                        offHandRange,
-                        fireSpellDamage,
-                        coldSpellDamage,
-                        lightningSpellDamage,
-                        poisonSpellDamage,
-                        shadowSpellDamage,
-                        holySpellDamage,
-                        spellAttacksPerSecond,
-
+                        channelling,
+                        snapshot,
                         objects[activeIndex]
                     );
 
@@ -309,13 +314,7 @@ public class AbilityManager : MonoBehaviour
                         stats.OnAbilityPulse(active, target, castTarget, throwTarget, floorTarget);
                 }
 
-                if (active.Channelled)
-                {
-                    channelling = true;
-                    swingTime += 1;
-                    patternPosition = 0;
-                }
-                else
+                if (!active.Channelled)
                 {
                     active.OnEnd
                     (
@@ -327,22 +326,8 @@ public class AbilityManager : MonoBehaviour
                         swingTime,
                         offHandSwing,
                         patternPosition,
-                        mainHandWeaponClass,
-                        mainHandDamage,
-                        mainHandAttacksPerSecond,
-                        mainHandRange,
-                        offHandWeaponClass,
-                        offHandDamage,
-                        offHandAttacksPerSecond,
-                        offHandRange,
-                        fireSpellDamage,
-                        coldSpellDamage,
-                        lightningSpellDamage,
-                        poisonSpellDamage,
-                        shadowSpellDamage,
-                        holySpellDamage,
-                        spellAttacksPerSecond,
-
+                        channelling,
+                        snapshot,
                         objects[activeIndex]
                     );
 
@@ -402,17 +387,18 @@ public class AbilityManager : MonoBehaviour
                         break;
                 }
 
-                string animation = active.RollAnimation(mainHandWeaponClass, offHandWeaponClass, offHandSwing);
-                float speed = GetSpeed(active);
+                string animation = active.RollAnimation(snapshot.mainHandWeaponClass, snapshot.offHandWeaponClass, offHandSwing);
+                float speed = GetCastSpeed(active);
                 anim.SetFloat("attackspeed", speed);
                 anim.SetBool("channelling", active.Channelled);
                 anim.SetTrigger(animation);
                 swingTime += 1;
                 patternPosition = 0;
+                channelling = false;
 
                 cooldowns[activeIndex] = 0;
 
-                active.OnStart
+                active.OnStartCasting
                 (
                     caster,
                     target,
@@ -422,22 +408,8 @@ public class AbilityManager : MonoBehaviour
                     swingTime,
                     offHandSwing,
                     patternPosition,
-                    mainHandWeaponClass,
-                    mainHandDamage,
-                    mainHandAttacksPerSecond,
-                    mainHandRange,
-                    offHandWeaponClass,
-                    offHandDamage,
-                    offHandAttacksPerSecond,
-                    offHandRange,
-                    fireSpellDamage,
-                    coldSpellDamage,
-                    lightningSpellDamage,
-                    poisonSpellDamage,
-                    shadowSpellDamage,
-                    holySpellDamage,
-                    spellAttacksPerSecond,
-
+                    channelling,
+                    snapshot,
                     objects[activeIndex]
                 );
 
@@ -447,7 +419,10 @@ public class AbilityManager : MonoBehaviour
         }
         else
         {
-            swingTime -= Time.deltaTime * GetSpeed(Active);
+            if (channelling)
+                swingTime -= Time.deltaTime * GetChannellingSpeed(Active);
+            else
+                swingTime -= Time.deltaTime * GetCastSpeed(Active);
         }
     }
     public enum CastOutcome
@@ -492,22 +467,8 @@ public class AbilityManager : MonoBehaviour
             swingTime,
             offHandSwing,
             patternPosition,
-            mainHandWeaponClass,
-            mainHandDamage,
-            mainHandAttacksPerSecond,
-            mainHandRange,
-            offHandWeaponClass,
-            offHandDamage,
-            offHandAttacksPerSecond,
-            offHandRange,
-            fireSpellDamage,
-            coldSpellDamage,
-            lightningSpellDamage,
-            poisonSpellDamage,
-            shadowSpellDamage,
-            holySpellDamage,
-            spellAttacksPerSecond,
-
+            channelling,
+            snapshot,
             objects[activeIndex]
         );
 
@@ -525,13 +486,13 @@ public class AbilityManager : MonoBehaviour
     {
         if (this[abilityIndex] == null)
             return float.MaxValue;
-        return abilities[abilityIndex].Range(offHandSwing ? offHandRange : mainHandRange);
+        return abilities[abilityIndex].GetRange(offHandSwing, snapshot);
     }
 
     public Ability.AbilityType Type(int abilityIndex)
     {
         if (this[abilityIndex] == null)
-            return mainHandWeaponClass.StandardAbilityType();
+            return snapshot.mainHandWeaponClass.StandardAbilityType();
         return abilities[abilityIndex].Type;
     }
 
@@ -648,7 +609,7 @@ public class AbilityManager : MonoBehaviour
         if (OnCooldown(abilityIndex))
             return CastOutcome.OnCooldown;
 
-        if (!ability.Compatible(mainHandWeaponClass, offHandWeaponClass, offHandSwing ? offHandWeaponClass : mainHandWeaponClass))
+        if (!ability.Compatible(snapshot.mainHandWeaponClass, snapshot.offHandWeaponClass, offHandSwing ? snapshot.offHandWeaponClass : snapshot.mainHandWeaponClass))
             return CastOutcome.IncompatibleWeapon;
 
         if (ability.Type == Ability.AbilityType.Targeted)
@@ -728,26 +689,53 @@ public class AbilityManager : MonoBehaviour
         return active.Amount.Roll();
     }
      */
-    private float GetSpeed(Ability active)
+     
+    private float GetCastSpeed(Ability active)
     {
         if (active == null)
             return 1;
 
         if (active.Hand == Ability.WeaponHand.MainHand)
-            return active.Speed * mainHandAttacksPerSecond;
+            return active.Speed * snapshot.mainHandAttacksPerSecond;
 
         if (active.Hand == Ability.WeaponHand.OffHand)
-            return active.Speed * offHandAttacksPerSecond;
+            return active.Speed * snapshot.offHandAttacksPerSecond;
 
         if (active.Hand == Ability.WeaponHand.Alternating)
-            return active.Speed * (offHandSwing ? offHandAttacksPerSecond : mainHandAttacksPerSecond);
+            return active.Speed * (offHandSwing ? snapshot.offHandAttacksPerSecond : snapshot.mainHandAttacksPerSecond);
 
         if (active.Hand == Ability.WeaponHand.Both)
-            return active.Speed * Mathf.Min(mainHandAttacksPerSecond, offHandAttacksPerSecond);
+            return active.Speed * Mathf.Min(snapshot.mainHandAttacksPerSecond, snapshot.offHandAttacksPerSecond);
 
         if (active.Hand == Ability.WeaponHand.Spell)
-            return active.Speed * spellAttacksPerSecond;
+            return active.Speed * snapshot.castSpeed;
 
         return active.Speed;
+    }
+
+    private float GetChannellingSpeed(Ability active)
+    {
+        if (active == null)
+            return 1;
+
+        if (!active.Channelled)
+            return 1;
+
+        if (active.Hand == Ability.WeaponHand.MainHand)
+            return 1f / active.ChannellingTickInterval * snapshot.mainHandAttacksPerSecond;
+
+        if (active.Hand == Ability.WeaponHand.OffHand)
+            return 1f / active.ChannellingTickInterval * snapshot.offHandAttacksPerSecond;
+
+        if (active.Hand == Ability.WeaponHand.Alternating)
+            return 1f / active.ChannellingTickInterval * (offHandSwing ? snapshot.offHandAttacksPerSecond : snapshot.mainHandAttacksPerSecond);
+
+        if (active.Hand == Ability.WeaponHand.Both)
+            return 1f / active.ChannellingTickInterval * Mathf.Min(snapshot.mainHandAttacksPerSecond, snapshot.offHandAttacksPerSecond);
+
+        if (active.Hand == Ability.WeaponHand.Spell)
+            return 1f / active.ChannellingTickInterval * snapshot.castSpeed;
+
+        return 1f / active.ChannellingTickInterval;
     }
 }

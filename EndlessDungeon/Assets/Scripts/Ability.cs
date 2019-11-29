@@ -19,7 +19,7 @@ public class Ability : ScriptableObject
 
     public enum WeaponHand
     {
-        Spell,          //Attack speed and damage is not multiplied by weapon speed and weapon damage
+        Spell,          //Cast speed and elemental spell damage stats are used instead of weapon speed and damage
         MainHand,       
         OffHand,        
         Both,           
@@ -92,6 +92,9 @@ public class Ability : ScriptableObject
     private bool channelled;
 
     [SerializeField]
+    private float channellingTickInterval;
+
+    [SerializeField]
     [EnumFlags]
     private Affects affects;
 
@@ -146,6 +149,7 @@ public class Ability : ScriptableObject
     public Texture2D Icon => icon;
     public AbilityType Type => abilityType;
     public bool Channelled => channelled;
+    public float ChannellingTickInterval => channellingTickInterval;
     public WeaponHand Hand => weaponHand;
     public EquipmentObject.Class MainHandRequirement => mainHandRequirement;
     public EquipmentObject.Class OffHandRequirement => offHandRequirement;
@@ -196,7 +200,9 @@ public class Ability : ScriptableObject
         return strings[Random.Range(0, strings.Count)];
     }
 
-    public virtual void OnStart
+    
+
+    public virtual void OnStartCasting
     (
         Unit caster,
         Unit target,
@@ -206,30 +212,50 @@ public class Ability : ScriptableObject
         float swingTime,
         bool offHandSwing,
         int patternPosition,
-
-        EquipmentObject.Class mainHandWeaponClass,
-        Vector2 mainHandDamage,
-        float mainHandAttacksPerSecond,
-        float mainHandRange,
-
-        EquipmentObject.Class offHandWeaponClass,
-        Vector2 offHandDamage,
-        float offHandAttacksPerSecond,
-        float offHandRange,
-
-        float fireSpellDamage,
-        float coldSpellDamage,
-        float lightningSpellDamage,
-        float poisonSpellDamage,
-        float shadowSpellDamage,
-        float holySpellDamage,
-        float spellAttacksPerSecond,
-
+        bool channelling,
+        SnapShot snapshot,
         GameObject objects
     )
     {
 
     }
+
+    public virtual void OnStartChannelling
+    (
+        Unit caster,
+        Unit target,
+        Vector3 castTarget,
+        Vector3 throwTarget,
+        Vector3 floorTarget,
+        float swingTime,
+        bool offHandSwing,
+        int patternPosition,
+        bool channelling,
+        SnapShot snapshot,
+        GameObject objects
+    )
+    {
+
+    }
+
+    public virtual void OnChannellingPulse
+   (
+       Unit caster,
+        Unit target,
+        Vector3 castTarget,
+        Vector3 throwTarget,
+        Vector3 floorTarget,
+        float swingTime,
+        bool offHandSwing,
+        int patternPosition,
+        bool channelling,
+        SnapShot snapshot,
+        GameObject objects
+   )
+    {
+
+    }
+
     public virtual void OnUpdate
     (
         Unit caster,
@@ -240,30 +266,13 @@ public class Ability : ScriptableObject
         float swingTime,
         bool offHandSwing,
         int patternPosition,
-
-        EquipmentObject.Class mainHandWeaponClass,
-        Vector2 mainHandDamage,
-        float mainHandAttacksPerSecond,
-        float mainHandRange,
-
-        EquipmentObject.Class offHandWeaponClass,
-        Vector2 offHandDamage,
-        float offHandAttacksPerSecond,
-        float offHandRange,
-
-        float fireSpellDamage,
-        float coldSpellDamage,
-        float lightningSpellDamage,
-        float poisonSpellDamage,
-        float shadowSpellDamage,
-        float holySpellDamage,
-        float spellAttacksPerSecond,
-
+        bool channelling,
+        SnapShot snapshot,
         GameObject objects
     )
     {
-        if (target != null) castTarget = target.GetCenterPosition();
-        caster.LookInDirection(castTarget - caster.GetCastPosition());
+        Vector3 castDirection = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
+        caster.LookInDirection(castDirection);
     }
     public virtual void OnPulse
     (
@@ -275,39 +284,21 @@ public class Ability : ScriptableObject
         float swingTime,
         bool offHandSwing,
         int patternPosition,
-
-        EquipmentObject.Class mainHandWeaponClass,
-        Vector2 mainHandDamage,
-        float mainHandAttacksPerSecond,
-        float mainHandRange,
-
-        EquipmentObject.Class offHandWeaponClass,
-        Vector2 offHandDamage,
-        float offHandAttacksPerSecond,
-        float offHandRange,
-
-        float fireSpellDamage,
-        float coldSpellDamage,
-        float lightningSpellDamage,
-        float poisonSpellDamage,
-        float shadowSpellDamage,
-        float holySpellDamage,
-        float spellAttacksPerSecond,
-
+        bool channelling,
+        SnapShot snapshot,
         GameObject objects
     )
     {
         Vector3 castDirection = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
 
-        switch (mainHandWeaponClass.StandardAbilityType())
+        switch (snapshot.mainHandWeaponClass.StandardAbilityType())
         {
             case AbilityType.Melee:
-                float range = offHandSwing ? offHandRange : mainHandRange;
-                List<Unit> targets = GetTargets(caster, target, castDirection, range);
+                List<Unit> targets = GetTargets(caster, target, castDirection, offHandSwing, snapshot);
                 foreach (Unit hp in targets)
                 {
-                    hp.Damage(this, caster, DamageType.Physical, offHandSwing ? offHandDamage.Roll() : mainHandDamage.Roll(), true, true);
-                    hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
+                    hp.Damage(this, caster, DamageType.Physical, offHandSwing ? snapshot.offHandDamage.Roll() : snapshot.mainHandDamage.Roll(), true, true);
+                    //hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
                 }
 
                 break;
@@ -315,13 +306,13 @@ public class Ability : ScriptableObject
 
             case AbilityType.Projectile:
 
-                Instantiate(Projectile).Init(caster, castDirection, projectileSpeed, offHandSwing ? offHandDamage : mainHandDamage, DamageType.Physical);
+                Instantiate(Projectile).Init(caster, castDirection, projectileSpeed, offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage, DamageType.Physical);
 
                 break;
 
             case AbilityType.Thrown:
 
-                Instantiate(Throwable).ThrowAt(caster, throwTarget, offHandSwing ? offHandDamage : mainHandDamage, DamageType.Physical);
+                Instantiate(Throwable).ThrowAt(caster, throwTarget, offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage, DamageType.Physical);
 
                 break;
             
@@ -338,36 +329,80 @@ public class Ability : ScriptableObject
         float swingTime,
         bool offHandSwing,
         int patternPosition,
-
-        EquipmentObject.Class mainHandWeaponClass,
-        Vector2 mainHandDamage,
-        float mainHandAttacksPerSecond,
-        float mainHandRange,
-
-        EquipmentObject.Class offHandWeaponClass,
-        Vector2 offHandDamage,
-        float offHandAttacksPerSecond,
-        float offHandRange,
-
-        float fireSpellDamage,
-        float coldSpellDamage,
-        float lightningSpellDamage,
-        float poisonSpellDamage,
-        float shadowSpellDamage,
-        float holySpellDamage,
-        float spellAttacksPerSecond,
-
+        bool channelling,
+        SnapShot snapshot,
         GameObject objects
     )
     {
         
         
     }
-    public float Range(float weaponRange)
+
+    public float GetRange(bool offHandSwing, SnapShot snapshot)
     {
         if (Type == AbilityType.Projectile) return float.MaxValue;
         if (Type == AbilityType.Self) return float.MaxValue;
-        return range * (useWeaponRange ? weaponRange : 1);
+
+        if (!useWeaponRange)
+            return range;
+
+        if (Hand == WeaponHand.MainHand)
+            return range * snapshot.mainHandRange;
+
+        if (Hand == WeaponHand.OffHand)
+            return range * snapshot.offHandRange;
+
+        if (Hand == WeaponHand.Alternating)
+            return range * (offHandSwing ? snapshot.offHandRange : snapshot.mainHandRange);
+
+        if (Hand == WeaponHand.Both)
+            return range * Mathf.Min(snapshot.offHandRange, snapshot.mainHandRange);
+
+        if (Hand == WeaponHand.Spell)
+            return range;
+
+        return range;
+    }
+
+    public Vector2 GetDamage(bool offHandSwing, SnapShot snapshot)
+    {
+        if (Hand == WeaponHand.MainHand)
+            return damage * snapshot.mainHandDamage;
+
+        if (Hand == WeaponHand.OffHand)
+            return damage * snapshot.offHandDamage;
+
+        if (Hand == WeaponHand.Alternating)
+            return damage * (offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage);
+
+        if (Hand == WeaponHand.Both)
+            return damage * (snapshot.mainHandAttacksPerSecond + snapshot.offHandAttacksPerSecond);
+
+        if (Hand == WeaponHand.Spell)
+        {
+            if (damageType == DamageType.Physical)
+                return damage;
+
+            if (damageType == DamageType.Fire)
+               return damage * snapshot.fireSpellDamage;
+
+            if (damageType == DamageType.Cold)
+               return damage * snapshot.coldSpellDamage;
+
+            if (damageType == DamageType.Lightning)
+               return damage * snapshot.lightningSpellDamage;
+
+            if (damageType == DamageType.Poison)
+               return damage * snapshot.poisonSpellDamage;
+
+            if (damageType == DamageType.Shadow)
+                return damage * snapshot.shadowSpellDamage;
+
+            if (damageType == DamageType.Holy)
+                return damage * snapshot.holySpellDamage;
+        }
+
+        return damage;
     }
 
     public List<Unit> GetTargets
@@ -375,7 +410,8 @@ public class Ability : ScriptableObject
         Unit caster,
         Unit target,
         Vector3 targetDirection,
-        float weaponRange
+        bool offHandSwing,
+        SnapShot snapshot
     )
     {
         List<Unit> targets = new List<Unit>();
@@ -383,7 +419,7 @@ public class Ability : ScriptableObject
         bool targettingAllies = affects != Affects.Enemies;
         bool targettingEnemies = affects != Affects.Allies;
         Unit.Faction casterFaction = caster.GetFaction();
-        float range = Range(weaponRange);
+        float range = GetRange(offHandSwing, snapshot);
         
 
         void AddTarget(Unit hp)

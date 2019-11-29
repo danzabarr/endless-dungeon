@@ -13,14 +13,20 @@ public class StatsEditor : Editor
     private GUIStyle header;
 
     private SerializedProperty maxHealthBase;
-    private SerializedProperty maxHealthPerStrength;
     private SerializedProperty healthRegenBase;
-    private SerializedProperty healthRegenPerMagic;
-    private SerializedProperty weaponDamagePerStrength;
+    private SerializedProperty blockSpeedBase;
     private SerializedProperty hitRecoverySpeedBase;
-    private SerializedProperty hitRecoverySpeedPerStrength;
-    private SerializedProperty attackSpeedPerDexterity;
     private SerializedProperty walkSpeedBase;
+
+    private SerializedProperty maxHealthPerStrength;
+    private SerializedProperty weaponDamagePerStrength;
+    private SerializedProperty hitRecoverySpeedPerStrength;
+
+    private SerializedProperty blockSpeedPerDexterity;
+    private SerializedProperty castSpeedPerDexterity;
+    private SerializedProperty attackSpeedPerDexterity;
+
+    private SerializedProperty healthRegenPerMagic;
     private SerializedProperty spellDamagePerMagic;
 
     private SerializedProperty strength;
@@ -39,6 +45,8 @@ public class StatsEditor : Editor
     private SerializedProperty holyResist;
 
     private SerializedProperty hitRecoverySpeed;
+    private SerializedProperty blockSpeed;
+    private SerializedProperty castSpeed;
     private SerializedProperty attackSpeed;
 
     private SerializedProperty fireDamage;
@@ -68,14 +76,20 @@ public class StatsEditor : Editor
         stats = obj.targetObject as Stats;
 
         maxHealthBase                   = obj.FindProperty("maxHealthBase");
-        maxHealthPerStrength            = obj.FindProperty("maxHealthPerStrength");
         healthRegenBase                 = obj.FindProperty("healthRegenBase");
-        healthRegenPerMagic             = obj.FindProperty("healthRegenPerMagic");
-        weaponDamagePerStrength         = obj.FindProperty("weaponDamagePerStrength");
         hitRecoverySpeedBase            = obj.FindProperty("hitRecoverySpeedBase");
-        hitRecoverySpeedPerStrength     = obj.FindProperty("hitRecoverySpeedPerStrength");
-        attackSpeedPerDexterity         = obj.FindProperty("attackSpeedPerDexterity");
+        blockSpeedBase                  = obj.FindProperty("blockSpeedBase");
         walkSpeedBase                   = obj.FindProperty("walkSpeedBase");
+
+        maxHealthPerStrength            = obj.FindProperty("maxHealthPerStrength");
+        weaponDamagePerStrength         = obj.FindProperty("weaponDamagePerStrength");
+        hitRecoverySpeedPerStrength     = obj.FindProperty("hitRecoverySpeedPerStrength");
+
+        blockSpeedPerDexterity          = obj.FindProperty("blockSpeedPerDexterity");
+        attackSpeedPerDexterity         = obj.FindProperty("attackSpeedPerDexterity");
+        castSpeedPerDexterity           = obj.FindProperty("castSpeedPerDexterity");
+
+        healthRegenPerMagic             = obj.FindProperty("healthRegenPerMagic");
         spellDamagePerMagic             = obj.FindProperty("spellDamagePerMagic");
 
         strength                        = obj.FindProperty("strength");
@@ -94,6 +108,8 @@ public class StatsEditor : Editor
         holyResist                      = obj.FindProperty("holyResist");
 
         hitRecoverySpeed                = obj.FindProperty("hitRecoverySpeed");
+        blockSpeed                      = obj.FindProperty("blockSpeed");
+        castSpeed                       = obj.FindProperty("castSpeed");
         attackSpeed                     = obj.FindProperty("attackSpeed");
         fireDamage                      = obj.FindProperty("fireDamage");
         coldDamage                      = obj.FindProperty("coldDamage");
@@ -120,17 +136,30 @@ public class StatsEditor : Editor
         header = new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Bold };
 
         EditorGUILayout.PropertyField(maxHealthBase);
-        EditorGUILayout.PropertyField(maxHealthPerStrength);
         EditorGUILayout.PropertyField(healthRegenBase);
-        EditorGUILayout.PropertyField(healthRegenPerMagic);
-        EditorGUILayout.PropertyField(weaponDamagePerStrength);
         EditorGUILayout.PropertyField(hitRecoverySpeedBase);
-        EditorGUILayout.PropertyField(hitRecoverySpeedPerStrength);
-        EditorGUILayout.PropertyField(attackSpeedPerDexterity);
+        EditorGUILayout.PropertyField(blockSpeedBase);
         EditorGUILayout.PropertyField(walkSpeedBase);
+
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(maxHealthPerStrength);
+        EditorGUILayout.PropertyField(weaponDamagePerStrength);
+        EditorGUILayout.PropertyField(hitRecoverySpeedPerStrength);
+
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(attackSpeedPerDexterity);
+        EditorGUILayout.PropertyField(castSpeedPerDexterity);
+        EditorGUILayout.PropertyField(blockSpeedPerDexterity);
+
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(healthRegenPerMagic);
         EditorGUILayout.PropertyField(spellDamagePerMagic);
 
         EditorGUILayout.Space();
+
         EditorGUILayout.LabelField("Core Stats");
         EditorGUILayout.PropertyField(strength);
         EditorGUILayout.PropertyField(dexterity);
@@ -152,6 +181,7 @@ public class StatsEditor : Editor
         LayoutPair(regenHealth, stats.RegenHealth, "0.##/s", enableEditing);
         LayoutPair(armour, stats.Armour, "0.#", enableEditing);
         LayoutPair(hitRecoverySpeed, stats.HitRecoveryDuration, "0.##s", enableEditing);
+        LayoutPair(blockSpeed, stats.BlockDuration, "0.##s", enableEditing);
         EditorGUILayout.Space();
 
         Header("Elemental Resistances");
@@ -165,6 +195,7 @@ public class StatsEditor : Editor
 
         Header("Offensive Stats");
         LayoutPair(attackSpeed, stats.AttackSpeed, "0.##/s", enableEditing);
+        LayoutPair(castSpeed, stats.CastSpeed, "0.##/s", enableEditing);
         EditorGUILayout.Space();
 
         Header(" ");

@@ -27,59 +27,19 @@ public class LightningAbility : Ability
         float swingTime,
         bool offHandSwing,
         int patternPosition,
-
-        EquipmentObject.Class mainHandWeaponClass,
-        Vector2 mainHandDamage,
-        float mainHandAttacksPerSecond,
-        float mainHandRange,
-
-        EquipmentObject.Class offHandWeaponClass,
-        Vector2 offHandDamage,
-        float offHandAttacksPerSecond,
-        float offHandRange,
-
-        float fireSpellDamage,
-        float coldSpellDamage,
-        float lightningSpellDamage,
-        float poisonSpellDamage,
-        float shadowSpellDamage,
-        float holySpellDamage,
-        float spellAttacksPerSecond,
-
+        bool channelling,
+        SnapShot snapshot,
         GameObject objects
     )
     {
-        float damageMultiplier = 1;
-        switch (DmgType)
-        {
-            case DamageType.Physical:
-                damageMultiplier = 1;
-                break;
-            case DamageType.Fire:
-                damageMultiplier = fireSpellDamage;
-                break;
-            case DamageType.Cold:
-                damageMultiplier = coldSpellDamage;
-                break;
-            case DamageType.Lightning:
-                damageMultiplier = lightningSpellDamage;
-                break;
-            case DamageType.Poison:
-                damageMultiplier = poisonSpellDamage;
-                break;
-            case DamageType.Shadow:
-                damageMultiplier = shadowSpellDamage;
-                break;
-            case DamageType.Holy:
-                damageMultiplier = holySpellDamage;
-                break;
-        }
-
         ProceduralLightning lightning = Instantiate(lightningPrefab, caster.GetCastPosition(), Quaternion.identity, caster.GetCast());
         lightning.target = target.GetCenter();
         lightning.Generate();
         Instantiate(particles, target.GetCenterPosition(), Quaternion.identity, target.GetCenter());
-        target.Damage(this, caster, DmgType, Damage.Roll() * damageMultiplier, true, false);
+
+        Vector2 damage = GetDamage(offHandSwing, snapshot);
+
+        target.Damage(this, caster, DmgType, damage.Roll(), true, false);
 
         List<Unit> targets = new List<Unit>();
         targets.Add(target);
@@ -114,7 +74,7 @@ public class LightningAbility : Ability
             lightning.target = next.GetCenter();
             lightning.Generate();
             Instantiate(particles, next.GetCenterPosition(), Quaternion.identity, next.GetCenter());
-            next.Damage(this, caster, DmgType, Damage.Roll() * damageMultiplier, true, false);
+            next.Damage(this, caster, DmgType, damage.Roll(), true, false);
             target = next;
             targets.Add(target);
         }

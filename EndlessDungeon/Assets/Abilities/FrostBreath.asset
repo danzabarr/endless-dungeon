@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ca25be24caa534d8bf24077c35e053, type: 3}
+  m_Script: {fileID: 11500000, guid: 10f11d25a2813f04d9b0f358a37a40d0, type: 3}
   m_Name: FrostBreath
   m_EditorClassIdentifier: 
   name: Frost Breath
@@ -25,6 +25,7 @@ MonoBehaviour:
   speed: 1
   abilityType: 3
   channelled: 1
+  channellingTickInterval: 0.25
   affects: 1
   damage: {x: 3, y: 4}
   damageType: 2
@@ -36,6 +37,9 @@ MonoBehaviour:
   maxObjectsReached: 0
   usePattern: 0
   pattern: 
-  range: 5
-  arc: 180
+  range: 10
+  arc: 45
   useWeaponRange: 0
+  debuff: {fileID: 11400000, guid: 8ebe530982c50344ea1d2f7fe61005c8, type: 2}
+  particles: {fileID: 8011085686402110345, guid: 55747b50b1e78b94da46c580b0822109,
+    type: 3}

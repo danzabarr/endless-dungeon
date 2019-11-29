@@ -13,9 +13,11 @@ public struct ItemStat
         EnhancedArmour = 101,
         EnhancedBlock = 150,
 
-        HitRecoverySpeed = 200,
-        AttackSpeed = 201,
-        EnhancedSpeed = 202,
+        AttackSpeed = 200,
+        CastSpeed = 201,
+        BlockSpeed = 202,
+        HitRecoverySpeed = 203,
+        EnhancedSpeed = 250,
         WalkSpeed = 300,
 
         AddDamage = 400,
@@ -85,6 +87,10 @@ public struct ItemStat
                 return value * 1.0f;
             case Type.AttackSpeed:
                 return value * 1.0f;
+            case Type.CastSpeed:
+                return value * 1.0f;
+            case Type.BlockSpeed:
+                return value * 1.0f;
             case Type.EnhancedSpeed:
                 return 0;
             case Type.WalkSpeed:
@@ -132,8 +138,12 @@ public struct ItemStat
                 return "Regenerates " + value + " Health per Second";
             case Type.HitRecoverySpeed:
                 return "Increases Hit Recovery Speed by " + value + "%";
+            case Type.BlockSpeed:
+                return "Increases Block Speed by " + value + "%";
             case Type.AttackSpeed:
                 return "Increases Attack Speed by " + value + "%";
+            case Type.CastSpeed:
+                return "Increases Cast Speed by " + value + "%";
             case Type.WalkSpeed:
                 return "Increases Walk Speed by " + value + "%";
             case Type.AddDamage:
@@ -196,8 +206,12 @@ public struct ItemStat
 
             case Type.HitRecoverySpeed:
                 return "Increases Hit Recovery Speed by [" + valueMin + " - " + valueMax + "]%";
+            case Type.BlockSpeed:
+                return "Increases Block Speed by [" + valueMin + " - " + valueMax + "]%";
             case Type.AttackSpeed:
                 return "Increases Attack Speed by [" + valueMin + " - " + valueMax + "]%";
+            case Type.CastSpeed:
+                return "Increases Block Speed by [" + valueMin + " - " + valueMax + "]%";
             case Type.WalkSpeed:
                 return "Increases Walk Speed by [" + valueMin + " - " + valueMax + "]%";
 
