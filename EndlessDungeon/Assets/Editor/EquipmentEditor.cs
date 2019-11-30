@@ -17,6 +17,9 @@ public class EquipmentEditor : Editor
     private SerializedProperty inventorySize;
     private SerializedProperty description;
     private SerializedProperty sellable;
+    private SerializedProperty luckDropChanceScalar;
+    private SerializedProperty characterLevelDropChanceCurve;
+    private SerializedProperty monsterLevelDropChanceCurve;
     #endregion
     #region Equipment
     private SerializedProperty requiresLevel;
@@ -41,8 +44,6 @@ public class EquipmentEditor : Editor
     private SerializedProperty meleeRange;
     #endregion
 
-
-
     private void OnEnable()
     {
         obj = serializedObject;
@@ -55,6 +56,9 @@ public class EquipmentEditor : Editor
         inventorySize = obj.FindProperty("inventorySize");
         description = obj.FindProperty("description");
         sellable = obj.FindProperty("sellable");
+        luckDropChanceScalar = obj.FindProperty("luckDropChanceScalar");
+        characterLevelDropChanceCurve = obj.FindProperty("characterLevelDropChanceCurve");
+        monsterLevelDropChanceCurve = obj.FindProperty("monsterLevelDropChanceCurve");
 
         requiresLevel = obj.FindProperty("requiresLevel");
         requiresStrength = obj.FindProperty("requiresStrength");
@@ -119,7 +123,7 @@ public class EquipmentEditor : Editor
         if (item.ItemClass.HasMeleeDamage())
         {
             EditorGUILayout.PropertyField(baseDamage);
-            EditorGUILayout.PropertyField(baseAttacksPer100Seconds);
+
             EditorGUILayout.PropertyField(meleeRange);
         }
 
@@ -133,10 +137,14 @@ public class EquipmentEditor : Editor
             EditorGUILayout.PropertyField(baseBlock);
         }
 
+        if (item.ItemClass.HasMeleeDamage() || item.ItemClass.HasBlock())
+        {
+            EditorGUILayout.PropertyField(baseAttacksPer100Seconds);
+        }
+
         EditorGUILayout.Space();
 
         EditorGUILayout.PropertyField(statsTemplate, true);
-        EditorGUILayout.PropertyField(statPrefixSuffix);
 
         EditorGUILayout.Space();
 
@@ -148,6 +156,12 @@ public class EquipmentEditor : Editor
         EditorGUILayout.Space();
 
         EditorGUILayout.PropertyField(sellable);
+
+        EditorGUILayout.Space();
+
+        EditorGUILayout.PropertyField(luckDropChanceScalar);
+        EditorGUILayout.PropertyField(characterLevelDropChanceCurve);
+        EditorGUILayout.PropertyField(monsterLevelDropChanceCurve);
 
         EditorGUILayout.Space();
         EditorGUILayout.Space();

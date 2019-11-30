@@ -58,8 +58,8 @@ public class Player : Unit
     private Vector3 lastPosition;
     private Vector3 walkDestination;
     private bool hasWalkDestination;
-    public int currentAbilityIndex = -1;
-    public int queuedAbilityIndex = -1;
+    private int currentAbilityIndex = -1;
+    private int queuedAbilityIndex = -1;
     private bool queuedFloorTargetValid;
     private bool lClickDown;
     
@@ -440,12 +440,12 @@ public class Player : Unit
                 if (queuedTarget is ItemObject)
                 {
                     ItemObject targetItem = queuedTarget as ItemObject;
-
                     if (bagSlots.Inventory.Add(targetItem))
                     {
                         bagSlots.Refresh(targetItem);   
                         Level.Instance.RemoveItem(targetItem);
                         targetItem.transform.SetParent(transform);
+                        targetItem.gameObject.layer = LayerMask.NameToLayer("Player");
                     }
                 }
                 StopMoving();

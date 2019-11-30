@@ -41,12 +41,6 @@ public class StatsPanelList : MonoBehaviour
         Set("Health Regeneration", "{0:0.##}/s", stats.RegenHealth, 
             "<b>Health Regeneration</b>\nThe rate at which your health automatically regenerates. A negative value will cause you to automatically lose health over time.");
 
-        Set("Chance to Block", "{0:0.##%}", stats.BlockChance, 
-            "<b>Chance to Block</b>\nYour chance to block incoming melee and ranged attacks, up to a maximum of 75%. Most damage from spells, periodic and area of effect abilities cannot be blocked. A blocked attack deals no damage.");
-
-        Set("Block Speed", "{0:0.##}s", stats.BlockDuration,
-            "<b>Hit Recovery Time</b>\nThe amount of time you take to recover after blocking a critical hit.");
-
         Set("Hit Recovery Speed", "{0:0.##}s", stats.HitRecoveryDuration,
             "<b>Hit Recovery Time</b>\nThe amount of time you take to recover after being critically hit.");
 
@@ -108,12 +102,25 @@ public class StatsPanelList : MonoBehaviour
         Set("Main Hand Weapon Speed", "{0:0.##}/s", stats.MainHandAttacksPerSecond, 
             "<b>Main Hand Weapon Speed</b>\nThe number of standard attacks performed per second with the weapon equipped in your main hand. Certain abilities will take longer or shorter than this to perform. Check the ability tooltip for the actual attack speed for a certain ability.");
 
+        Set("Main Hand Block Chance", "{0:0.##%}", stats.MainHandBlockChance,
+            "<b>Main Hand Block Chance</b>\nYour chance to block incoming melee and ranged attacks with the weapon equipped in your main hand, up to a maximum of 75%. Most damage from spells, periodic and area of effect abilities cannot be blocked. A blocked attack deals no damage.", 30);
+
+        Set("Main Hand Block Speed", "{0:0.##}s", stats.MainHandBlockDuration,
+            "<b>Main Hand Block Speed</b>\nThe amount of time you take to recover after blocking a critical hit with the weapon equipped in your main hand.");
+
         //Title("Off Hand Weapon");
         Set("Off Hand Weapon Damage", "{0:0}-{1:0}", stats.OffHandDamage, 
             "<b>Off Hand Weapon Damage</b>\nThe minimum and maximum damage dealt by the weapon equipped in your off hand.", 30);
 
         Set("Off Hand Weapon Speed", "{0:0.##}/s", stats.OffHandAttacksPerSecond, 
             "<b>Off Hand Weapon Speed</b>\nThe number of standard attacks performed per second with the weapon equipped in your off hand. Certain abilities will take longer or shorter than this to perform. Check the ability tooltip for the actual attack speed for a certain ability.");
+
+        Set("Off Hand Block Chance", "{0:0.##%}", stats.OffHandBlockChance,
+            "<b>Main Hand Block Chance</b>\nYour chance to block incoming melee and ranged attacks with the weapon equipped in your off hand, up to a maximum of 75%. Most damage from spells, periodic and area of effect abilities cannot be blocked. A blocked attack deals no damage.", 30);
+
+        Set("Off Hand Block Speed", "{0:0.##}s", stats.OffHandBlockDuration,
+            "<b>Main Hand Block Speed</b>\nThe amount of time you take to recover after blocking a critical hit with the weapon equipped in your off hand.");
+
     }
 
     public StatsPanelEntry this[string name] => dictionary[name];
@@ -131,8 +138,6 @@ public class StatsPanelList : MonoBehaviour
 
         Set("Maximum Health", stats.MaxHealth);
         Set("Health Regeneration", stats.RegenHealth);
-        Set("Chance to Block", stats.BlockChance);
-        Set("Block Speed", stats.BlockDuration);
         Set("Hit Recovery Speed", stats.HitRecoveryDuration);
         Set("Armour", stats.Armour);
         Set("Physical Mitigation", stats.PhysicalMitigation);
@@ -147,15 +152,10 @@ public class StatsPanelList : MonoBehaviour
         Set("Cast Speed", stats.CastSpeed - 1);
 
         Set("Fire Spell Damage", stats.FireSpellDamage - 1);
-
         Set("Cold Spell Damage", stats.ColdSpellDamage - 1);
-
         Set("Lightning Spell Damage", stats.LightningSpellDamage - 1);
-
         Set("Poison Spell Damage", stats.PoisonSpellDamage - 1);
-
         Set("Shadow Spell Damage", stats.ShadowSpellDamage - 1);
-
         Set("Holy Spell Damage", stats.HolySpellDamage - 1);
 
         if (stats.MainHandEquipped && stats.MainHandItemClass.HasMeleeDamage())
@@ -171,6 +171,17 @@ public class StatsPanelList : MonoBehaviour
             Hide("Main Hand Weapon Speed");
         }
 
+        if (stats.MainHandEquipped && stats.MainHandItemClass.HasBlock())
+        {
+            Set("Main Hand Block Chance", stats.MainHandBlockChance);
+            Set("Main Hand Block Speed", stats.MainHandBlockDuration);
+        }
+        else
+        {
+            Hide("Main Hand Block Chance");
+            Hide("Main Hand Block Speed");
+        }
+
         if (stats.OffHandEquipped && stats.OffHandItemClass.HasMeleeDamage())
         {
             //Title("Off Hand Weapon");
@@ -182,6 +193,17 @@ public class StatsPanelList : MonoBehaviour
             //HideTitle("Off Hand Weapon");
             Hide("Off Hand Weapon Damage");
             Hide("Off Hand Weapon Speed");
+        }
+
+        if (stats.OffHandEquipped && stats.OffHandItemClass.HasBlock())
+        {
+            Set("Off Hand Block Chance", stats.OffHandBlockChance);
+            Set("Off Hand Block Speed", stats.OffHandBlockDuration);
+        }
+        else
+        {
+            Hide("Off Hand Block Chance");
+            Hide("Off Hand Block Speed");
         }
     }
 

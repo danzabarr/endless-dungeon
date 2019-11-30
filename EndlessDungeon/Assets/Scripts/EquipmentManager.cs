@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
+    private Unit unit;
     private Stats stats;
     private AbilityManager abilities;
 
@@ -12,6 +13,7 @@ public class EquipmentManager : MonoBehaviour
 
     public void Awake()
     {
+        unit = GetComponent<Unit>();
         stats = GetComponent<Stats>();
         abilities = GetComponent<AbilityManager>();
     }
@@ -33,6 +35,7 @@ public class EquipmentManager : MonoBehaviour
     }
     public void OnValidate()
     {
+        unit = GetComponent<Unit>();
         stats = GetComponent<Stats>();
         abilities = GetComponent<AbilityManager>();
         GatherObjects();
@@ -210,6 +213,7 @@ public class EquipmentManager : MonoBehaviour
         //stats.RecalculateBonusStats();
 
         abilities?.Equip(stats);
+       
     }
 
     private void UpdateAll()
@@ -235,6 +239,9 @@ public class EquipmentManager : MonoBehaviour
 
         foreach (MeshFilter filter in mainHandObject.GetComponentsInChildren<MeshFilter>())
             filter.sharedMesh = mesh;
+
+        
+        unit.IdentifyBlockAnimations();
     }
     private void UpdateOffHand()
     {
@@ -249,6 +256,8 @@ public class EquipmentManager : MonoBehaviour
 
         foreach (MeshFilter filter in offHandObject.GetComponentsInChildren<MeshFilter>())
             filter.sharedMesh = mesh;
+
+        unit.IdentifyBlockAnimations();
     }
 
     private void UpdateHead()

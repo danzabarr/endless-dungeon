@@ -20,7 +20,7 @@ public class AOEDamage : Placeable
         {
             float distance = Vector3.Distance(transform.position, unit.GetCenterPosition());
             float atten = attenuation.Evaluate(Mathf.Clamp(distance / aoeRange, 0, 1));
-            unit.Damage(this, caster, damageType, damage.Roll() * atten, false, false);
+            unit.Damage(this, transform.position, caster, damageType, damage.Roll() * atten, false, false);
         }
     }
 }

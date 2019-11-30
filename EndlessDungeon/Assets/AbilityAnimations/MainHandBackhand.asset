@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: MH_Backhand
   offHandSwing: 0
-  mainHand: 84
+  mainHand: 86
   offHand: -1

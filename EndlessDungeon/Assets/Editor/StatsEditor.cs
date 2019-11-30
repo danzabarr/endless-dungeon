@@ -61,11 +61,13 @@ public class StatsEditor : Editor
     private SerializedProperty mainHandAttacksPerSecond;
     private SerializedProperty mainHandRange;
     private SerializedProperty mainHandBlock;
+    private SerializedProperty mainHandBlockSpeed;
     private SerializedProperty offHandWeaponClass;
     private SerializedProperty offHandDamage;
     private SerializedProperty offHandAttacksPerSecond;
     private SerializedProperty offHandRange;
     private SerializedProperty offHandBlock;
+    private SerializedProperty offHandBlockSpeed;
 
     [SerializeField]
     private int walkSpeed;
@@ -108,7 +110,6 @@ public class StatsEditor : Editor
         holyResist                      = obj.FindProperty("holyResist");
 
         hitRecoverySpeed                = obj.FindProperty("hitRecoverySpeed");
-        blockSpeed                      = obj.FindProperty("blockSpeed");
         castSpeed                       = obj.FindProperty("castSpeed");
         attackSpeed                     = obj.FindProperty("attackSpeed");
         fireDamage                      = obj.FindProperty("fireDamage");
@@ -138,7 +139,6 @@ public class StatsEditor : Editor
         EditorGUILayout.PropertyField(maxHealthBase);
         EditorGUILayout.PropertyField(healthRegenBase);
         EditorGUILayout.PropertyField(hitRecoverySpeedBase);
-        EditorGUILayout.PropertyField(blockSpeedBase);
         EditorGUILayout.PropertyField(walkSpeedBase);
 
         EditorGUILayout.Space();
@@ -181,7 +181,6 @@ public class StatsEditor : Editor
         LayoutPair(regenHealth, stats.RegenHealth, "0.##/s", enableEditing);
         LayoutPair(armour, stats.Armour, "0.#", enableEditing);
         LayoutPair(hitRecoverySpeed, stats.HitRecoveryDuration, "0.##s", enableEditing);
-        LayoutPair(blockSpeed, stats.BlockDuration, "0.##s", enableEditing);
         EditorGUILayout.Space();
 
         Header("Elemental Resistances");

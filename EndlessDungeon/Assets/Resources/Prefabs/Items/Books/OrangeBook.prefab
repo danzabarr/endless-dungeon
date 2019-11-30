@@ -212,6 +212,19 @@ MonoBehaviour:
   labelWorldOffset: {x: 0, y: 0, z: 0}
   labelScreenOffset: {x: 0, y: 0}
   inventorySize: {x: 1, y: 2}
+  luckDropChanceScalar: 0
+  characterLevelDropChanceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  monsterLevelDropChanceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &7773771137580681808
 MonoBehaviour:
   m_ObjectHideFlags: 0

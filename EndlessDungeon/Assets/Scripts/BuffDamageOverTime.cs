@@ -15,6 +15,6 @@ public class BuffDamageOverTime : Buff
             float elapsedTime
         )
     {
-        target.Damage(this, caster, DamageType, damageAmount.Roll() * (1 + (stacks - 1) * additionalStackDamageMultiplier), false, false);
+        target.Damage(this, target.GetCenterPosition(), caster, DamageType, damageAmount.Roll() * (1 + (stacks - 1) * additionalStackDamageMultiplier), false, false);
     }
 }

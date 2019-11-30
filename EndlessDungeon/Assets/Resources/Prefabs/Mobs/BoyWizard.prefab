@@ -1606,6 +1606,7 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 0}
   mainMaterialRenderers:
   - {fileID: 8244213826550588998}
+  blockAnimations: []
   labelWorldOffset: {x: 0, y: 5, z: 0}
   labelScreenOffset: {x: 0, y: 30}
 --- !u!114 &9044297014102452691
@@ -1622,7 +1623,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthBase: 1000
   healthRegenBase: 1
-  blockSpeedBase: 1
   hitRecoverySpeedBase: 1
   walkSpeedBase: 12
   maxHealthPerStrength: 10

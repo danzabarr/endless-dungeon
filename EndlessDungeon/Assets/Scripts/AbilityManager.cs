@@ -11,6 +11,8 @@ public class AbilityManager : MonoBehaviour
     private Ability[] abilities;
     private float[] cooldowns;
     private GameObject[] objects;
+    private string[] mainHandAnimations;
+    private string[] offHandAnimations;
 
     private int activeIndex = -1;
     private Unit target;

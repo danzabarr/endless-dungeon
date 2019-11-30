@@ -62,7 +62,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: block
+    m_ConditionEvent: OH_Shield_Block
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4051095786501547570}
@@ -427,13 +427,13 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: walkspeed
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: attackspeed
     m_Type: 1
-    m_DefaultFloat: 1.5
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -473,7 +473,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: block
+  - m_Name: OH_Shield_Block
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -685,7 +685,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Block
+  m_Name: OH Shield Block
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

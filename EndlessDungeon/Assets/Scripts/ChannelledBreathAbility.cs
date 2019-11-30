@@ -34,7 +34,7 @@ public class ChannelledBreathAbility : Ability
 
         foreach (Unit hp in targets)
         {
-            hp.Damage(this, caster, DamageType.Physical, damage.Roll(), true, true);
+            hp.Damage(this, caster.GetCastPosition(), caster, DamageType.Physical, damage.Roll(), true, true);
             //hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
             hp.ApplyDebuff(caster, debuff, out _, out _, true, 1, 10);
         }
@@ -61,7 +61,7 @@ public class ChannelledBreathAbility : Ability
         List<Unit> targets = GetTargets(caster, target, castDirection, offHandSwing, snapshot);
         foreach (Unit hp in targets)
         {
-            hp.Damage(this, caster, DamageType.Physical, damage.Roll(), true, true);
+            hp.Damage(this, caster.GetCastPosition(), caster, DamageType.Physical, damage.Roll(), true, true);
             //hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
             hp.ApplyDebuff(caster, debuff, out _, out _, true, 1, 10);
         }

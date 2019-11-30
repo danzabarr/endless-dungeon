@@ -199,9 +199,6 @@ public class Ability : ScriptableObject
 
         return strings[Random.Range(0, strings.Count)];
     }
-
-    
-
     public virtual void OnStartCasting
     (
         Unit caster,
@@ -297,7 +294,7 @@ public class Ability : ScriptableObject
                 List<Unit> targets = GetTargets(caster, target, castDirection, offHandSwing, snapshot);
                 foreach (Unit hp in targets)
                 {
-                    hp.Damage(this, caster, DamageType.Physical, offHandSwing ? snapshot.offHandDamage.Roll() : snapshot.mainHandDamage.Roll(), true, true);
+                    hp.Damage(this, caster.GetCastPosition(), caster, DamageType.Physical, offHandSwing ? snapshot.offHandDamage.Roll() : snapshot.mainHandDamage.Roll(), true, true);
                     //hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
                 }
 

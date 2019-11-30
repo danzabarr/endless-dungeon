@@ -101,7 +101,7 @@ public class Projectile : MonoBehaviour
                 float distance = Vector3.Distance(transform.position, target.GetCenterPosition());
                 float attenuation = rangeAttenuation.Evaluate(distance / aoeRange);
                 float dmg = damage.Roll() * attenuation;
-                target.Damage(this, caster, damageType, dmg, true, false);
+                target.Damage(this, transform.position, caster, damageType, dmg, true, false);
 
                 if (debuff)
                     target.ApplyDebuff(caster, debuff, out _, out _, debuffUseResistances, debuffStacks, debuffMaxStacks);

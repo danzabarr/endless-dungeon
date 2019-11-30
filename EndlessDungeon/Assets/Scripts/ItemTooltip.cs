@@ -101,31 +101,40 @@ public class ItemTooltip : MonoBehaviour
             name.color = equipment.ItemQualityColor;
             name.text = equipment.DisplayName;
 
-            type.gameObject.SetActive(true);
             type.color = equipment.ItemQualityColor;
             type.text = equipment.DescriptiveName + " (" + equipment.ItemType.ToString().SplitCamelCase() + ")";
+            type.gameObject.SetActive(true);
 
             if (equipment.ItemClass.HasMeleeDamage())
             {
+                dps.text = equipment.DamagePerSecond.ToString("0.0") + " DPS";
+                damage.text = equipment.Damage.Min().ToString("0") + "-" + equipment.Damage.Max().ToString("0") + " Damage";
+
                 dps.gameObject.SetActive(true);
                 damage.gameObject.SetActive(true);
                 speed.gameObject.SetActive(true);
 
-                dps.text = equipment.DamagePerSecond.ToString("0.0") + " DPS";
-                damage.text = equipment.Damage.Min().ToString("0") + "-" + equipment.Damage.Max().ToString("0") + " Damage";
-                speed.text = equipment.AttacksPerSecond.ToString("0.00") + " Attacks per Second";
             }
             else
             {
                 dps.gameObject.SetActive(false);
                 damage.gameObject.SetActive(false);
+            }
+
+            if (equipment.ItemClass.HasMeleeDamage() || equipment.ItemClass.HasBlock())
+            {
+                speed.text = equipment.AttacksPerSecond.ToString("0.00") + " Attacks/Blocks per Second";
+                speed.gameObject.SetActive(true);
+            }
+            else
+            {
                 speed.gameObject.SetActive(false);
             }
 
             if (equipment.ItemClass.HasArmour())
             {
-                armour.gameObject.SetActive(true);
                 armour.text = equipment.Armour + " Armour";
+                armour.gameObject.SetActive(true);
             }
             else
             {
@@ -134,8 +143,8 @@ public class ItemTooltip : MonoBehaviour
 
             if (equipment.ItemClass.HasBlock())
             {
-                block.gameObject.SetActive(true);
                 block.text = equipment.Block.ToString("0.#%") + " Chance to Block";
+                block.gameObject.SetActive(true);
             }
             else
             {
@@ -144,13 +153,13 @@ public class ItemTooltip : MonoBehaviour
 
             if (equipment.DisplayQuantity)
             {
-                durability.gameObject.SetActive(true);
                 if (equipment.Indestructible)
                     durability.text = "Indestructible";
                 else if (equipment.Quantity > 0)
                     durability.text = equipment.Quantity + "/" + equipment.QuantityMax + " Durability";
                 else
                     durability.text = "<color=red>" + equipment.Quantity + "/" + equipment.QuantityMax + " Durability</color>";
+                durability.gameObject.SetActive(true);
             }
             else
             {
@@ -159,7 +168,6 @@ public class ItemTooltip : MonoBehaviour
 
             if (equipment.StatsLength > 0)
             {
-                stats.gameObject.SetActive(true);
                 string text = "";
                 for (int i = 0; i < equipment.StatsLength; i++)
                 {
@@ -167,6 +175,7 @@ public class ItemTooltip : MonoBehaviour
                     text += "\n" + stat.ToString();
                 }
                 stats.text = text;
+                stats.gameObject.SetActive(true);
             }
             else
             {
@@ -175,7 +184,6 @@ public class ItemTooltip : MonoBehaviour
 
             if (equipment.RequiresLevel > 1 || equipment.RequiresStrength + equipment.RequiresDexterity + equipment.RequiresMagic > 0)
             {
-                requirements.gameObject.SetActive(true);
 
                 string text = "";
                 if (equipment.RequiresLevel > 1)
@@ -215,6 +223,7 @@ public class ItemTooltip : MonoBehaviour
                 }
 
                 requirements.text = text;
+                requirements.gameObject.SetActive(true);
             }
             else
             {
@@ -223,8 +232,8 @@ public class ItemTooltip : MonoBehaviour
 
             if (equipment.Description.Length > 0)
             {
-                description.gameObject.SetActive(true);
                 description.text = "\n" + equipment.Description;
+                description.gameObject.SetActive(true);
             }
             else
             {
@@ -251,8 +260,8 @@ public class ItemTooltip : MonoBehaviour
 
             if (item.Description.Length > 0)
             {
-                description.gameObject.SetActive(true);
                 description.text = "\n" + item.Description;
+                description.gameObject.SetActive(true);
             }
             else
             {

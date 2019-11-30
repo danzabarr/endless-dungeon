@@ -57,6 +57,11 @@ public abstract class Unit : MonoBehaviour
 
     public event GameEventSystem.Handler DeathEvent;
 
+    [SerializeField]
+    protected AbilityAnimation[] blockAnimations;
+
+    private string[] offHandBlockTriggers;
+    private string[] mainHandBlockTriggers;
     public virtual void Awake()
     {
         Stats = GetComponent<Stats>();
@@ -110,6 +115,32 @@ public abstract class Unit : MonoBehaviour
             agent.enabled = true;
         }
         */
+    }
+
+    public void IdentifyBlockAnimations()
+    {
+        if (Stats == null)
+            Stats = GetComponent<Stats>();
+        List<string> offHandBlockTriggers = new List<string>();
+        List<string> mainHandBlockTriggers = new List<string>();
+        foreach (AbilityAnimation a in blockAnimations)
+        {
+            //Ignore animations whose main hand requirements aren't met by the main hand.
+            if (!a.mainHand.IsCompatible(Stats.MainHandItemClass))
+                continue;
+
+            //Ignore animations whose off hand requirements aren't met by the off hand.
+            if (!a.offHand.IsCompatible(Stats.OffHandItemClass))
+                continue;
+
+            //Ignore animations for the wrong hand.
+            if (a.offHandSwing)
+                offHandBlockTriggers.Add(a.trigger);
+            else
+                mainHandBlockTriggers.Add(a.trigger);
+        }
+        this.offHandBlockTriggers = offHandBlockTriggers.ToArray();
+        this.mainHandBlockTriggers = mainHandBlockTriggers.ToArray();
     }
 
     public Color Color
@@ -259,18 +290,30 @@ public abstract class Unit : MonoBehaviour
     public int IntegerMaxHealth => Mathf.CeilToInt(GetMaxHealth());
     public float FractionHealth => GetCurrentHealth() / GetMaxHealth();
     public float PercentHealth => GetCurrentHealth() / GetMaxHealth() * 100;
-
     public bool Stunned => stunTimer > 0;
-
-    public void Damage(object source, Unit attacker, Ability.DamageType type, float amount, bool canStun, bool blockable)
+    public bool InFront(Vector3 position)
     {
-        Damage(source, attacker, type, amount, canStun, blockable, out _, out _, out _, out _);
+        return Vector3.Dot(transform.forward, position - transform.position) >= 0;
     }
-
-    public void Damage(object source, Unit attacker, Ability.DamageType type, float amount, bool canStun, bool blockable, out float dealt, out bool blocked, out bool killingBlow, out bool deathAverted)
+    private string RollBlockAnimation(bool offHandSwing)
+    {
+        return "";
+    }
+    public void Damage(object source, Vector3 sourcePosition, Unit attacker, Ability.DamageType type, float amount, bool canStun, bool blockable)
+    {
+        Damage(source, sourcePosition, attacker, type, amount, canStun, blockable, out _, out _, out _, out _);
+    }
+    public void Damage(object source, Vector3 sourcePosition, Unit attacker, Ability.DamageType type, float amount, bool canStun, bool blockable, out float dealt, out bool blocked, out bool killingBlow, out bool deathAverted)
     {
         dealt = amount * (1 - Stats.Mitigation(type));
-        blocked = blockable && !Stunned && Stats.BlockChance > Random.value;
+
+        bool infront = InFront(sourcePosition);
+
+        bool offHandBlock = infront && blockable && !Stunned && Stats.OffHandItemClass.HasBlock() && Stats.OffHandBlockChance > Random.value;
+        bool mainHandBlock = !offHandBlock && infront && blockable && !Stunned && Stats.MainHandItemClass.HasBlock() && Stats.MainHandBlockChance > Random.value;
+
+        blocked = offHandBlock || mainHandBlock;
+
         killingBlow = false;
         deathAverted = false;
 
@@ -279,13 +322,28 @@ public abstract class Unit : MonoBehaviour
             Abilities.CancelActive();
             
             Animator.SetFloat("hitrecoveryspeed", 1f / stunTimer);
-            if (blocked)
+            if (offHandBlock)
             {
-                Animator.SetTrigger("block");
-                stunTimer = Stats.BlockDuration;
+                if (offHandBlockTriggers != null && offHandBlockTriggers.Length > 0)
+                {
+                    Animator.SetFloat("hitrecoveryspeed", Stats.OffHandBlockSpeed);
+                    Animator.SetTrigger(offHandBlockTriggers[Random.Range(0, offHandBlockTriggers.Length)]);
+                }
+                stunTimer = Stats.OffHandBlockDuration;
+                
+            }
+            else if (mainHandBlock)
+            {
+                if (mainHandBlockTriggers != null && mainHandBlockTriggers.Length > 0)
+                {
+                    Animator.SetFloat("hitrecoveryspeed", Stats.MainHandBlockSpeed);
+                    Animator.SetTrigger(mainHandBlockTriggers[Random.Range(0, mainHandBlockTriggers.Length)]);
+                }
+                stunTimer = Stats.MainHandBlockDuration;
             }
             else
             {
+                Animator.SetFloat("hitrecoveryspeed", Stats.HitRecoverySpeed);
                 Animator.SetTrigger("hit");
                 stunTimer = Stats.HitRecoveryDuration;
             }

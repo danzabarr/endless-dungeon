@@ -209,10 +209,95 @@ MonoBehaviour:
   description: 
   sellable: 1
   displayQuantity: 1
-  sellValue: 173
+  sellValue: 104
   labelWorldOffset: {x: 0, y: 0, z: 0}
   labelScreenOffset: {x: 0, y: 0}
   inventorySize: {x: 2, y: 3}
+  luckDropChanceScalar: 0.05
+  characterLevelDropChanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 100
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 100
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  monsterLevelDropChanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 100
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 100
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   itemClass: 205
   wornItemName: Body.Armour
   heldItemMesh: {fileID: 0}
@@ -224,13 +309,16 @@ MonoBehaviour:
   requiresMagic: 0
   statsTemplate:
   - {fileID: 11400000, guid: e3d09efae5c446d4e9a0cf7748864664, type: 2}
-  statPrefixSuffix: {x: 0, y: 1}
-  prefix: Quenching
-  suffix: 
+  - {fileID: 11400000, guid: e3d09efae5c446d4e9a0cf7748864664, type: 2}
+  prefix: Cleansing
+  suffix: of Grounding
   stats:
     array:
-    - type: 600
-      value: 73
+    - type: 603
+      value: 2
+      variable: 0
+    - type: 602
+      value: 2
       variable: 0
   baseArmour: 100
   baseBlock: 0

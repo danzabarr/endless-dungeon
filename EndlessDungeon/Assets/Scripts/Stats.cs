@@ -18,8 +18,6 @@ public class Stats : MonoBehaviour
     [SerializeField]
     private float healthRegenBase = 1;
     [SerializeField]
-    private float blockSpeedBase = 1;
-    [SerializeField]
     private float hitRecoverySpeedBase = 1;
     [SerializeField]
     private float walkSpeedBase = 12;
@@ -170,24 +168,27 @@ public class Stats : MonoBehaviour
          
     public float AttackSpeed => Mathf.Max(0, (1 + dexterity * attackSpeedPerDexterity) * (1 + attackSpeed / 100f) * bonusAttackSpeed);
     public float CastSpeed => Mathf.Max(0, (1 + dexterity * castSpeedPerDexterity) * (1 + castSpeed / 100f) * bonusCastSpeed);
-    public float BlockSpeed => Mathf.Max(0, (blockSpeedBase + dexterity * blockSpeedPerDexterity) * (1 + blockSpeed / 100f) * bonusBlockSpeed);
-    public float BlockDuration => 1f / BlockSpeed;
+    public float BlockSpeed => Mathf.Max(0, (1 + dexterity * blockSpeedPerDexterity) * (1 + blockSpeed / 100f) * bonusBlockSpeed);
     public float HitRecoverySpeed => Mathf.Max(0, (hitRecoverySpeedBase + strength * hitRecoverySpeedPerStrength) * (1 + hitRecoverySpeed / 100f) * bonusHitRecoverySpeed);
-    public float HitRecoveryDuration => 1f / HitRecoverySpeed;
+    public float HitRecoveryDuration => Mathf.Clamp(1f / HitRecoverySpeed, 0, 5);
     public float WalkSpeed => Mathf.Max(0, walkSpeedBase * (1 + walkSpeed / 100f) * bonusWalkSpeed);
 
     public bool MainHandEquipped => mainHandWeaponClass != EquipmentObject.Class.Unarmed;
     public EquipmentObject.Class MainHandItemClass => mainHandWeaponClass;
     public Vector2 MainHandDamage => (mainHandDamage * (1 + strength * weaponDamagePerStrength) * bonusWeaponDamage).Max(Vector2.zero);
     public float MainHandAttacksPerSecond => Mathf.Max(0, mainHandAttacksPerSecond * AttackSpeed);
-    public float MainHandBlockChance => mainHandBlock;
+    public float MainHandBlockChance => Mathf.Clamp(mainHandBlock * bonusBlock, 0, .75f);
+    public float MainHandBlockSpeed => Mathf.Max(0, mainHandAttacksPerSecond * BlockSpeed);
+    public float MainHandBlockDuration => Mathf.Clamp(1f / MainHandBlockSpeed, 0, 5);
     public float MainHandRange => mainHandRange;
 
     public bool OffHandEquipped => offHandWeaponClass != EquipmentObject.Class.Unarmed;
     public EquipmentObject.Class OffHandItemClass => offHandWeaponClass;
     public Vector2 OffHandDamage => (offHandDamage * (1 + strength * weaponDamagePerStrength) * bonusWeaponDamage).Max(Vector2.zero);
     public float OffHandAttacksPerSecond => Mathf.Max(0, offHandAttacksPerSecond * AttackSpeed);
-    public float OffHandBlockChance => offHandBlock;
+    public float OffHandBlockChance => Mathf.Clamp(offHandBlock * bonusBlock, 0, .75f);
+    public float OffHandBlockSpeed => Mathf.Max(0, offHandAttacksPerSecond * BlockSpeed);
+    public float OffHandBlockDuration => Mathf.Clamp(1f / OffHandBlockSpeed, 0, 5);
     public float OffHandRange => offHandRange;
 
     public float Mitigation(Ability.DamageType damageType)

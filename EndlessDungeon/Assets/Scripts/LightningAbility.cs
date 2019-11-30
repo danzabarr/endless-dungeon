@@ -39,7 +39,7 @@ public class LightningAbility : Ability
 
         Vector2 damage = GetDamage(offHandSwing, snapshot);
 
-        target.Damage(this, caster, DmgType, damage.Roll(), true, false);
+        target.Damage(this, caster.GetCastPosition(), caster, DmgType, damage.Roll(), true, false);
 
         List<Unit> targets = new List<Unit>();
         targets.Add(target);
@@ -74,7 +74,7 @@ public class LightningAbility : Ability
             lightning.target = next.GetCenter();
             lightning.Generate();
             Instantiate(particles, next.GetCenterPosition(), Quaternion.identity, next.GetCenter());
-            next.Damage(this, caster, DmgType, damage.Roll(), true, false);
+            next.Damage(this, target.GetCenterPosition(), caster, DmgType, damage.Roll(), true, false);
             target = next;
             targets.Add(target);
         }

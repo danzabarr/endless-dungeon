@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: MainHandForehand
   m_EditorClassIdentifier: 
   trigger: MH_Forehand
-  mainHand: 84
+  offHandSwing: 0
+  mainHand: 86
   offHand: -1

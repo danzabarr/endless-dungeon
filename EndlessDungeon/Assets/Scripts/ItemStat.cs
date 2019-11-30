@@ -263,7 +263,8 @@ public struct ItemStat
                 return "";
         }
     }
-    public static ItemStat[] Combine(ItemStat[] stats)
+
+    public static List<ItemStat> Combine(ItemStat[] stats)
     {
         List<ItemStat> list = new List<ItemStat>();
         void Add(ItemStat stat)
@@ -280,6 +281,6 @@ public struct ItemStat
         foreach (ItemStat stat in stats)
             Add(stat);
 
-        return list.ToArray();
+        return list;
     }
 }

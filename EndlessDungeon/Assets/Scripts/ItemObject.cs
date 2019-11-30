@@ -97,6 +97,22 @@ public class ItemObject : MonoBehaviour, RegisterablePrefab, Interactive
     [SerializeField]
     protected Vector2Int inventorySize;
 
+    [SerializeField]
+    protected float luckDropChanceScalar;
+
+    [SerializeField]
+    [DistributionCurve]
+    protected AnimationCurve characterLevelDropChanceCurve;
+
+    [SerializeField]
+    [DistributionCurve]
+    protected AnimationCurve monsterLevelDropChanceCurve;
+
+    public float EvaluateDropChance(float weight, float luck, int cLvl, int mLvl)
+    {
+        return Mathf.Max(0, (weight + luckDropChanceScalar * luck) * characterLevelDropChanceCurve.Evaluate(cLvl) * monsterLevelDropChanceCurve.Evaluate(mLvl));
+    }
+
     public string DisplayName => displayName;
     public string Description => description;
     public Texture2D Icon => icon;

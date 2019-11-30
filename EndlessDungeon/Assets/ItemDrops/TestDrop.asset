@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 309e2f6e58f33b94493fbd264e5e7738, type: 3}
+  m_Name: TestDrop
+  m_EditorClassIdentifier: 
+  dropOptions:
+  - name: 96.15% No Drop
+    item: {fileID: 0}
+    weight: 50
+  - name: 1.92% MagicPlateArmour (EquipmentObject)
+    item: {fileID: 1745583754563701925, guid: ff55326efba1bc54c95c893a0a1e13bb, type: 3}
+    weight: 1
+  - name: 1.92% MagicPlateArmour (EquipmentObject)
+    item: {fileID: 1745583754563701925, guid: ff55326efba1bc54c95c893a0a1e13bb, type: 3}
+    weight: 1

@@ -130,9 +130,9 @@ public class EquipmentObject : ItemObject
             array = new ItemStat[0];
         }
 
-        public ItemStats(ItemStat[] array)
+        public ItemStats(List<ItemStat> stats)
         {
-            this.array = array;
+            array = stats.ToArray();
         }
 
         public ItemStat[] array;
@@ -156,9 +156,6 @@ public class EquipmentObject : ItemObject
     private ItemPropertyTemplate[] statsTemplate;
 
     [SerializeField]
-    private Vector2Int statPrefixSuffix = new Vector2Int(-1, -1);
-
-    [SerializeField]
     [DisplayOnly]
     protected string prefix, suffix;
 
@@ -171,22 +168,53 @@ public class EquipmentObject : ItemObject
     [ContextMenu("Roll Stats")]
     public virtual void RollStats()
     {
-        ItemStat[] array = new ItemStat[statsTemplate.Length];
-        List<ItemStat> exclude = new List<ItemStat>();
+        List<ItemProperty> properties = new List<ItemProperty>();
+        List<ItemStat> array = new List<ItemStat>();
+
+        prefix = null;
+        suffix = null;
 
         for (int i = 0; i < statsTemplate.Length; i++)
         {
             if (statsTemplate[i] == null)
                 continue;
-            ItemProperty var = statsTemplate[i].Roll(exclude);
-            if (var == null) continue;
-            array[i] = var.Roll();
-            if (i == statPrefixSuffix.x) prefix = var.prefix;
-            if (i == statPrefixSuffix.y) suffix = var.suffix;
-
-            exclude.Add(array[i]);
-
+            ItemProperty var = statsTemplate[i].Roll(array);
+            if (var == null)
+                continue;
+            properties.Add(var);
+            array.Add(var.Roll());
         }
+
+        int count = array.Count;
+        if (count == 1)
+        {
+            if (Random.value > .5f)
+                prefix = properties[0].prefix;
+            else
+                suffix = properties[0].suffix;
+        }
+        else if (count == 2)
+        {
+            prefix = properties[0].prefix;
+            suffix = properties[1].suffix;
+        }
+        else if (count > 2)
+        {
+            float r1 = Random.value;
+            float r2 = Random.value;
+            float c = 1f / properties.Count;
+
+            foreach(ItemProperty p in properties)
+            {
+                if (prefix == null && r1 < c)
+                    prefix = p.prefix;
+                if (suffix == null && r2 < c)
+                    suffix = p.suffix;
+                r1 -= c;
+                r2 -= c;
+            }
+        }
+
         stats = new ItemStats(array);
         UpdateDisplayName();
         RecalculateBaseAttributes();
@@ -270,6 +298,10 @@ public class EquipmentObject : ItemObject
         {
             baseDamage = Vector2Int.zero;
             damage = Vector2.zero;
+        }
+
+        if (!itemClass.HasMeleeDamage() && !itemClass.HasBlock())
+        {
             baseAttacksPer100Seconds = 0;
             attacksPerSecond = 0;
         }
