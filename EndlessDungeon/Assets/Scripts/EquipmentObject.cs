@@ -294,13 +294,13 @@ public class EquipmentObject : ItemObject
             baseBlock = 0;
             block = 0;
         }
-        if (!itemClass.HasMeleeDamage())
+        if (!itemClass.HasDamage())
         {
             baseDamage = Vector2Int.zero;
             damage = Vector2.zero;
         }
 
-        if (!itemClass.HasMeleeDamage() && !itemClass.HasBlock())
+        if (!itemClass.HasSpeed())
         {
             baseAttacksPer100Seconds = 0;
             attacksPerSecond = 0;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1896488908360385053}
   - component: {fileID: 3726898828306100055}
   m_Layer: 0
-  m_Name: WallRiserLeft
+  m_Name: InteriorWallRiserLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1

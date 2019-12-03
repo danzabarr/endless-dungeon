@@ -47,12 +47,9 @@ public abstract class Unit : MonoBehaviour
     protected Renderer[] mainMaterialRenderers;
 
     private Material material;
-
     public Stats Stats { get; private set; }
-
     public Animator Animator { get; private set; }
     public AbilityManager Abilities { get; private set; }
-
     public NavMeshAgent Agent { get; private set; }
 
     public event GameEventSystem.Handler DeathEvent;
@@ -455,7 +452,6 @@ public abstract class Unit : MonoBehaviour
                 }
                 else
                     stacks = 0;
-
 
                 if (stacks <= 0)
                 {

@@ -53,6 +53,12 @@ public static class ItemClassExtensions
                 return EquipmentObject.Type.Body;
             case Class.PlateArmour:
                 return EquipmentObject.Type.Body;
+            case Class.Bow:
+                return EquipmentObject.Type.TwoHand;
+            case Class.CrossBow:
+                return EquipmentObject.Type.TwoHand;
+            case Class.Thrown:
+                return EquipmentObject.Type.OneHand;
             default:
                 return EquipmentObject.Type.Unequippable;
         }
@@ -84,7 +90,7 @@ public static class ItemClassExtensions
             case EquipmentObject.Type.OneHand:
                 return slot == Slot.MainHand || slot == Slot.OffHand;
             case EquipmentObject.Type.TwoHand:
-                return slot == Slot.MainHand;
+                return slot == Slot.MainHand || slot == Slot.OffHand;
             case EquipmentObject.Type.OffHand:
                 return slot == Slot.OffHand;
             default:
@@ -183,12 +189,10 @@ public static class ItemClassExtensions
         }
     }
 
-    public static bool HasMeleeDamage(this Class item)
+    public static bool HasDamage(this Class item)
     {
         switch (item)
         {
-            case Class.Unarmed:
-                return false;
             case Class.Dagger:
                 return true;
             case Class.Sword:
@@ -211,10 +215,82 @@ public static class ItemClassExtensions
                 return true;
             case Class.Stave:
                 return true;
-            case Class.Wand:
+            case Class.Bow:
+                return true;
+            case Class.CrossBow:
+                return true;
+            case Class.Thrown:
+                return true;
+            default:
                 return false;
+        }
+    }
+
+    public static bool HasSpeed(this Class item)
+    {
+        switch (item)
+        {
+            case Class.Dagger:
+                return true;
+            case Class.Sword:
+                return true;
+            case Class.TwoHandedSword:
+                return true;
+            case Class.Axe:
+                return true;
+            case Class.TwoHandedAxe:
+                return true;
+            case Class.Mace:
+                return true;
+            case Class.TwoHandedMace:
+                return true;
+            case Class.Spear:
+                return true;
+            case Class.TwoHandedSpear:
+                return true;
+            case Class.Polearm:
+                return true;
+            case Class.Stave:
+                return true;
+            case Class.Bow:
+                return true;
+            case Class.CrossBow:
+                return true;
+            case Class.Thrown:
+                return true;
             case Class.Shield:
+                return true;
+            default:
                 return false;
+        }
+    }
+
+    public static bool IsMeleeWeapon(this Class item)
+    {
+        switch (item)
+        {
+            case Class.Dagger:
+                return true;
+            case Class.Sword:
+                return true;
+            case Class.TwoHandedSword:
+                return true;
+            case Class.Axe:
+                return true;
+            case Class.TwoHandedAxe:
+                return true;
+            case Class.Mace:
+                return true;
+            case Class.TwoHandedMace:
+                return true;
+            case Class.Spear:
+                return true;
+            case Class.TwoHandedSpear:
+                return true;
+            case Class.Polearm:
+                return true;
+            case Class.Stave:
+                return true;
 
             default:
                 return false;
@@ -275,7 +351,20 @@ public static class ItemClassExtensions
                 return true;
             case EquipmentObject.Type.Feet:
                 return true;
+            case EquipmentObject.Type.Unequippable:
+                return false;
+            case EquipmentObject.Type.Finger:
+                return false;
+            case EquipmentObject.Type.Neck:
+                return false;
         }
+
+        //Special case for bows/xbows because they need animating.
+        if (item == Class.Bow)
+            return true;
+        if (item == Class.CrossBow)
+            return true;
+
         return false;
     }
 
@@ -328,6 +417,12 @@ public static class ItemClassExtensions
                 return "Chainmail";
             case Class.PlateArmour:
                 return "Plate Armour";
+            case Class.Bow:
+                return "Bow";
+            case Class.CrossBow:
+                return "Crossbow";
+            case Class.Thrown:
+                return "Thrown Weapon";
             default:
                 return "";
         }

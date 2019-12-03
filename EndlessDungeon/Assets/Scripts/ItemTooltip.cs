@@ -105,15 +105,13 @@ public class ItemTooltip : MonoBehaviour
             type.text = equipment.DescriptiveName + " (" + equipment.ItemType.ToString().SplitCamelCase() + ")";
             type.gameObject.SetActive(true);
 
-            if (equipment.ItemClass.HasMeleeDamage())
+            if (equipment.ItemClass.HasDamage())
             {
                 dps.text = equipment.DamagePerSecond.ToString("0.0") + " DPS";
                 damage.text = equipment.Damage.Min().ToString("0") + "-" + equipment.Damage.Max().ToString("0") + " Damage";
 
                 dps.gameObject.SetActive(true);
                 damage.gameObject.SetActive(true);
-                speed.gameObject.SetActive(true);
-
             }
             else
             {
@@ -121,9 +119,16 @@ public class ItemTooltip : MonoBehaviour
                 damage.gameObject.SetActive(false);
             }
 
-            if (equipment.ItemClass.HasMeleeDamage() || equipment.ItemClass.HasBlock())
+            if (equipment.ItemClass.HasSpeed())
             {
-                speed.text = equipment.AttacksPerSecond.ToString("0.00") + " Attacks/Blocks per Second";
+                if (equipment.ItemClass.HasDamage() && equipment.ItemClass.HasBlock())
+                    speed.text = equipment.AttacksPerSecond.ToString("0.00") + " Attacks/Blocks per Second";
+                else if (equipment.ItemClass.HasDamage())
+                    speed.text = equipment.AttacksPerSecond.ToString("0.00") + " Attacks per Second";
+                else if (equipment.ItemClass.HasBlock())
+                    speed.text = equipment.AttacksPerSecond.ToString("0.00") + " Blocks per Second";
+                else
+                    speed.text = equipment.AttacksPerSecond.ToString("0.00") + " Actions per Second";
                 speed.gameObject.SetActive(true);
             }
             else

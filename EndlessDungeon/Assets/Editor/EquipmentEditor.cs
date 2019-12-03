@@ -120,10 +120,13 @@ public class EquipmentEditor : Editor
 
         EditorGUILayout.Space();
 
-        if (item.ItemClass.HasMeleeDamage())
+        if (item.ItemClass.HasDamage())
         {
             EditorGUILayout.PropertyField(baseDamage);
+        }
 
+        if (item.ItemClass.IsMeleeWeapon())
+        {
             EditorGUILayout.PropertyField(meleeRange);
         }
 
@@ -137,7 +140,7 @@ public class EquipmentEditor : Editor
             EditorGUILayout.PropertyField(baseBlock);
         }
 
-        if (item.ItemClass.HasMeleeDamage() || item.ItemClass.HasBlock())
+        if (item.ItemClass.HasSpeed())
         {
             EditorGUILayout.PropertyField(baseAttacksPer100Seconds);
         }
@@ -201,22 +204,32 @@ public class EquipmentEditor : Editor
         EditorGUILayout.LabelField(item.DescriptiveName + " (" + item.ItemType.ToString().SplitCamelCase() + ")");
         EditorGUILayout.Space();
 
-        if (item.ItemClass.HasMeleeDamage())
-        {
-            EditorGUILayout.LabelField(item.DamagePerSecond.ToString("0.0") + " DPS", new GUIStyle() { fontSize = 16 });
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField(item.Damage.Min().ToString("0") + "-" + item.Damage.Max().ToString("0") + " Damage");
-            EditorGUILayout.LabelField(item.AttacksPerSecond.ToString("0.00") + " Attacks per Second");
-        }
         if (item.ItemClass.HasArmour())
         {
             EditorGUILayout.LabelField(item.Armour + " Armour", new GUIStyle() { fontSize = 16 });
             EditorGUILayout.Space();
         }
 
+        if (item.ItemClass.HasDamage())
+        {
+            EditorGUILayout.LabelField(item.DamagePerSecond.ToString("0.0") + " DPS", new GUIStyle() { fontSize = 16 });
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField(item.Damage.Min().ToString("0") + "-" + item.Damage.Max().ToString("0") + " Damage");
+        }
+
         if (item.ItemClass.HasBlock())
         {
             EditorGUILayout.LabelField(item.Block.ToString("0.#%") + " Chance to Block");
+        }
+
+        if (item.ItemClass.HasSpeed())
+        {
+            if (item.ItemClass.HasDamage() && item.ItemClass.HasBlock())
+                EditorGUILayout.LabelField(item.AttacksPerSecond.ToString("0.00") + " Attacks/Blocks per Second");
+            else if (item.ItemClass.HasDamage())
+                EditorGUILayout.LabelField(item.AttacksPerSecond.ToString("0.00") + " Attacks per Second");
+            else if (item.ItemClass.HasBlock())
+                EditorGUILayout.LabelField(item.AttacksPerSecond.ToString("0.00") + " Blocks per Second");
         }
 
         if (item.DisplayQuantity)

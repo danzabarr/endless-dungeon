@@ -1624,7 +1624,7 @@ MonoBehaviour:
   maxHealthBase: 1000
   healthRegenBase: 1
   hitRecoverySpeedBase: 1
-  walkSpeedBase: 12
+  walkSpeedBase: 3
   maxHealthPerStrength: 10
   weaponDamagePerStrength: 0.01
   hitRecoverySpeedPerStrength: 0.01

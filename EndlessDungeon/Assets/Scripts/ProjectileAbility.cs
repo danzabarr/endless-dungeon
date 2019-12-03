@@ -20,6 +20,6 @@ public class ProjectileAbility : Ability
     )
     {
         Vector3 direction = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
-        Instantiate(Projectile, objects.transform).Init(caster, direction, projectileSpeed, GetDamage(offHandSwing, snapshot), DmgType);
+        Instantiate(Projectile, objects.transform).Init(caster, direction, projectileSpeed, GetDamage(offHandSwing, snapshot), DmgType, AbilityAffects);
     }
 }

@@ -2,57 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[DisallowMultipleComponent]
 public class Projectile : MonoBehaviour
 {
+    [SerializeField]
+    protected float life;
+    [SerializeField]
+    protected LayerMask collisionMask;
+
+    protected Unit caster;
+    protected float velocity;
+    protected bool hit;
 
     [SerializeField]
-    private float life;
-    [SerializeField]
-    private LayerMask collisionMask;
-    private Unit caster;
-    private float velocity;
-    private bool hit;
-    [SerializeField]
-    private ParticleSystem onCollision;
-
-    private Vector2 damage;
-
-    private Ability.DamageType damageType;
+    protected Unit.Faction faction;
 
     [SerializeField]
-    private bool aoe;
+    [EnumFlags]
+    protected Ability.Affects affects;
 
     [SerializeField]
-    private float aoeRange;
+    protected ParticleSystem onCollision;
+
+    //Damage and type gets overwritten in Init.
+    [SerializeField]
+    protected Vector2 damage;
+    [SerializeField]
+    protected Ability.DamageType damageType;
 
     [SerializeField]
-    private AnimationCurve rangeAttenuation;
+    protected float knockbackForce;
+    [SerializeField]
+    protected bool knockbackDistanceAttenuate;
+    [SerializeField]
+    protected bool knockbackAlignWithProjectile;
 
     [SerializeField]
-    private Buff debuff;
-
+    protected Buff debuff;
     [SerializeField]
-    private bool debuffUseResistances;
-
+    protected bool debuffUseResistances;
     [SerializeField]
-    private int debuffStacks;
-
+    protected int debuffStacks;
     [SerializeField]
-    private int debuffMaxStacks;
+    protected int debuffMaxStacks;
 
-    [SerializeField]
-    private float knockbackForce;
-
-    [SerializeField]
-    private bool knockbackDistanceAttenuate;
-
-    [SerializeField]
-    private bool knockbackAlignWithProjectile;
-
-    public void Init(Unit caster, Vector3 direction, float velocity, Vector2 damage, Ability.DamageType damageType)
+    public void Init(Vector3 position, Vector3 velocity)
     {
+        this.velocity = velocity.magnitude;
+        transform.position = position;
+        transform.rotation = Quaternion.LookRotation(velocity / this.velocity);
+    }
+    public void Init(Unit caster, Vector3 direction, float velocity)
+    {
+        Physics.IgnoreCollision(GetComponent<Collider>(), caster.GetComponent<Collider>());
         this.caster = caster;
+        faction = caster.GetFaction();
+        this.velocity = velocity;
+        transform.position = caster.GetCastPosition();
+        transform.rotation = Quaternion.LookRotation(direction);
+    }
+    public void Init(Unit caster, Vector3 direction, float velocity, Vector2 damage, Ability.DamageType damageType, Ability.Affects affects)
+    {
+        Physics.IgnoreCollision(GetComponent<Collider>(), caster.GetComponent<Collider>());
+        this.caster = caster;
+        faction = caster.GetFaction();
+        this.affects = affects;
         this.velocity = velocity;
         transform.position = caster.GetCastPosition();
         transform.rotation = Quaternion.LookRotation(direction);
@@ -63,10 +76,10 @@ public class Projectile : MonoBehaviour
     {
         if (!hit)
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, velocity * Time.deltaTime, collisionMask, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, velocity * Time.deltaTime, collisionMask, QueryTriggerInteraction.Ignore) && CheckCollision(hitInfo.collider))
             {
                 transform.position += transform.forward * (hitInfo.distance - 0.01f);
-                OnTriggerEnter(hitInfo.collider);
+                OnCollision(hitInfo.collider);
             }
             else
             {
@@ -79,43 +92,38 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void OnTriggerEnter(Collider other)
+    public bool CheckCollision(Collider other)
     {
-        if (other.isTrigger) return;
-        if (hit) return;
-        if (collisionMask != (collisionMask | (1 << other.gameObject.layer))) return;
-
+        if (other == null) return false;
+        if (other.isTrigger) return false;
+        if (hit) return false;
+        if (collisionMask != (collisionMask | (1 << other.gameObject.layer))) return false;
+        if (other == caster.GetComponent<Collider>()) return false;
+        return true;
+    }
+    public virtual void OnCollision(Collider other)
+    {
 
         hit = true;
-        //Debug.Log("HIT " + other);
         if (onCollision)
+            Instantiate(onCollision).transform.position = transform.position;
+        Destroy(gameObject);
+
+        Unit target = other.GetComponent<Unit>();
+        if (target)
         {
-            if (onCollision)
-                Instantiate(onCollision).transform.position = transform.position;
-            Destroy(gameObject);
+            target.Damage(this, transform.position, caster, damageType, damage.Roll(), true, false);
 
+            if (debuff)
+                target.ApplyDebuff(caster, debuff, out _, out _, debuffUseResistances, debuffStacks, debuffMaxStacks);
 
-            List<Mob> targets = Level.Instance.MobsInRadius(transform.position, aoeRange, true);
-            foreach(Mob target in targets)
+            if (knockbackForce > 0)
             {
-                float distance = Vector3.Distance(transform.position, target.GetCenterPosition());
-                float attenuation = rangeAttenuation.Evaluate(distance / aoeRange);
-                float dmg = damage.Roll() * attenuation;
-                target.Damage(this, transform.position, caster, damageType, dmg, true, false);
-
-                if (debuff)
-                    target.ApplyDebuff(caster, debuff, out _, out _, debuffUseResistances, debuffStacks, debuffMaxStacks);
-
                 if (knockbackAlignWithProjectile)
                     target.Knockback(transform.position, transform.forward, knockbackForce, knockbackDistanceAttenuate);
                 else
                     target.Knockback(transform.position, knockbackForce, knockbackDistanceAttenuate);
             }
         }
-    }
-
-    public virtual void OnDestroy()
-    {
-
     }
 }

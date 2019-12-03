@@ -14,7 +14,6 @@ public class Player : Unit
     private Camera cam;
     private EventSystem eventSystem;
     public EquipmentManager Equipment { get; private set; }
-
     public Collider Collider { get; private set; }
 
     [SerializeField]
@@ -81,7 +80,7 @@ public class Player : Unit
         base.Awake();
         cam = Camera.main;
         eventSystem = EventSystem.current;
-       
+
         Equipment = GetComponent<EquipmentManager>();
         Collider = GetComponent<Collider>();
 
@@ -94,7 +93,7 @@ public class Player : Unit
     private void StopMoving()
     {
         moving = false;
-        walkDestination = transform.position;
+        walkDestination = GetGroundPosition();
         hasWalkDestination = false;
     }
 
@@ -248,7 +247,7 @@ public class Player : Unit
         Vector3 movementDirection = Vector3.zero;
         moving = false;
 
-        if (Input.GetMouseButtonDown(0) && InventoryManager.Instance.HeldItem == null && !eventSystem.IsPointerOverGameObject() && !Abilities.Channelling)
+        if (Input.GetMouseButtonDown(0) && InventoryManager.Instance.HeldItem == null && !InventoryManager.Instance.JustDropped && !eventSystem.IsPointerOverGameObject() && !Abilities.Channelling)
         {
             queuedTarget = hover;
             queuedAbilityIndex = 4;
@@ -267,7 +266,7 @@ public class Player : Unit
             lClickDown = false;
         }
 
-        if (Input.GetMouseButton(0) && lClickDown && queuedTarget == null && !Abilities.Channelling)// && !ExtendedStandaloneInputModule.GetPointerEventData().pointerCurrentRaycast.isValid
+        if (Input.GetMouseButton(0) && lClickDown && InventoryManager.Instance.HeldItem == null && !InventoryManager.Instance.JustDropped && queuedTarget == null && !Abilities.Channelling)// && !ExtendedStandaloneInputModule.GetPointerEventData().pointerCurrentRaycast.isValid
         {
             queuedAbilityIndex = 4;
             queuedCastTarget = castTarget;
@@ -436,7 +435,6 @@ public class Player : Unit
             {
                 LookInDirection(queuedTarget.GetGroundPosition() - GetGroundPosition());
                 queuedTarget.Interact();
-                SetHover(null);
                 if (queuedTarget is ItemObject)
                 {
                     ItemObject targetItem = queuedTarget as ItemObject;
@@ -446,11 +444,13 @@ public class Player : Unit
                         Level.Instance.RemoveItem(targetItem);
                         targetItem.transform.SetParent(transform);
                         targetItem.gameObject.layer = LayerMask.NameToLayer("Player");
+                        SetHover(null);
                     }
                 }
                 StopMoving();
                 queuedTarget = null;
                 queuedAbilityIndex = -1;
+                lClickDown = false;
             }
             else
             {

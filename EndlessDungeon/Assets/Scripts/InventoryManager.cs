@@ -27,6 +27,8 @@ public class InventoryManager : MonoBehaviour
 
     private EventSystem eventSystem;
 
+    public bool JustDropped { get; private set; }
+
     public ItemObject HeldItem
     {
         get => heldItem;
@@ -98,18 +100,19 @@ public class InventoryManager : MonoBehaviour
             bool active = inventoryPanel.gameObject.activeSelf;
             inventoryPanel.SetActive(!active);
         }
-
+        JustDropped = false;
         if (heldItem != null && Input.GetMouseButtonDown(0) && !eventSystem.IsPointerOverGameObject())
         {
             heldItem.transform.position = Player.Instance.GetCastPosition();
             heldItem.transform.rotation = Player.Instance.transform.rotation * Quaternion.Euler(0, 0, 90);
             heldItem.gameObject.SetActive(true);
-            heldItem.gameObject.layer = LayerMask.NameToLayer("Default");
+            heldItem.gameObject.layer = LayerMask.NameToLayer("Interactive");
             heldItem.Rigidbody.isKinematic = false;
             heldItem.Rigidbody.useGravity = true;
             heldItem.Rigidbody.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
             Level.Instance.EnableItem(heldItem);
             HeldItem = null;
+            JustDropped = true;
         }
     }
 }

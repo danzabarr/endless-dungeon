@@ -141,10 +141,10 @@ public class AbilityManager : MonoBehaviour
 
             snapshot.castSpeed = stats.CastSpeed;
 
-            if (!snapshot.mainHandWeaponClass.HasMeleeDamage())
+            if (!snapshot.mainHandWeaponClass.HasDamage())
                 offHandSwing = true;
 
-            if (!snapshot.offHandWeaponClass.HasMeleeDamage())
+            if (!snapshot.offHandWeaponClass.HasDamage())
                 offHandSwing = false;
 
             if (Active != null)
@@ -159,10 +159,10 @@ public class AbilityManager : MonoBehaviour
     {
         offHandSwing = !offHandSwing;
 
-        if (!offHandSwing && !snapshot.mainHandWeaponClass.HasMeleeDamage())
+        if (!offHandSwing && !snapshot.mainHandWeaponClass.HasDamage())
             offHandSwing = true;
 
-        if (offHandSwing && !snapshot.offHandWeaponClass.HasMeleeDamage())
+        if (offHandSwing && !snapshot.offHandWeaponClass.HasDamage())
             offHandSwing = false;
     }
 
@@ -612,7 +612,10 @@ public class AbilityManager : MonoBehaviour
             return CastOutcome.OnCooldown;
 
         if (!ability.Compatible(snapshot.mainHandWeaponClass, snapshot.offHandWeaponClass, offHandSwing ? snapshot.offHandWeaponClass : snapshot.mainHandWeaponClass))
+        {
+            Debug.LogWarning("Incompatible Weapon: " + snapshot.mainHandWeaponClass + "/" + snapshot.offHandWeaponClass);
             return CastOutcome.IncompatibleWeapon;
+        }
 
         if (ability.Type == Ability.AbilityType.Targeted)
         {

@@ -9567,9 +9567,19 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 213765
+  faction: 0
+  affects: 0
   onCollision: {fileID: 8874524286873409834, guid: b7e9d947f5acf444e9f7522e79a4d3f7,
     type: 3}
-  aoe: 1
+  damage: {x: 5, y: 10}
+  damageType: 1
+  knockbackForce: 5
+  knockbackDistanceAttenuate: 1
+  knockbackAlignWithProjectile: 0
+  debuff: {fileID: 11400000, guid: 05d5fffe4ce55564c84bc46b8796f746, type: 2}
+  debuffUseResistances: 1
+  debuffStacks: 1
+  debuffMaxStacks: 10
   aoeRange: 5
   rangeAttenuation:
     serializedVersion: 2
@@ -9595,13 +9605,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  debuff: {fileID: 11400000, guid: 05d5fffe4ce55564c84bc46b8796f746, type: 2}
-  debuffUseResistances: 1
-  debuffStacks: 1
-  debuffMaxStacks: 10
-  knockbackForce: 5
-  knockbackDistanceAttenuate: 1
-  knockbackAlignWithProjectile: 0
 --- !u!54 &8010032053821776141
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -288,7 +288,8 @@ public class Ability : ScriptableObject
     {
         Vector3 castDirection = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
 
-        switch (snapshot.mainHandWeaponClass.StandardAbilityType())
+        AbilityType abilityType = offHandSwing ? snapshot.offHandWeaponClass.StandardAbilityType() : snapshot.mainHandWeaponClass.StandardAbilityType();
+        switch (abilityType)
         {
             case AbilityType.Melee:
                 List<Unit> targets = GetTargets(caster, target, castDirection, offHandSwing, snapshot);
@@ -303,7 +304,7 @@ public class Ability : ScriptableObject
 
             case AbilityType.Projectile:
 
-                Instantiate(Projectile).Init(caster, castDirection, projectileSpeed, offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage, DamageType.Physical);
+                Instantiate(Projectile).Init(caster, castDirection, projectileSpeed, offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage, DamageType.Physical, affects);
 
                 break;
 

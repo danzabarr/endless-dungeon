@@ -158,7 +158,7 @@ public class StatsPanelList : MonoBehaviour
         Set("Shadow Spell Damage", stats.ShadowSpellDamage - 1);
         Set("Holy Spell Damage", stats.HolySpellDamage - 1);
 
-        if (stats.MainHandEquipped && stats.MainHandItemClass.HasMeleeDamage())
+        if (stats.MainHandEquipped && stats.MainHandItemClass.HasDamage())
         {
             //Title("Main Hand Weapon");
             Set("Main Hand Weapon Damage", stats.MainHandDamage);
@@ -182,7 +182,7 @@ public class StatsPanelList : MonoBehaviour
             Hide("Main Hand Block Speed");
         }
 
-        if (stats.OffHandEquipped && stats.OffHandItemClass.HasMeleeDamage())
+        if (stats.OffHandEquipped && stats.OffHandItemClass.HasDamage())
         {
             //Title("Off Hand Weapon");
             Set("Off Hand Weapon Damage", stats.OffHandDamage);

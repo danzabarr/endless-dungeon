@@ -9,7 +9,7 @@ public class EquipmentManager : MonoBehaviour
     private AbilityManager abilities;
 
     private GameObject mainHandObject, offHandObject;
-    private GameObject[] headObjects, bodyObjects, handsObjects, feetObjects;
+    private GameObject[] mainHandObjects, offHandObjects, headObjects, bodyObjects, handsObjects, feetObjects;
 
     public void Awake()
     {
@@ -53,6 +53,8 @@ public class EquipmentManager : MonoBehaviour
             if (mesh.name == "MH_Weapon") mainHandObject = mesh.gameObject;
             if (mesh.name == "OH_Weapon") offHandObject = mesh.gameObject;
         }
+        List<GameObject> mainHand = new List<GameObject>();
+        List<GameObject> offHand = new List<GameObject>();
         List<GameObject> head = new List<GameObject>();
         List<GameObject> body = new List<GameObject>();
         List<GameObject> hands = new List<GameObject>();
@@ -60,12 +62,16 @@ public class EquipmentManager : MonoBehaviour
 
         foreach (SkinnedMeshRenderer smr in GetComponentsInChildren<SkinnedMeshRenderer>(true))
         {
-            if (smr.name.StartsWith("Head.")) head.Add(smr.gameObject);
+            if (smr.name.StartsWith("MH.")) mainHand.Add(smr.gameObject);
+            else if (smr.name.StartsWith("OH.")) offHand.Add(smr.gameObject);
+            else if (smr.name.StartsWith("Head.")) head.Add(smr.gameObject);
             else if (smr.name.StartsWith("Body.")) body.Add(smr.gameObject);
             else if (smr.name.StartsWith("Hands.")) hands.Add(smr.gameObject);
             else if (smr.name.StartsWith("Feet.")) feet.Add(smr.gameObject);
         }
 
+        mainHandObjects = mainHand.ToArray();
+        offHandObjects = offHand.ToArray();
         headObjects = head.ToArray();
         bodyObjects = body.ToArray();
         handsObjects = hands.ToArray();
@@ -215,7 +221,6 @@ public class EquipmentManager : MonoBehaviour
         abilities?.Equip(stats);
        
     }
-
     private void UpdateAll()
     {
         UpdateMainHand();
@@ -225,7 +230,6 @@ public class EquipmentManager : MonoBehaviour
         UpdateHands();
         UpdateFeet();
     }
-
     private void UpdateMainHand()
     {
         if (mainHandObject == null) return;
@@ -240,7 +244,10 @@ public class EquipmentManager : MonoBehaviour
         foreach (MeshFilter filter in mainHandObject.GetComponentsInChildren<MeshFilter>())
             filter.sharedMesh = mesh;
 
-        
+        string name = mainHand == null ? "empty" : mainHand.WornItemName;
+        foreach (GameObject obj in mainHandObjects)
+            obj.SetActive(obj.name == name);
+
         unit.IdentifyBlockAnimations();
     }
     private void UpdateOffHand()
@@ -256,6 +263,10 @@ public class EquipmentManager : MonoBehaviour
 
         foreach (MeshFilter filter in offHandObject.GetComponentsInChildren<MeshFilter>())
             filter.sharedMesh = mesh;
+
+        string name = offHand == null ? "empty" : offHand.WornItemName;
+        foreach (GameObject obj in offHandObjects)
+            obj.SetActive(obj.name == name);
 
         unit.IdentifyBlockAnimations();
     }
@@ -279,7 +290,6 @@ public class EquipmentManager : MonoBehaviour
         foreach (GameObject obj in handsObjects)
             obj.SetActive(obj.name == name);
     }
-
     private void UpdateFeet()
     {
         string name = feet == null ? "empty" : feet.WornItemName;

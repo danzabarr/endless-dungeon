@@ -203,7 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseName: Dagger
   quality: 1
-  maxQuantity: 15
+  maxQuantity: 30
   icon: {fileID: 2800000, guid: ead7441abdf047c47ba443f9056caee4, type: 3}
   description: '
 
