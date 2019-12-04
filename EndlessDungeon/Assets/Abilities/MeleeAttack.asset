@@ -29,7 +29,7 @@ MonoBehaviour:
   channelled: 0
   channellingTickInterval: 0
   affects: 1
-  damage: {x: 0, y: 0}
+  damage: {x: 1, y: 1}
   damageType: 0
   projectile: {fileID: 6481209160861100350, guid: 979fe9f0a41d9d04e898566650c560db,
     type: 3}

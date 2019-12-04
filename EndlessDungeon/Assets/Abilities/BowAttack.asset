@@ -27,11 +27,11 @@ MonoBehaviour:
   channelled: 0
   channellingTickInterval: 0
   affects: 1
-  damage: {x: 1, y: 3}
+  damage: {x: 1, y: 1}
   damageType: 0
   projectile: {fileID: 8461444124904703558, guid: 51b6d9fbb27fc8242b9f6f9f564eca2f,
     type: 3}
-  projectileSpeed: 70
+  projectileSpeed: 120
   throwable: {fileID: 0}
   placeable: {fileID: 0}
   maxObjects: 0

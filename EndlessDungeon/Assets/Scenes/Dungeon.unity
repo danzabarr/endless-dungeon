@@ -1710,6 +1710,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412f2153edfe4fe4d8d119bc59ddd737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!84 &59322951
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 2418
+  m_Height: 1360
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &59463082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4023,7 +4057,7 @@ GameObject:
   - component: {fileID: 164910142}
   - component: {fileID: 164910144}
   - component: {fileID: 164910143}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4659,7 +4693,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dc8ae4844d476594e823fe8071df67d5, type: 2}
   - {fileID: 2100000, guid: a57db3055911a5c4da05a8f282c3ff9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4978,40 +5011,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 246424035}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &223793810
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 2407
-  m_Height: 1354
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &224960430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5132,7 +5131,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 73.707535, y: 0}
+  m_AnchoredPosition: {x: 73.47059, y: 0}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228939927
@@ -5259,7 +5258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 68.38995, y: 0}
+  m_AnchoredPosition: {x: 68.17647, y: 0}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &237577609
@@ -6514,7 +6513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110.93058, y: 0}
+  m_AnchoredPosition: {x: 110.52941, y: 0}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296704738
@@ -6573,6 +6572,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296704736}
   m_CullTransparentMesh: 0
+--- !u!84 &296953379
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 2418
+  m_Height: 1360
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!4 &297250214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9124967989726755172, guid: 54bf18cb934758940b5372d5b9445337,
@@ -6834,6 +6867,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0dd2fa67becff2441b994beb1f891a53,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4559879501380828713, guid: 0dd2fa67becff2441b994beb1f891a53,
         type: 3}
@@ -9556,7 +9594,7 @@ PrefabInstance:
     - target: {fileID: 4315335491011991863, guid: db5be3811cbbf9a49a4b6ca9dad6e5a3,
         type: 3}
       propertyPath: sellValue
-      value: 39
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 4315335491011991863, guid: db5be3811cbbf9a49a4b6ca9dad6e5a3,
         type: 3}
@@ -21491,7 +21529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 96.04136, y: 0}
+  m_AnchoredPosition: {x: 95.70589, y: 0}
   m_SizeDelta: {x: 0, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &676826103
@@ -22166,7 +22204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110.93058, y: 0}
+  m_AnchoredPosition: {x: 110.52941, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &697110031
@@ -25531,7 +25569,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1615338972}
+  m_TargetTexture: {fileID: 296953379}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -27376,8 +27414,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 963194227}
   outlineCamera: {fileID: 859846345}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1615338972}
-  extraRenderTexture: {fileID: 223793810}
+  renderTexture: {fileID: 296953379}
+  extraRenderTexture: {fileID: 59322951}
 --- !u!1 &964334426
 GameObject:
   m_ObjectHideFlags: 0
@@ -36333,7 +36371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 80.08862, y: 0}
+  m_AnchoredPosition: {x: 79.82353, y: 0}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1267278337
@@ -37117,7 +37155,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dc8ae4844d476594e823fe8071df67d5, type: 2}
   - {fileID: 2100000, guid: a57db3055911a5c4da05a8f282c3ff9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -48335,40 +48372,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 362104932}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1615338972
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 2407
-  m_Height: 1354
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1617060025
 GameObject:
   m_ObjectHideFlags: 0
@@ -53025,7 +53028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 91.25554, y: 0}
+  m_AnchoredPosition: {x: 90.94118, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820157612
@@ -54822,7 +54825,7 @@ GameObject:
   - component: {fileID: 1883097204}
   - component: {fileID: 1883097206}
   - component: {fileID: 1883097205}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55503,7 +55506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 89.12851, y: 0}
+  m_AnchoredPosition: {x: 88.82353, y: 0}
   m_SizeDelta: {x: 0, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1911263933
@@ -57144,7 +57147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 87.53323, y: 0}
+  m_AnchoredPosition: {x: 87.2353, y: 0}
   m_SizeDelta: {x: 0, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1965128435
@@ -63262,7 +63265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 84.87445, y: 0}
+  m_AnchoredPosition: {x: 84.588234, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2084736780
@@ -63636,6 +63639,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 0}
   cast: {fileID: 0}
+  mainHandWeapon: {fileID: 0}
+  offHandWeapon: {fileID: 0}
+  mainHand: {fileID: 0}
+  offHand: {fileID: 0}
+  spine: {fileID: 0}
   faction: 0
   stunThreshold: 0.1
   knockbackDampening: 0
@@ -64855,7 +64863,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 67.8582, y: 0}
+  m_AnchoredPosition: {x: 67.647064, y: 0}
   m_SizeDelta: {x: 0, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144102539
@@ -65192,8 +65200,8 @@ MonoBehaviour:
     mainHandAttacksPerSecond: 1
     mainHandRange: 1
     offHandWeaponClass: 14
-    offHandDamage: {x: 16, y: 24}
-    offHandAttacksPerSecond: 1.4
+    offHandDamage: {x: 100, y: 50}
+    offHandAttacksPerSecond: 1.8
     offHandRange: 2
     fireSpellDamage: 1
     coldSpellDamage: 1
@@ -66090,6 +66098,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 2907674416045977156}
   cast: {fileID: 4591711894601626784}
+  mainHandWeapon: {fileID: 1296137991}
+  offHandWeapon: {fileID: 208687750}
+  mainHand: {fileID: 1839217405}
+  offHand: {fileID: 150380190}
+  spine: {fileID: 2050006581}
   faction: 0
   stunThreshold: 0.1
   knockbackDampening: 0
@@ -66950,8 +66963,8 @@ MonoBehaviour:
   mainHandBlock: 0
   mainHandRange: 1
   offHandWeaponClass: 14
-  offHandDamage: {x: 16, y: 24}
-  offHandAttacksPerSecond: 1.4
+  offHandDamage: {x: 100, y: 50}
+  offHandAttacksPerSecond: 1.8
   offHandBlock: 0
   offHandRange: 2
   walkSpeed: 0

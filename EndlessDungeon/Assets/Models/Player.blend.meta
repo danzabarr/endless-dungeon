@@ -443,7 +443,7 @@ ModelImporter:
       - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
         weight: 0
       - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/weapon.L
-        weight: 0
+        weight: 1
       - path: rig/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/weapon.L/weapon.L_end
         weight: 0
       - path: rig/hips/spine/chest/shoulder.R
@@ -495,7 +495,7 @@ ModelImporter:
       - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
         weight: 0
       - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/weapon.R
-        weight: 0
+        weight: 1
       - path: rig/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/weapon.R/weapon.R_end
         weight: 0
       - path: rig/knee.pole.IK.L

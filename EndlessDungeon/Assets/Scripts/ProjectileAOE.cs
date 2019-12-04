@@ -18,13 +18,7 @@ public class ProjectileAOE : Projectile
             Instantiate(onCollision).transform.position = transform.position;
         Destroy(gameObject);
 
-
-        List<Unit> targets = Level.Instance.UnitsInRadius(transform.position, aoeRange, true, faction, affects);
-        Debug.Log(aoeRange);
-        Debug.Log(faction);
-        Debug.Log(affects);
-        Debug.Log(targets.ToArray());
-        foreach(Unit target in targets)
+        foreach(Unit target in Level.Instance.UnitsInRadius(transform.position, aoeRange, true, faction, affects))
         {
             float distance = Vector3.Distance(transform.position, target.GetCenterPosition());
             float attenuation = rangeAttenuation.Evaluate(distance / aoeRange);

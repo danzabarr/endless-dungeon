@@ -210,7 +210,7 @@ MonoBehaviour:
 '
   sellable: 1
   displayQuantity: 1
-  sellValue: 50
+  sellValue: 225
   labelWorldOffset: {x: 0, y: 0, z: 0}
   labelScreenOffset: {x: 0, y: 0}
   inventorySize: {x: 2, y: 4}
@@ -315,7 +315,7 @@ MonoBehaviour:
     array: []
   baseArmour: 0
   baseBlock: 0
-  baseDamage: {x: 16, y: 24}
+  baseDamage: {x: 100, y: 50}
   baseAttacksPer100Seconds: 180
   meleeRange: 2
 --- !u!114 &6353458896998403572

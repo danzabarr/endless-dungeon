@@ -214,7 +214,11 @@ public class Ability : ScriptableObject
         GameObject objects
     )
     {
-
+        AbilityType abilityType = offHandSwing ? snapshot.offHandWeaponClass.StandardAbilityType() : snapshot.mainHandWeaponClass.StandardAbilityType();
+        if (abilityType == AbilityType.Projectile)
+        {
+            caster.CockedMHProjectile = Instantiate(Projectile);
+        }
     }
 
     public virtual void OnStartChannelling
@@ -269,7 +273,8 @@ public class Ability : ScriptableObject
     )
     {
         Vector3 castDirection = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
-        caster.LookInDirection(castDirection);
+        caster.YawToDirection(castDirection);
+        caster.PitchToDirection(castDirection);
     }
     public virtual void OnPulse
     (
@@ -295,7 +300,7 @@ public class Ability : ScriptableObject
                 List<Unit> targets = GetTargets(caster, target, castDirection, offHandSwing, snapshot);
                 foreach (Unit hp in targets)
                 {
-                    hp.Damage(this, caster.GetCastPosition(), caster, DamageType.Physical, offHandSwing ? snapshot.offHandDamage.Roll() : snapshot.mainHandDamage.Roll(), true, true);
+                    hp.Damage(this, caster.GetCastPosition(), caster, damageType, ((offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage) * damage).Roll(), true, true);
                     //hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
                 }
 
@@ -304,13 +309,13 @@ public class Ability : ScriptableObject
 
             case AbilityType.Projectile:
 
-                Instantiate(Projectile).Init(caster, castDirection, projectileSpeed, offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage, DamageType.Physical, affects);
+                caster.ShootMHProjectile(castDirection, projectileSpeed, (offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage) * damage, damageType, affects);
 
                 break;
 
             case AbilityType.Thrown:
 
-                Instantiate(Throwable).ThrowAt(caster, throwTarget, offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage, DamageType.Physical);
+                Instantiate(Throwable).ThrowAt(caster, throwTarget, (offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage) * damage, damageType);
 
                 break;
             

@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15019dff4c8681541a86ed43f0263cc0, type: 3}
   m_Name: PlayerClones
   m_EditorClassIdentifier: 
-  mobs: []
+  mobs:
+  - {fileID: 1500717114903421778, guid: a5e4315979a28644fadb266eed150994, type: 3}
+  - {fileID: 1500717114903421778, guid: a5e4315979a28644fadb266eed150994, type: 3}
+  - {fileID: 1500717114903421778, guid: a5e4315979a28644fadb266eed150994, type: 3}
+  - {fileID: 1500717114903421778, guid: a5e4315979a28644fadb266eed150994, type: 3}
+  - {fileID: 1500717114903421778, guid: a5e4315979a28644fadb266eed150994, type: 3}

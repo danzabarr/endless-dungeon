@@ -145,14 +145,14 @@ public class Player : Unit
         castDirection = mouseDirection;
         throwTarget = ScreenPointToRayPlaneIntersection(Input.mousePosition, 0, Camera.main);
 
-        if (Physics.Raycast(mouseRay, out hitInfo, maxDistance, LayerMask.GetMask("Cast")))
+        if (Physics.Raycast(mouseRay, out hitInfo, maxDistance, LayerMask.GetMask("Default", "Walls", "Interactive"), QueryTriggerInteraction.Ignore))
         {
             castTarget = hitInfo.point;
             castDirection = castTarget - origin;
             castDirection.Normalize();
         }
 
-        if (Physics.Raycast(mouseRay, out hitInfo, maxDistance, LayerMask.GetMask("Default", "Walls", "Interactive"), QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(mouseRay, out hitInfo, maxDistance, LayerMask.GetMask("Cast", "Walls")))
         {
             castTarget = hitInfo.point;
             castDirection = castTarget - origin;
@@ -363,7 +363,7 @@ public class Player : Unit
 
                 if (SquareDistance(d, t) < range * range)
                 {
-                    LookInDirection(t - d);
+                    YawToDirection(t - d);
                     if (Abilities.CastTimeRemaining <= 0.1f)
                     {
                         Abilities.Cast(queuedAbilityIndex, null, queuedCastTarget, queuedThrowTarget, queuedFloorTarget, queuedFloorTargetValid);
@@ -401,7 +401,7 @@ public class Player : Unit
             {
                 if (Abilities.CastTimeRemaining <= 0.1f)
                 {
-                    LookInDirection(queuedTarget.GetCenterPosition() - GetCastPosition());
+                    YawToDirection(queuedTarget.GetCenterPosition() - GetCastPosition());
                     Abilities.Cast(queuedAbilityIndex, queuedTarget as Unit, queuedCastTarget, queuedThrowTarget, queuedFloorTarget, queuedFloorTargetValid);
                     currentAbilityIndex = queuedAbilityIndex;
                 }
@@ -433,7 +433,7 @@ public class Player : Unit
         {
             if (SquareDistance(GetCastPosition(), queuedTarget.GetGroundPosition()) < queuedTarget.GetInteractDistance() * queuedTarget.GetInteractDistance())
             {
-                LookInDirection(queuedTarget.GetGroundPosition() - GetGroundPosition());
+                YawToDirection(queuedTarget.GetGroundPosition() - GetGroundPosition());
                 queuedTarget.Interact();
                 if (queuedTarget is ItemObject)
                 {
@@ -562,10 +562,32 @@ public class Player : Unit
         Gizmos.DrawLine(GetGroundPosition(), walkDestination);
         Gizmos.DrawSphere(walkDestination, .2f);
     }
-
-    public override void LookInDirection(Vector3 direction)
+    private float spineRotation;
+    public override void YawToDirection(Vector3 direction)
     {
         targetRotation = 90f - Mathf.Rad2Deg * Mathf.Atan2(direction.z, direction.x);
+    }
+
+    public override void PitchToDirection(Vector3 direction)
+    {
+        spineRotation = (Mathf.Atan2(Mathf.Sqrt(direction.z * direction.z + direction.x * direction.x), direction.y) - Mathf.PI / 2) * Mathf.Rad2Deg;
+    }
+    public void LateUpdate()
+    {
+        //spine.localRotation = Quaternion.Euler(spineRotation, 0, 0);
+        spine.Rotate(Vector3.right, spineRotation);
+        //Debug.Log(spineRotation);
+    }
+
+    public static float GetPitch(Vector3 origin, Vector3 target)
+    {
+        float dX = origin.x - target.x;
+        float dY = origin.y - target.y;
+        float dZ = origin.z - target.z;
+
+        float pitch = Mathf.Atan2(Mathf.Sqrt(dZ * dZ + dX * dX), dY) + Mathf.PI;
+
+        return pitch;
     }
 
     /*

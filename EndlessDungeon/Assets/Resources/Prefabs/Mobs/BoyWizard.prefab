@@ -1599,6 +1599,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 8967226079517504847}
   cast: {fileID: 184134072830138032}
+  mainHandWeapon: {fileID: 0}
+  offHandWeapon: {fileID: 0}
+  mainHand: {fileID: 0}
+  offHand: {fileID: 0}
+  spine: {fileID: 0}
   faction: 1
   stunThreshold: 1
   knockbackDampening: 0.9

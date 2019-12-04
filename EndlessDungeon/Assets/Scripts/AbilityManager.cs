@@ -194,6 +194,8 @@ public class AbilityManager : MonoBehaviour
 
         Ability active = this[activeIndex];
 
+        caster.PitchToDirection(caster.transform.forward);
+
         if (active != null)
         {
             UpdateStats();

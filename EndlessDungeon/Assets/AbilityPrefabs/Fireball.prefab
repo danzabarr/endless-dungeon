@@ -9567,6 +9567,7 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 213765
+  collisionPoint: {fileID: 1669194592627635280}
   faction: 0
   affects: 0
   onCollision: {fileID: 8874524286873409834, guid: b7e9d947f5acf444e9f7522e79a4d3f7,

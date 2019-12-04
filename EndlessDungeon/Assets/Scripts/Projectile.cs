@@ -8,10 +8,12 @@ public class Projectile : MonoBehaviour
     protected float life;
     [SerializeField]
     protected LayerMask collisionMask;
+    [SerializeField]
+    protected Transform collisionPoint;
 
     protected Unit caster;
     protected float velocity;
-    protected bool hit;
+    protected bool shot, hit;
 
     [SerializeField]
     protected Unit.Faction faction;
@@ -45,38 +47,46 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     protected int debuffMaxStacks;
 
-    public void Init(Vector3 position, Vector3 velocity)
+    public void Shoot(Vector3 position, Vector3 velocity)
     {
+        transform.parent = null;
         this.velocity = velocity.magnitude;
         transform.position = position;
         transform.rotation = Quaternion.LookRotation(velocity / this.velocity);
+        shot = true;
     }
-    public void Init(Unit caster, Vector3 direction, float velocity)
+    public void Shoot(Unit caster, Vector3 direction, float velocity)
     {
+        transform.parent = null;
         Physics.IgnoreCollision(GetComponent<Collider>(), caster.GetComponent<Collider>());
         this.caster = caster;
         faction = caster.GetFaction();
         this.velocity = velocity;
         transform.position = caster.GetCastPosition();
         transform.rotation = Quaternion.LookRotation(direction);
+        shot = true;
     }
-    public void Init(Unit caster, Vector3 direction, float velocity, Vector2 damage, Ability.DamageType damageType, Ability.Affects affects)
+    public void Shoot(Unit caster, Vector3 direction, float velocity, Vector2 damage, Ability.DamageType damageType, Ability.Affects affects)
     {
+        transform.parent = null;
         Physics.IgnoreCollision(GetComponent<Collider>(), caster.GetComponent<Collider>());
         this.caster = caster;
         faction = caster.GetFaction();
         this.affects = affects;
         this.velocity = velocity;
-        transform.position = caster.GetCastPosition();
+        transform.position = caster.GetMainHand().position;
         transform.rotation = Quaternion.LookRotation(direction);
         this.damage = damage;
         this.damageType = damageType;
+        shot = true;
     }
     public void Update()
     {
+        if (!shot)
+            return;
         if (!hit)
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, velocity * Time.deltaTime, collisionMask, QueryTriggerInteraction.Ignore) && CheckCollision(hitInfo.collider))
+            if (Physics.Raycast(collisionPoint.position, transform.forward, out RaycastHit hitInfo, velocity * Time.deltaTime, collisionMask, QueryTriggerInteraction.Ignore) && CheckCollision(hitInfo.collider))
             {
                 transform.position += transform.forward * (hitInfo.distance - 0.01f);
                 OnCollision(hitInfo.collider);
@@ -100,6 +110,12 @@ public class Projectile : MonoBehaviour
         if (collisionMask != (collisionMask | (1 << other.gameObject.layer))) return false;
         if (other == caster.GetComponent<Collider>()) return false;
         return true;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (CheckCollision(other))
+            OnCollision(other);
     }
     public virtual void OnCollision(Collider other)
     {

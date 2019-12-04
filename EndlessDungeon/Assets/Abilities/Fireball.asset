@@ -25,9 +25,11 @@ MonoBehaviour:
   cooldown: 0
   speed: 1
   abilityType: 5
+  channelled: 0
+  channellingTickInterval: 0
   affects: 1
   damage: {x: 10, y: 5}
-  damageType: 0
+  damageType: 1
   projectile: {fileID: 6481209160861100350, guid: 979fe9f0a41d9d04e898566650c560db,
     type: 3}
   projectileSpeed: 75

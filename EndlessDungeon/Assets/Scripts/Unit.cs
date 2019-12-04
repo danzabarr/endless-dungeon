@@ -20,7 +20,95 @@ public abstract class Unit : MonoBehaviour
     protected Transform cast;
 
     [SerializeField]
+    protected Transform mainHandWeapon;
+
+    [SerializeField]
+    protected Transform offHandWeapon;
+
+    [SerializeField]
+    protected Transform mainHand;
+
+    [SerializeField]
+    protected Transform offHand;
+
+    [SerializeField]
+    protected Transform spine;
+
+    [SerializeField]
     protected Faction faction;
+
+    protected Projectile cockedMHProjectile, cockedOHProjectile;
+    protected Throwable cockedMHThrowable, cockedOHThrowable;
+
+    public Projectile CockedMHProjectile
+    {
+        get => cockedMHProjectile;
+        set
+        {
+            if (cockedMHProjectile)
+                Destroy(cockedMHProjectile.gameObject);
+            if (cockedMHThrowable)
+                Destroy(cockedMHThrowable.gameObject);
+            cockedMHProjectile = value;
+            cockedMHProjectile.transform.SetParent(mainHand, false);
+        }
+    }
+    public Projectile CockedOHProjectile
+    {
+        get => cockedMHProjectile;
+        set
+        {
+            if (cockedOHProjectile)
+                Destroy(cockedOHProjectile.gameObject);
+            if (cockedOHThrowable)
+                Destroy(cockedOHThrowable.gameObject);
+            cockedOHProjectile = value;
+            cockedOHProjectile.transform.SetParent(offHand, false);
+        }
+    }
+
+    public Throwable CockedMHThrowable
+    {
+        get => cockedMHThrowable;
+        set
+        {
+            if (cockedMHProjectile)
+                Destroy(cockedMHProjectile.gameObject);
+            if (cockedMHThrowable)
+                Destroy(cockedMHThrowable.gameObject);
+            cockedMHThrowable = value;
+            cockedMHThrowable.transform.SetParent(mainHand, false);
+        }
+    }
+    public Throwable CockedOHThrowable
+    {
+        get => cockedOHThrowable;
+        set
+        {
+            if (cockedOHProjectile)
+                Destroy(cockedOHProjectile.gameObject);
+            if (cockedOHThrowable)
+                Destroy(cockedOHThrowable.gameObject);
+            cockedOHThrowable = value;
+            cockedOHThrowable.transform.SetParent(offHand, false);
+        }
+    }
+
+    public void ShootMHProjectile(Vector3 direction, float velocity, Vector2 damage, Ability.DamageType damageType, Ability.Affects affects)
+    {
+        if (!cockedMHProjectile)
+            return;
+        cockedMHProjectile.Shoot(this, direction, velocity, damage, damageType, affects);
+        cockedMHProjectile = null;
+    }
+
+    public void ShootOHProjectile(Vector3 direction, float velocity, Vector2 damage, Ability.DamageType damageType, Ability.Affects affects)
+    {
+        if (!cockedOHProjectile)
+            return;
+        cockedOHProjectile.Shoot(this, direction, velocity, damage, damageType, affects);
+        cockedOHProjectile = null;
+    }
 
     protected float health;
 
@@ -197,6 +285,8 @@ public abstract class Unit : MonoBehaviour
     public virtual Vector3 GetCastPosition() => cast.position;
     public virtual Transform GetCenter() => center;
     public virtual Vector3 GetCenterPosition() => center.position;
+    public virtual Transform GetMainHand() => mainHandWeapon;
+    public virtual Transform GetOffHand() => offHandWeapon;
 
     private Vector3 knockbackDirection;
     private float knockbackForce;
@@ -500,10 +590,16 @@ public abstract class Unit : MonoBehaviour
         
     }
 
-    public virtual void LookInDirection(Vector3 direction)
+    public virtual void YawToDirection(Vector3 direction)
     {
         
     }
+
+    public virtual void PitchToDirection(Vector3 direction)
+    {
+
+    }
+
 
     public virtual void WalkTo(Vector3 position)
     {
