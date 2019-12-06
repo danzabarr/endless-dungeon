@@ -250,12 +250,13 @@ public class Player : Unit
         if (Input.GetMouseButtonDown(0) && InventoryManager.Instance.HeldItem == null && !InventoryManager.Instance.JustDropped && !eventSystem.IsPointerOverGameObject() && !Abilities.Channelling)
         {
             queuedTarget = hover;
-            queuedAbilityIndex = 4;
+            queuedAbilityIndex = (queuedTarget != null || Input.GetKey(KeyCode.LeftShift)) ? 4 : -1;
             queuedCastTarget = castTarget;
             queuedFloorTarget = floorTargetNavMeshSample;
             queuedFloorTargetValid = hasFloorTargetNavMeshSample;
             queuedThrowTarget = throwTarget;
-            hasWalkDestination = true;
+            if (!Input.GetKey(KeyCode.LeftShift))
+                hasWalkDestination = true;
             lClickDown = true;
             if (queuedTarget == null)
                 Instantiate(destinationIndicator, queuedFloorTarget, Quaternion.identity);
@@ -268,12 +269,13 @@ public class Player : Unit
 
         if (Input.GetMouseButton(0) && lClickDown && InventoryManager.Instance.HeldItem == null && !InventoryManager.Instance.JustDropped && queuedTarget == null && !Abilities.Channelling)// && !ExtendedStandaloneInputModule.GetPointerEventData().pointerCurrentRaycast.isValid
         {
-            queuedAbilityIndex = 4;
+            queuedAbilityIndex = (queuedTarget != null || Input.GetKey(KeyCode.LeftShift)) ? 4 : -1;
             queuedCastTarget = castTarget;
             queuedFloorTarget = floorTargetNavMeshSample;
             queuedFloorTargetValid = hasFloorTargetNavMeshSample;
             queuedThrowTarget = throwTarget;
-            hasWalkDestination = true;
+            if (!Input.GetKey(KeyCode.LeftShift))
+                hasWalkDestination = true;
         }
 
         if (Abilities.Channelling)
@@ -332,7 +334,7 @@ public class Player : Unit
         if (queuedTarget == null)
         {
 
-            if (queuedAbilityIndex == -1 || queuedAbilityIndex == 4 || Abilities[queuedAbilityIndex] == null)
+            if (queuedAbilityIndex == -1 || (queuedAbilityIndex == 4 && !Input.GetKey(KeyCode.LeftShift)) || Abilities[queuedAbilityIndex] == null)
             {
                 walkDestination = queuedFloorTarget;
 
@@ -360,17 +362,15 @@ public class Player : Unit
 
                 float range = Abilities.Range(queuedAbilityIndex);
 
-
-                if (SquareDistance(d, t) < range * range)
+                if (Input.GetKey(KeyCode.LeftShift) || SquareDistance(d, t) < range * range)
                 {
-                    YawToDirection(t - d);
                     if (Abilities.CastTimeRemaining <= 0.1f)
                     {
+                        StopMoving();
+                        YawToDirection(t - d);
                         Abilities.Cast(queuedAbilityIndex, null, queuedCastTarget, queuedThrowTarget, queuedFloorTarget, queuedFloorTargetValid);
                         currentAbilityIndex = queuedAbilityIndex;
                     }
-
-                    StopMoving();
                    
                     if (!Input.GetKey(abilityBar.GetBinding(queuedAbilityIndex)))
                     {
@@ -397,7 +397,7 @@ public class Player : Unit
         else if (queuedTarget is Unit)
         {
             float lClickRange = Abilities.Range(queuedAbilityIndex);
-            if (SquareDistance(GetCastPosition(), queuedTarget.GetCenterPosition()) < lClickRange * lClickRange)
+            if (Input.GetKey(KeyCode.LeftShift) || SquareDistance(GetCastPosition(), queuedTarget.GetCenterPosition()) < lClickRange * lClickRange)
             {
                 if (Abilities.CastTimeRemaining <= 0.1f)
                 {
@@ -429,7 +429,7 @@ public class Player : Unit
                 moving = true;
             }
         }
-        else if (queuedAbilityIndex == -1 || queuedAbilityIndex == 4)
+        else if (queuedAbilityIndex == -1 || (queuedAbilityIndex == 4 && !Input.GetKey(KeyCode.LeftShift)))
         {
             if (SquareDistance(GetCastPosition(), queuedTarget.GetGroundPosition()) < queuedTarget.GetInteractDistance() * queuedTarget.GetInteractDistance())
             {
@@ -482,7 +482,6 @@ public class Player : Unit
             movementDirection.Normalize();
 
             targetRotation = 90f - Mathf.Rad2Deg * Mathf.Atan2(movementDirection.z, movementDirection.x);// Quaternion.LookRotation(movementDirection, Vector3.up);
-
             Vector3 move = movementDirection * WalkSpeed;
 
 
