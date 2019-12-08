@@ -36,6 +36,7 @@ public class Ability : ScriptableObject
         Projectile, //Fires a projectile in a direction
         Thrown,     //Fires a throwable towards a position
         Place,      //Places an object at a position (use for patch AOE)
+        Auto,       //Ability type is determined by the equipped weapon class
     }
 
     public enum Affects
@@ -164,7 +165,6 @@ public class Ability : ScriptableObject
     public Placeable Placeable => placeable;
     public bool UsePattern => usePattern;
     public string Pattern => pattern;
-
     public bool Compatible(EquipmentObject.Class mainHand, EquipmentObject.Class offHand, EquipmentObject.Class activeHand)
     {
         return mainHandRequirement.IsCompatible(mainHand) && offHandRequirement.IsCompatible(offHand) && activeHandRequirement.IsCompatible(activeHand);
@@ -210,14 +210,20 @@ public class Ability : ScriptableObject
         bool offHandSwing,
         int patternPosition,
         bool channelling,
-        SnapShot snapshot,
         GameObject objects
     )
     {
-        AbilityType abilityType = offHandSwing ? snapshot.offHandWeaponClass.StandardAbilityType() : snapshot.mainHandWeaponClass.StandardAbilityType();
-        if (abilityType == AbilityType.Projectile)
+        if (Type == AbilityType.Auto)
         {
-            caster.CockedMHProjectile = Instantiate(Projectile);
+            AbilityType abilityType = offHandSwing ? caster.Stats.OffHandItemClass.StandardAbilityType() : caster.Stats.MainHandItemClass.StandardAbilityType();
+            if (abilityType == AbilityType.Projectile)
+            {
+                Projectile projectile = Projectile;
+                if (projectile == null)
+                    projectile = offHandSwing ? caster.Stats.OffHandProjectile : caster.Stats.MainHandProjectile;
+
+                caster.CockedMHProjectile = Instantiate(projectile);
+            }
         }
     }
 
@@ -232,7 +238,6 @@ public class Ability : ScriptableObject
         bool offHandSwing,
         int patternPosition,
         bool channelling,
-        SnapShot snapshot,
         GameObject objects
     )
     {
@@ -240,7 +245,7 @@ public class Ability : ScriptableObject
     }
 
     public virtual void OnChannellingPulse
-   (
+    (
        Unit caster,
         Unit target,
         Vector3 castTarget,
@@ -250,9 +255,8 @@ public class Ability : ScriptableObject
         bool offHandSwing,
         int patternPosition,
         bool channelling,
-        SnapShot snapshot,
         GameObject objects
-   )
+    )
     {
 
     }
@@ -268,7 +272,6 @@ public class Ability : ScriptableObject
         bool offHandSwing,
         int patternPosition,
         bool channelling,
-        SnapShot snapshot,
         GameObject objects
     )
     {
@@ -287,38 +290,45 @@ public class Ability : ScriptableObject
         bool offHandSwing,
         int patternPosition,
         bool channelling,
-        SnapShot snapshot,
         GameObject objects
     )
     {
-        Vector3 castDirection = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
-
-        AbilityType abilityType = offHandSwing ? snapshot.offHandWeaponClass.StandardAbilityType() : snapshot.mainHandWeaponClass.StandardAbilityType();
-        switch (abilityType)
+        if (Type == AbilityType.Auto)
         {
-            case AbilityType.Melee:
-                List<Unit> targets = GetTargets(caster, target, castDirection, offHandSwing, snapshot);
-                foreach (Unit hp in targets)
-                {
-                    hp.Damage(this, caster.GetCastPosition(), caster, damageType, ((offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage) * damage).Roll(), true, true);
-                    //hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
-                }
+            Vector3 castDirection;
+            AbilityType abilityType = offHandSwing ? caster.Stats.OffHandItemClass.StandardAbilityType() : caster.Stats.MainHandItemClass.StandardAbilityType();
+            switch (abilityType)
+            {
+                case AbilityType.Melee:
+                    castDirection = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
+                    List<Unit> targets = GetTargets(caster, target, castDirection, offHandSwing);
+                    foreach (Unit hp in targets)
+                    {
+                        hp.Damage(this, caster.GetCastPosition(), caster, damageType, ((offHandSwing ? caster.Stats.OffHandDamage : caster.Stats.MainHandDamage) * damage).Roll(), true, true);
+                        //hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
+                    }
 
-                break;
+                    break;
 
 
-            case AbilityType.Projectile:
+                case AbilityType.Projectile:
 
-                caster.ShootMHProjectile(castDirection, projectileSpeed, (offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage) * damage, damageType, affects);
+                    if (caster.CockedMHProjectile != null)
+                    {
+                        Vector3 projectilePosition = caster.CockedMHProjectile.transform.position;
+                        castDirection = target == null ? (castTarget - projectilePosition).normalized : (target.GetCenterPosition() - projectilePosition).normalized;
+                        caster.ShootMHProjectile(castDirection, projectileSpeed, (offHandSwing ? caster.Stats.OffHandDamage : caster.Stats.MainHandDamage) * damage, damageType, affects);
+                    }
 
-                break;
+                    break;
 
-            case AbilityType.Thrown:
+                case AbilityType.Thrown:
 
-                Instantiate(Throwable).ThrowAt(caster, throwTarget, (offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage) * damage, damageType);
+                    Instantiate(Throwable).ThrowAt(caster, throwTarget, (offHandSwing ? caster.Stats.OffHandDamage : caster.Stats.MainHandDamage) * damage, damageType);
 
-                break;
+                    break;
             
+            }
         }
     }
 
@@ -333,33 +343,105 @@ public class Ability : ScriptableObject
         bool offHandSwing,
         int patternPosition,
         bool channelling,
-        SnapShot snapshot,
         GameObject objects
     )
     {
         
-        
+        if (Type == AbilityType.Auto)
+        {
+            AbilityType abilityType = offHandSwing ? caster.Stats.OffHandItemClass.StandardAbilityType() : caster.Stats.MainHandItemClass.StandardAbilityType();
+            if (abilityType == AbilityType.Projectile)
+                caster.CockedMHProjectile = null;
+        }
     }
 
-    public float GetRange(bool offHandSwing, SnapShot snapshot)
+    public virtual void OnCancel
+    (
+        Unit caster,
+        Unit target,
+        Vector3 castTarget,
+        Vector3 throwTarget,
+        Vector3 floorTarget,
+        float swingTime,
+        bool offHandSwing,
+        int patternPosition,
+        bool channelling,
+        GameObject objects
+    )
     {
-        if (Type == AbilityType.Projectile) return float.MaxValue;
-        if (Type == AbilityType.Self) return float.MaxValue;
+        AbilityType abilityType = offHandSwing ? caster.Stats.OffHandItemClass.StandardAbilityType() : caster.Stats.MainHandItemClass.StandardAbilityType();
+        if (abilityType == AbilityType.Projectile)
+        {
+            caster.CockedMHProjectile = null;
+        }
+    }
+
+    public float GetRange(bool offHandSwing, Stats stats)
+    {
+        if (Type == AbilityType.Projectile)
+            return float.MaxValue;
+
+        if (Type == AbilityType.Self)
+            return float.MaxValue;
 
         if (!useWeaponRange)
             return range;
 
+        if (Type == AbilityType.Auto)
+        {
+            if (Hand == WeaponHand.MainHand || (Hand == WeaponHand.Alternating && !offHandSwing))
+                switch (stats.MainHandItemClass.StandardAbilityType())
+                {
+                    case AbilityType.Melee:
+                        return range * stats.MainHandRange;
+                    
+                    case AbilityType.Projectile:
+                        return float.MaxValue;
+
+                    case AbilityType.Thrown:
+                        return range * stats.MainHandRange;
+                }
+            else if (Hand == WeaponHand.OffHand || (Hand == WeaponHand.Alternating && offHandSwing))
+            {
+                switch (stats.OffHandItemClass.StandardAbilityType())
+                {
+                    case AbilityType.Melee:
+                        return range * stats.OffHandRange;
+
+                    case AbilityType.Projectile:
+                        return float.MaxValue;
+
+                    case AbilityType.Thrown:
+                        return range * stats.OffHandRange;
+                }
+            }
+            else if (Hand == WeaponHand.Both)
+            {
+                switch (stats.OffHandItemClass.StandardAbilityType())
+                {
+                    case AbilityType.Melee:
+                        return range * Mathf.Min(stats.OffHandRange, stats.MainHandRange);
+
+                    case AbilityType.Projectile:
+                        return float.MaxValue;
+
+                    case AbilityType.Thrown:
+                        return range * Mathf.Min(stats.OffHandRange, stats.MainHandRange);
+                }
+            }
+        }
+
         if (Hand == WeaponHand.MainHand)
-            return range * snapshot.mainHandRange;
+            return range * stats.MainHandRange;
 
         if (Hand == WeaponHand.OffHand)
-            return range * snapshot.offHandRange;
+            return range * stats.OffHandRange;
 
         if (Hand == WeaponHand.Alternating)
-            return range * (offHandSwing ? snapshot.offHandRange : snapshot.mainHandRange);
+            return range * (offHandSwing ? stats.OffHandRange : stats.MainHandRange);
 
         if (Hand == WeaponHand.Both)
-            return range * Mathf.Min(snapshot.offHandRange, snapshot.mainHandRange);
+            return range * Mathf.Min(stats.OffHandRange, stats.MainHandRange);
 
         if (Hand == WeaponHand.Spell)
             return range;
@@ -367,19 +449,31 @@ public class Ability : ScriptableObject
         return range;
     }
 
-    public Vector2 GetDamage(bool offHandSwing, SnapShot snapshot)
+    public Vector2 GetDamage(bool offHandSwing, Stats stats)
     {
+        if (Type == AbilityType.Auto)
+        {
+            if (Hand == WeaponHand.MainHand || (Hand == WeaponHand.Alternating && !offHandSwing))
+                return damage * stats.MainHandDamage;
+
+            if (Hand == WeaponHand.OffHand || (Hand == WeaponHand.Alternating && offHandSwing))
+                return damage * stats.OffHandDamage;
+
+            if (Hand == WeaponHand.Both)
+                return damage * (stats.MainHandAttacksPerSecond + stats.OffHandAttacksPerSecond);
+        }
+
         if (Hand == WeaponHand.MainHand)
-            return damage * snapshot.mainHandDamage;
+            return damage * stats.MainHandDamage;
 
         if (Hand == WeaponHand.OffHand)
-            return damage * snapshot.offHandDamage;
+            return damage * stats.OffHandDamage;
 
         if (Hand == WeaponHand.Alternating)
-            return damage * (offHandSwing ? snapshot.offHandDamage : snapshot.mainHandDamage);
+            return damage * (offHandSwing ? stats.OffHandDamage : stats.MainHandDamage);
 
         if (Hand == WeaponHand.Both)
-            return damage * (snapshot.mainHandAttacksPerSecond + snapshot.offHandAttacksPerSecond);
+            return damage * (stats.MainHandAttacksPerSecond + stats.OffHandAttacksPerSecond);
 
         if (Hand == WeaponHand.Spell)
         {
@@ -387,22 +481,22 @@ public class Ability : ScriptableObject
                 return damage;
 
             if (damageType == DamageType.Fire)
-               return damage * snapshot.fireSpellDamage;
+               return damage * stats.FireSpellDamage;
 
             if (damageType == DamageType.Cold)
-               return damage * snapshot.coldSpellDamage;
+               return damage * stats.ColdSpellDamage;
 
             if (damageType == DamageType.Lightning)
-               return damage * snapshot.lightningSpellDamage;
+               return damage * stats.LightningSpellDamage;
 
             if (damageType == DamageType.Poison)
-               return damage * snapshot.poisonSpellDamage;
+               return damage * stats.PoisonSpellDamage;
 
             if (damageType == DamageType.Shadow)
-                return damage * snapshot.shadowSpellDamage;
+                return damage * stats.ShadowSpellDamage;
 
             if (damageType == DamageType.Holy)
-                return damage * snapshot.holySpellDamage;
+                return damage * stats.HolySpellDamage;
         }
 
         return damage;
@@ -413,102 +507,117 @@ public class Ability : ScriptableObject
         Unit caster,
         Unit target,
         Vector3 targetDirection,
-        bool offHandSwing,
-        SnapShot snapshot
+        bool offHandSwing
     )
     {
-        List<Unit> targets = new List<Unit>();
-
-        bool targettingAllies = affects != Affects.Enemies;
-        bool targettingEnemies = affects != Affects.Allies;
-        Unit.Faction casterFaction = caster.GetFaction();
-        float range = GetRange(offHandSwing, snapshot);
         
-
-        void AddTarget(Unit hp)
+        if (Type == AbilityType.Auto)
         {
-            if (hp != null && Filter(casterFaction, hp.GetFaction(), affects))
-                targets.Add(hp);
+            if (Hand == WeaponHand.MainHand || (Hand == WeaponHand.Alternating && !offHandSwing))
+                return GetTargets(caster.Stats.MainHandItemClass.StandardAbilityType());
+
+            if (Hand == WeaponHand.OffHand || (Hand == WeaponHand.Alternating && offHandSwing))
+                return GetTargets(caster.Stats.OffHandItemClass.StandardAbilityType());
+
+            if (Hand == WeaponHand.Both)
+                throw new System.NotImplementedException();
         }
 
-        switch (abilityType)
-        {
-            case AbilityType.Self:
-                targets.Add(caster);
-                break;
-            case AbilityType.Targeted:
-                targets.Add(target);
-                break;
-            case AbilityType.Melee:
+        return GetTargets(Type);
 
-                
-                if (target != null)
-                {
-                    float distance = Vector3.Distance(caster.GetCastPosition(), target.GetCenterPosition());
-                    if (distance <= range)
+        List<Unit> GetTargets(AbilityType abilityType)
+        {
+            List<Unit> targets = new List<Unit>();
+            float range = GetRange(offHandSwing, caster.Stats);
+
+            void AddTarget(Unit hp)
+            {
+                if (hp != null && Filter(caster.GetFaction(), hp.GetFaction(), affects))
+                    targets.Add(hp);
+            }
+
+        
+        
+            switch (abilityType)
+            {
+                case AbilityType.Self:
+                    targets.Add(caster);
+                    break;
+
+                case AbilityType.Targeted:
+                    targets.Add(target);
+                    break;
+
+                case AbilityType.Melee:
+
+                    if (target != null)
                     {
-                        bool checkLOS = Level.CheckLOS(caster.GetCastPosition(), target.GetCenterPosition());
-                        if (!checkLOS)
+                        float distance = Vector3.Distance(caster.GetCastPosition(), target.GetCenterPosition());
+                        if (distance <= range)
                         {
-                            AddTarget(target);
-                            break;
+                            bool checkLOS = Level.CheckLOS(caster.GetCastPosition(), target.GetCenterPosition());
+                            if (!checkLOS)
+                            {
+                                AddTarget(target);
+                                break;
+                            }
                         }
                     }
-                }
                 
-                Collider[] colliders = caster.GetGameObject().GetComponentsInChildren<Collider>();
-                foreach (Collider c in colliders)
-                    c.enabled = false;
+                    Collider[] colliders = caster.GetGameObject().GetComponentsInChildren<Collider>();
+                    foreach (Collider c in colliders)
+                        c.enabled = false;
 
-                int layerMask = LayerMask.GetMask("Default", "Walls", "Player", "Mobs");
+                    int layerMask = LayerMask.GetMask("Default", "Walls", "Player", "Mobs");
 
-                if (Physics.Raycast(new Ray(caster.GetCastPosition(), targetDirection), out RaycastHit hitinfo, range, layerMask))
-                {
-                    AddTarget(hitinfo.collider.GetComponent<Unit>());
-                }
+                    if (Physics.Raycast(new Ray(caster.GetCastPosition(), targetDirection), out RaycastHit hitinfo, range, layerMask))
+                    {
+                        AddTarget(hitinfo.collider.GetComponent<Unit>());
+                    }
 
-                //Spherecast?
-                /*
-                float radius = 1f;
-                if (Physics.SphereCast(new Ray(caster.CastPosition(), targetDirection), radius, out RaycastHit hitinfo, range, layerMask))
-                {
-                    AddTarget(hitinfo.collider.GetComponent<HealthPool>());
-                }
-                */
+                    //Spherecast?
+                    /*
+                    float radius = 1f;
+                    if (Physics.SphereCast(new Ray(caster.CastPosition(), targetDirection), radius, out RaycastHit hitinfo, range, layerMask))
+                    {
+                        AddTarget(hitinfo.collider.GetComponent<HealthPool>());
+                    }
+                    */
 
-                foreach (Collider c in colliders)
-                    c.enabled = true;
+                    foreach (Collider c in colliders)
+                        c.enabled = true;
 
                 
 
-                break;
-            case AbilityType.Cleave:
+                    break;
+                case AbilityType.Cleave:
 
-                float yaw = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
+                    float yaw = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
 
-                if (Level.PlayerInRadius(caster.GetCastPosition(), range, yaw, arc, true))
-                    AddTarget(Player.Instance);
+                    if (Level.PlayerInRadius(caster.GetCastPosition(), range, yaw, arc, true))
+                        AddTarget(Player.Instance);
 
-                foreach (Mob mob in Level.Instance.MobsInRadius(caster.GetCastPosition(), range, yaw, arc, true))
-                    AddTarget(mob);
+                    foreach (Mob mob in Level.Instance.MobsInRadius(caster.GetCastPosition(), range, yaw, arc, true))
+                        AddTarget(mob);
 
-                break;
-            case AbilityType.Nova:
+                    break;
+                case AbilityType.Nova:
 
-                if (Level.PlayerInRadius(caster.GetCastPosition(), range, true))
-                    AddTarget(Player.Instance);
+                    if (Level.PlayerInRadius(caster.GetCastPosition(), range, true))
+                        AddTarget(Player.Instance);
 
-                foreach (Mob mob in Level.Instance.MobsInRadius(caster.GetCastPosition(), range, true))
-                    targets.Add(mob);
+                    foreach (Mob mob in Level.Instance.MobsInRadius(caster.GetCastPosition(), range, true))
+                        targets.Add(mob);
 
-                break;
-            case AbilityType.Projectile:
-                break;
-            case AbilityType.Thrown:
-                break;
-            case AbilityType.Place:
-                break;
+                    break;
+                case AbilityType.Projectile:
+                    break;
+                case AbilityType.Thrown:
+                    break;
+                case AbilityType.Place:
+                    break;
+            }
+            return targets;
         }
-        return targets;
     }
 }

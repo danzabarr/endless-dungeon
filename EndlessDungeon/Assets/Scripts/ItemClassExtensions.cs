@@ -325,6 +325,28 @@ public static class ItemClassExtensions
         return false;
     }
 
+    public static bool ShootsProjectile(this Class item)
+    {
+        switch (item)
+        {
+            case Class.Bow:
+                return true;
+            case Class.CrossBow:
+                return true;
+        }
+        return false;
+    }
+
+    public static bool ShootsThrowable(this Class item)
+    {
+        switch (item)
+        {
+            case Class.Thrown:
+                return true;
+        }
+        return false;
+    }
+
     public static Ability.AbilityType StandardAbilityType(this Class item)
     {
         switch(item)

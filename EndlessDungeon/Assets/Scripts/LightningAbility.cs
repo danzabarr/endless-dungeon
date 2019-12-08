@@ -28,7 +28,6 @@ public class LightningAbility : Ability
         bool offHandSwing,
         int patternPosition,
         bool channelling,
-        SnapShot snapshot,
         GameObject objects
     )
     {
@@ -37,7 +36,7 @@ public class LightningAbility : Ability
         lightning.Generate();
         Instantiate(particles, target.GetCenterPosition(), Quaternion.identity, target.GetCenter());
 
-        Vector2 damage = GetDamage(offHandSwing, snapshot);
+        Vector2 damage = GetDamage(offHandSwing, caster.Stats);
 
         target.Damage(this, caster.GetCastPosition(), caster, DmgType, damage.Roll(), true, false);
 

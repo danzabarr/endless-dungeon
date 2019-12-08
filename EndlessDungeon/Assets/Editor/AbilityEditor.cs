@@ -126,6 +126,9 @@ public class AbilityEditor : Editor
                 exclude.Add("arc");
                 
                 break;
+
+            case Ability.AbilityType.Auto:
+                break;
         }
 
         if (!obj.FindProperty("usePattern").boolValue) exclude.Add("pattern");

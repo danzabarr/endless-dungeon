@@ -1381,7 +1381,7 @@ Transform:
   m_GameObject: {fileID: 4681721245325448215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 69.3, y: 0, z: 68.9}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 4681721245265509011}
   - {fileID: 1607779626446622542}
@@ -1661,11 +1661,15 @@ MonoBehaviour:
   shadowDamage: 0
   holyDamage: 0
   mainHandWeaponClass: 0
+  mainHandProjectile: {fileID: 0}
+  mainHandThrowable: {fileID: 0}
   mainHandDamage: {x: 0, y: 0}
   mainHandAttacksPerSecond: 0
   mainHandBlock: 0
   mainHandRange: 0
   offHandWeaponClass: 0
+  offHandProjectile: {fileID: 0}
+  offHandThrowable: {fileID: 0}
   offHandDamage: {x: 0, y: 0}
   offHandAttacksPerSecond: 0
   offHandBlock: 0
@@ -1685,22 +1689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities: []
   errorMessageDisplay: {fileID: 0}
-  snapshot:
-    mainHandWeaponClass: 0
-    mainHandDamage: {x: 0, y: 0}
-    mainHandAttacksPerSecond: 0
-    mainHandRange: 0
-    offHandWeaponClass: 0
-    offHandDamage: {x: 0, y: 0}
-    offHandAttacksPerSecond: 0
-    offHandRange: 0
-    fireSpellDamage: 1
-    coldSpellDamage: 1
-    lightningSpellDamage: 1
-    poisonSpellDamage: 1
-    shadowSpellDamage: 1
-    holySpellDamage: 1
-    castSpeed: 1
 --- !u!114 &3171890668683913671
 MonoBehaviour:
   m_ObjectHideFlags: 0

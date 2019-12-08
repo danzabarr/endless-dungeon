@@ -317,6 +317,8 @@ MonoBehaviour:
     type: 3}
   heldItemPosition: {x: 0.01, y: 0.35, z: 0}
   heldItemEulerRotation: {x: 180, y: 0, z: 0}
+  projectile: {fileID: 0}
+  throwable: {fileID: 0}
   requiresLevel: 2
   requiresStrength: 0
   requiresDexterity: 0

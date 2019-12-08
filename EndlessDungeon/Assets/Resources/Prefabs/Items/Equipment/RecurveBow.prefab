@@ -304,6 +304,9 @@ MonoBehaviour:
   heldItemMesh: {fileID: 0}
   heldItemPosition: {x: 0, y: 0.32, z: 0}
   heldItemEulerRotation: {x: 0, y: 0, z: 0}
+  projectile: {fileID: 8461444124904703558, guid: 51b6d9fbb27fc8242b9f6f9f564eca2f,
+    type: 3}
+  throwable: {fileID: 0}
   requiresLevel: 12
   requiresStrength: 15
   requiresDexterity: 45

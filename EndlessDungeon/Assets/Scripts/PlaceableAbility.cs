@@ -15,11 +15,10 @@ public class PlaceableAbility : Ability
         bool offHandSwing,
         int patternPosition,
         bool channelling,
-        SnapShot snapshot,
         GameObject objects
     )
         {
         
-        Instantiate(Placeable, floorTarget, Quaternion.identity, objects.transform).Init(caster, GetDamage(offHandSwing, snapshot), DmgType);
+        Instantiate(Placeable, floorTarget, Quaternion.identity, objects.transform).Init(caster, GetDamage(offHandSwing, caster.Stats), DmgType);
     }
 }

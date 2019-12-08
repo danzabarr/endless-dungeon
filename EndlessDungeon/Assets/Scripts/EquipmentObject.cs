@@ -90,14 +90,24 @@ public class EquipmentObject : ItemObject
     
     [SerializeField]
     private Class itemClass;
+
     [SerializeField]
     private string wornItemName;
+
     [SerializeField]
     private Mesh heldItemMesh;
+
     [SerializeField]
     private Vector3 heldItemPosition;
+
     [SerializeField]
     private Vector3 heldItemEulerRotation;
+
+    [SerializeField]
+    private Projectile projectile;
+
+    [SerializeField]
+    private Throwable throwable;
     public string WornItemName => wornItemName;
     public Mesh HeldItemMesh => heldItemMesh;
     public Vector3 HeldItemPosition => heldItemPosition;
@@ -105,6 +115,8 @@ public class EquipmentObject : ItemObject
     public Class ItemClass => itemClass;
     public Type ItemType => itemClass.Type();
     public string DescriptiveName => ((quality == Quality.Rare || quality == Quality.Legendary) ? (quality + " ") : "") + itemClass.Name();
+    public Projectile Projectile => projectile;
+    public Throwable Throwable => throwable;
 
     #region Requirements
     [SerializeField]

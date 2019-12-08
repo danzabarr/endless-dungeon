@@ -34,48 +34,7 @@ public class AbilityManager : MonoBehaviour
     [SerializeField]
     private ErrorMessageDisplay errorMessageDisplay;
 
-    [SerializeField]
-    private SnapShot snapshot;
-
-    /*
-    [Header("Main Hand")]
-    [SerializeField]
-    private EquipmentObject.Class mainHandWeaponClass;
-    [SerializeField]
-    private Vector2 mainHandDamage;
-    [SerializeField]
-    private float mainHandAttacksPerSecond;
-    [SerializeField]
-    private float mainHandRange;
-
-    [Header("Off Hand")]
-    [SerializeField]
-    private EquipmentObject.Class offHandWeaponClass;
-    [SerializeField]
-    private Vector2 offHandDamage;
-    [SerializeField]
-    private float offHandAttacksPerSecond;
-    [SerializeField]
-    private float offHandRange;
-
-    [Header("Spells")]
-    [SerializeField]
-    private float castSpeed;
-    [SerializeField]
-    private float fireSpellDamage;
-    [SerializeField]
-    private float coldSpellDamage;
-    [SerializeField]
-    private float lightningSpellDamage;
-    [SerializeField]
-    private float poisonSpellDamage;
-    [SerializeField]
-    private float shadowSpellDamage;
-    [SerializeField]
-    private float holySpellDamage;
-    */
     private Stats stats;
-
     public Ability Active => this[activeIndex];
     public bool Casting => activeIndex != -1;
     public bool Channelling => channelling;
@@ -119,39 +78,18 @@ public class AbilityManager : MonoBehaviour
     {
         if (stats != null)
         {
-            if (snapshot == null)
-                snapshot = new SnapShot();
 
-            snapshot.mainHandWeaponClass = stats.MainHandItemClass;
-            snapshot.mainHandDamage = stats.MainHandDamage;
-            snapshot.mainHandAttacksPerSecond = stats.MainHandAttacksPerSecond;
-            snapshot.mainHandRange = stats.MainHandRange;
-
-            snapshot.offHandWeaponClass = stats.OffHandItemClass;
-            snapshot.offHandDamage = stats.OffHandDamage;
-            snapshot.offHandAttacksPerSecond = stats.OffHandAttacksPerSecond;
-            snapshot.offHandRange = stats.OffHandRange;
-
-            snapshot.fireSpellDamage = stats.FireSpellDamage;
-            snapshot.coldSpellDamage = stats.ColdSpellDamage;
-            snapshot.lightningSpellDamage = stats.LightningSpellDamage;
-            snapshot.poisonSpellDamage = stats.PoisonSpellDamage;
-            snapshot.shadowSpellDamage = stats.ShadowSpellDamage;
-            snapshot.holySpellDamage = stats.HolySpellDamage;
-
-            snapshot.castSpeed = stats.CastSpeed;
-
-            if (!snapshot.mainHandWeaponClass.HasDamage())
+            if (!stats.MainHandItemClass.HasDamage())
                 offHandSwing = true;
 
-            if (!snapshot.offHandWeaponClass.HasDamage())
+            if (!stats.OffHandItemClass.HasDamage())
                 offHandSwing = false;
 
             if (Active != null)
                 anim.SetFloat("attackspeed", GetCastSpeed(Active));
         }
 
-        if (Active != null && !Active.Compatible(snapshot.mainHandWeaponClass, snapshot.offHandWeaponClass, offHandSwing ? snapshot.offHandWeaponClass : snapshot.mainHandWeaponClass))
+        if (Active != null && !Active.Compatible(stats.MainHandItemClass, stats.OffHandItemClass, offHandSwing ? stats.OffHandItemClass : stats.MainHandItemClass))
             CancelActive();
     }
 
@@ -159,10 +97,10 @@ public class AbilityManager : MonoBehaviour
     {
         offHandSwing = !offHandSwing;
 
-        if (!offHandSwing && !snapshot.mainHandWeaponClass.HasDamage())
+        if (!offHandSwing && !stats.MainHandItemClass.HasDamage())
             offHandSwing = true;
 
-        if (offHandSwing && !snapshot.offHandWeaponClass.HasDamage())
+        if (offHandSwing && !stats.OffHandItemClass.HasDamage())
             offHandSwing = false;
     }
 
@@ -188,8 +126,8 @@ public class AbilityManager : MonoBehaviour
 
         if (target != null && target.GetCurrentHealth() <= 0)
         {
+            CancelActive();
             target = null;
-            activeIndex = -1;
         }
 
         Ability active = this[activeIndex];
@@ -216,7 +154,6 @@ public class AbilityManager : MonoBehaviour
                 offHandSwing,
                 patternPosition,
                 channelling,
-                snapshot,
                 objects[activeIndex]
             );
         }
@@ -238,7 +175,6 @@ public class AbilityManager : MonoBehaviour
                         offHandSwing,
                         patternPosition,
                         channelling,
-                        snapshot,
                         objects[activeIndex]
                     );
 
@@ -268,7 +204,6 @@ public class AbilityManager : MonoBehaviour
                             offHandSwing,
                             patternPosition,
                             channelling,
-                            snapshot, 
                             objects[activeIndex]
                         );
                     }
@@ -285,7 +220,6 @@ public class AbilityManager : MonoBehaviour
                             offHandSwing,
                             patternPosition,
                             channelling,
-                            snapshot,
                             objects[activeIndex]
                         );
                     }
@@ -310,7 +244,6 @@ public class AbilityManager : MonoBehaviour
                         offHandSwing,
                         patternPosition,
                         channelling,
-                        snapshot,
                         objects[activeIndex]
                     );
 
@@ -331,7 +264,6 @@ public class AbilityManager : MonoBehaviour
                         offHandSwing,
                         patternPosition,
                         channelling,
-                        snapshot,
                         objects[activeIndex]
                     );
 
@@ -391,7 +323,7 @@ public class AbilityManager : MonoBehaviour
                         break;
                 }
 
-                string animation = active.RollAnimation(snapshot.mainHandWeaponClass, snapshot.offHandWeaponClass, offHandSwing);
+                string animation = active.RollAnimation(stats.MainHandItemClass, stats.OffHandItemClass, offHandSwing);
                 float speed = GetCastSpeed(active);
                 anim.SetFloat("attackspeed", speed);
                 anim.SetBool("channelling", active.Channelled);
@@ -413,7 +345,6 @@ public class AbilityManager : MonoBehaviour
                     offHandSwing,
                     patternPosition,
                     channelling,
-                    snapshot,
                     objects[activeIndex]
                 );
 
@@ -472,7 +403,6 @@ public class AbilityManager : MonoBehaviour
             offHandSwing,
             patternPosition,
             channelling,
-            snapshot,
             objects[activeIndex]
         );
 
@@ -490,13 +420,17 @@ public class AbilityManager : MonoBehaviour
     {
         if (this[abilityIndex] == null)
             return float.MaxValue;
-        return abilities[abilityIndex].GetRange(offHandSwing, snapshot);
+        return abilities[abilityIndex].GetRange(offHandSwing, stats);
     }
 
     public Ability.AbilityType Type(int abilityIndex)
     {
         if (this[abilityIndex] == null)
-            return snapshot.mainHandWeaponClass.StandardAbilityType();
+        {
+            return offHandSwing ?
+                  stats.OffHandItemClass.StandardAbilityType()
+                : stats.MainHandItemClass.StandardAbilityType();
+        }
         return abilities[abilityIndex].Type;
     }
 
@@ -507,6 +441,7 @@ public class AbilityManager : MonoBehaviour
 
     public void CancelActive()
     {
+        Active?.OnCancel(caster, target, castTarget, throwTarget, floorTarget, swingTime, offHandSwing, patternPosition, channelling, objects[activeIndex]);
         activeIndex = -1;
         swingTime = 0;
         channelling = false;
@@ -600,6 +535,8 @@ public class AbilityManager : MonoBehaviour
 
         return true;
     }
+
+    private Ability.AbilityType AutoStandardAbilityType => offHandSwing ? stats.OffHandItemClass.StandardAbilityType() : stats.MainHandItemClass.StandardAbilityType();
     private CastOutcome CheckValid(int abilityIndex, Unit target, Vector3 castTarget, Vector3 throwTarget, Vector3 floorTarget, bool hasFloorTargetNavMeshSample)
     {
         if (abilityIndex < 0 || abilityIndex >= abilities.Length)
@@ -613,9 +550,9 @@ public class AbilityManager : MonoBehaviour
         if (OnCooldown(abilityIndex))
             return CastOutcome.OnCooldown;
 
-        if (!ability.Compatible(snapshot.mainHandWeaponClass, snapshot.offHandWeaponClass, offHandSwing ? snapshot.offHandWeaponClass : snapshot.mainHandWeaponClass))
+        if (!ability.Compatible(stats.MainHandItemClass, stats.OffHandItemClass, offHandSwing ? stats.OffHandItemClass : stats.MainHandItemClass))
         {
-            Debug.LogWarning("Incompatible Weapon: " + snapshot.mainHandWeaponClass + "/" + snapshot.offHandWeaponClass);
+            Debug.LogWarning("Incompatible Weapon: " + stats.MainHandItemClass + "/" + stats.OffHandItemClass);
             return CastOutcome.IncompatibleWeapon;
         }
 
@@ -636,7 +573,7 @@ public class AbilityManager : MonoBehaviour
                 return CastOutcome.OutOfRange;
         }
 
-        else if (ability.Type == Ability.AbilityType.Thrown)
+        else if (ability.Type == Ability.AbilityType.Thrown || (ability.Type == Ability.AbilityType.Auto && AutoStandardAbilityType == Ability.AbilityType.Thrown))
         {
             float range = Range(abilityIndex);
 
@@ -677,49 +614,28 @@ public class AbilityManager : MonoBehaviour
     {
         return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y) + (b.z - a.z) * (b.z - a.z);
     }
-    
-    /*
-    private float GetAmount(Ability active)
-    {
-        if (active.Hand == Ability.WeaponHand.MainHand)
-            return active.Amount.Roll() * mhDamage.Roll();
-
-        if (active.Hand == Ability.WeaponHand.OffHand)
-            return active.Amount.Roll() * ohDamage.Roll();
-
-        if (active.Hand == Ability.WeaponHand.Alternating)
-            return active.Amount.Roll() * (offHandSwing ? ohDamage.Roll() : mhDamage.Roll());
-
-        if (active.Hand == Ability.WeaponHand.Both)
-            return active.Amount.Roll() * (mhDamage.Roll() + ohDamage.Roll());
-
-        return active.Amount.Roll();
-    }
-     */
-     
     private float GetCastSpeed(Ability active)
     {
         if (active == null)
             return 1;
 
         if (active.Hand == Ability.WeaponHand.MainHand)
-            return active.Speed * snapshot.mainHandAttacksPerSecond;
+            return active.Speed * stats.MainHandAttacksPerSecond;
 
         if (active.Hand == Ability.WeaponHand.OffHand)
-            return active.Speed * snapshot.offHandAttacksPerSecond;
+            return active.Speed * stats.OffHandAttacksPerSecond;
 
         if (active.Hand == Ability.WeaponHand.Alternating)
-            return active.Speed * (offHandSwing ? snapshot.offHandAttacksPerSecond : snapshot.mainHandAttacksPerSecond);
+            return active.Speed * (offHandSwing ? stats.OffHandAttacksPerSecond : stats.MainHandAttacksPerSecond);
 
         if (active.Hand == Ability.WeaponHand.Both)
-            return active.Speed * Mathf.Min(snapshot.mainHandAttacksPerSecond, snapshot.offHandAttacksPerSecond);
+            return active.Speed * Mathf.Min(stats.MainHandAttacksPerSecond, stats.OffHandAttacksPerSecond);
 
         if (active.Hand == Ability.WeaponHand.Spell)
-            return active.Speed * snapshot.castSpeed;
+            return active.Speed * stats.CastSpeed;
 
         return active.Speed;
     }
-
     private float GetChannellingSpeed(Ability active)
     {
         if (active == null)
@@ -729,19 +645,19 @@ public class AbilityManager : MonoBehaviour
             return 1;
 
         if (active.Hand == Ability.WeaponHand.MainHand)
-            return 1f / active.ChannellingTickInterval * snapshot.mainHandAttacksPerSecond;
+            return 1f / active.ChannellingTickInterval * stats.MainHandAttacksPerSecond;
 
         if (active.Hand == Ability.WeaponHand.OffHand)
-            return 1f / active.ChannellingTickInterval * snapshot.offHandAttacksPerSecond;
+            return 1f / active.ChannellingTickInterval * stats.OffHandAttacksPerSecond;
 
         if (active.Hand == Ability.WeaponHand.Alternating)
-            return 1f / active.ChannellingTickInterval * (offHandSwing ? snapshot.offHandAttacksPerSecond : snapshot.mainHandAttacksPerSecond);
+            return 1f / active.ChannellingTickInterval * (offHandSwing ? stats.OffHandAttacksPerSecond : stats.MainHandAttacksPerSecond);
 
         if (active.Hand == Ability.WeaponHand.Both)
-            return 1f / active.ChannellingTickInterval * Mathf.Min(snapshot.mainHandAttacksPerSecond, snapshot.offHandAttacksPerSecond);
+            return 1f / active.ChannellingTickInterval * Mathf.Min(stats.MainHandAttacksPerSecond, stats.OffHandAttacksPerSecond);
 
         if (active.Hand == Ability.WeaponHand.Spell)
-            return 1f / active.ChannellingTickInterval * snapshot.castSpeed;
+            return 1f / active.ChannellingTickInterval * stats.CastSpeed;
 
         return 1f / active.ChannellingTickInterval;
     }

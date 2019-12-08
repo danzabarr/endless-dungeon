@@ -33,6 +33,9 @@ public class EquipmentEditor : Editor
     private SerializedProperty heldItemPosition;
     private SerializedProperty heldItemEulerRotation;
 
+    private SerializedProperty projectile;
+    private SerializedProperty throwable;
+
     private SerializedProperty statsTemplate;
     private SerializedProperty stats;
     private SerializedProperty statPrefixSuffix;
@@ -70,6 +73,8 @@ public class EquipmentEditor : Editor
         heldItemMesh = obj.FindProperty("heldItemMesh");
         heldItemPosition = obj.FindProperty("heldItemPosition");
         heldItemEulerRotation = obj.FindProperty("heldItemEulerRotation");
+        projectile = obj.FindProperty("projectile");
+        throwable = obj.FindProperty("throwable");
 
         statsTemplate = obj.FindProperty("statsTemplate");
         statPrefixSuffix = obj.FindProperty("statPrefixSuffix");
@@ -112,6 +117,16 @@ public class EquipmentEditor : Editor
         if (item.ItemClass.IsVisibleWornObject())
         {
             EditorGUILayout.PropertyField(wornItemName);
+        }
+
+        if (item.ItemClass.ShootsProjectile())
+        {
+            EditorGUILayout.PropertyField(projectile);
+        }
+
+        if (item.ItemClass.ShootsThrowable())
+        {
+            EditorGUILayout.PropertyField(throwable);
         }
 
         EditorGUILayout.Space();

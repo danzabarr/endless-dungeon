@@ -228,6 +228,8 @@ MonoBehaviour:
     type: 3}
   heldItemPosition: {x: 0, y: 0.32, z: 0}
   heldItemEulerRotation: {x: 0, y: 0, z: 0}
+  projectile: {fileID: 0}
+  throwable: {fileID: 0}
   requiresLevel: 0
   requiresStrength: 0
   requiresDexterity: 0

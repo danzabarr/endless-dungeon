@@ -94,6 +94,10 @@ public class Stats : MonoBehaviour
     [SerializeField]
     private EquipmentObject.Class mainHandWeaponClass;
     [SerializeField]
+    private Projectile mainHandProjectile;
+    [SerializeField]
+    private Throwable mainHandThrowable;
+    [SerializeField]
     private Vector2 mainHandDamage;
     [SerializeField]
     private float mainHandAttacksPerSecond;
@@ -103,6 +107,10 @@ public class Stats : MonoBehaviour
     private float mainHandRange;
     [SerializeField]
     private EquipmentObject.Class offHandWeaponClass;
+    [SerializeField]
+    private Projectile offHandProjectile;
+    [SerializeField]
+    private Throwable offHandThrowable;
     [SerializeField]
     private Vector2 offHandDamage;
     [SerializeField]
@@ -175,6 +183,8 @@ public class Stats : MonoBehaviour
 
     public bool MainHandEquipped => mainHandWeaponClass != EquipmentObject.Class.Unarmed;
     public EquipmentObject.Class MainHandItemClass => mainHandWeaponClass;
+    public Projectile MainHandProjectile => mainHandProjectile;
+    public Throwable MainHandThrowable => mainHandThrowable;
     public Vector2 MainHandDamage => (mainHandDamage * (1 + strength * weaponDamagePerStrength) * bonusWeaponDamage).Max(Vector2.zero);
     public float MainHandAttacksPerSecond => Mathf.Max(0, mainHandAttacksPerSecond * AttackSpeed);
     public float MainHandBlockChance => Mathf.Clamp(mainHandBlock * bonusBlock, 0, .75f);
@@ -184,6 +194,8 @@ public class Stats : MonoBehaviour
 
     public bool OffHandEquipped => offHandWeaponClass != EquipmentObject.Class.Unarmed;
     public EquipmentObject.Class OffHandItemClass => offHandWeaponClass;
+    public Projectile OffHandProjectile => offHandProjectile;
+    public Throwable OffHandThrowable => offHandThrowable;
     public Vector2 OffHandDamage => (offHandDamage * (1 + strength * weaponDamagePerStrength) * bonusWeaponDamage).Max(Vector2.zero);
     public float OffHandAttacksPerSecond => Mathf.Max(0, offHandAttacksPerSecond * AttackSpeed);
     public float OffHandBlockChance => Mathf.Clamp(offHandBlock * bonusBlock, 0, .75f);
@@ -315,12 +327,16 @@ public class Stats : MonoBehaviour
     public void ResetGearStats()
     {
         mainHandWeaponClass = EquipmentObject.Class.Unarmed;
+        mainHandProjectile = null;
+        mainHandThrowable = null;
         mainHandDamage = Vector2.zero;
         mainHandAttacksPerSecond = 1;
         mainHandBlock = 0;
         mainHandRange = 1;
 
         offHandWeaponClass = EquipmentObject.Class.Unarmed;
+        offHandProjectile = null;
+        offHandThrowable = null;
         offHandDamage = Vector2.zero;
         offHandAttacksPerSecond = 1;
         offHandBlock = 0;
@@ -416,6 +432,8 @@ public class Stats : MonoBehaviour
         if (mainHand != null)
         {
             mainHandWeaponClass = mainHand.ItemClass;
+            mainHandProjectile = mainHand.Projectile;
+            mainHandThrowable = mainHand.Throwable;
             mainHandDamage = mainHand.Damage;
             mainHandAttacksPerSecond = mainHand.AttacksPerSecond;
             mainHandBlock = mainHand.Block;
@@ -425,6 +443,8 @@ public class Stats : MonoBehaviour
         if (offHand != null)
         {
             offHandWeaponClass = offHand.ItemClass;
+            offHandProjectile = offHand.Projectile;
+            offHandThrowable = offHand.Throwable;
             offHandDamage = offHand.Damage;
             offHandAttacksPerSecond = offHand.AttacksPerSecond;
             offHandBlock = offHand.Block;

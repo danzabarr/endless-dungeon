@@ -50,7 +50,8 @@ public abstract class Unit : MonoBehaviour
             if (cockedMHThrowable)
                 Destroy(cockedMHThrowable.gameObject);
             cockedMHProjectile = value;
-            cockedMHProjectile.transform.SetParent(mainHand, false);
+            if (cockedMHProjectile)
+                cockedMHProjectile.transform.SetParent(mainHand, false);
         }
     }
     public Projectile CockedOHProjectile
@@ -63,7 +64,8 @@ public abstract class Unit : MonoBehaviour
             if (cockedOHThrowable)
                 Destroy(cockedOHThrowable.gameObject);
             cockedOHProjectile = value;
-            cockedOHProjectile.transform.SetParent(offHand, false);
+            if (cockedOHProjectile)
+                cockedOHProjectile.transform.SetParent(offHand, false);
         }
     }
 
@@ -77,7 +79,8 @@ public abstract class Unit : MonoBehaviour
             if (cockedMHThrowable)
                 Destroy(cockedMHThrowable.gameObject);
             cockedMHThrowable = value;
-            cockedMHThrowable.transform.SetParent(mainHand, false);
+            if (cockedMHThrowable)
+                cockedMHThrowable.transform.SetParent(mainHand, false);
         }
     }
     public Throwable CockedOHThrowable
@@ -90,7 +93,8 @@ public abstract class Unit : MonoBehaviour
             if (cockedOHThrowable)
                 Destroy(cockedOHThrowable.gameObject);
             cockedOHThrowable = value;
-            cockedOHThrowable.transform.SetParent(offHand, false);
+            if (cockedOHThrowable)
+                cockedOHThrowable.transform.SetParent(offHand, false);
         }
     }
 

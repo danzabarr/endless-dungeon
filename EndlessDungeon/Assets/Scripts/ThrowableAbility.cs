@@ -15,10 +15,9 @@ public class ThrowableAbility : Ability
         bool offHandSwing,
         int patternPosition,
         bool channelled,
-        SnapShot snapshot,
         GameObject objects
     )
     {
-        Instantiate(Throwable, caster.GetCastPosition(), caster.GetCast().rotation * Quaternion.Euler(-45, 0, 0), objects.transform).ThrowAt(caster, throwTarget, GetDamage(offHandSwing, snapshot), DmgType);
+        Instantiate(Throwable, caster.GetCastPosition(), caster.GetCast().rotation * Quaternion.Euler(-45, 0, 0), objects.transform).ThrowAt(caster, throwTarget, GetDamage(offHandSwing, caster.Stats), DmgType);
     }
 }
