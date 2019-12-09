@@ -24,7 +24,9 @@ MonoBehaviour:
   cooldown: 1
   speed: 3
   abilityType: 6
+  updates: 1
   channelled: 0
+  channellingTickInterval: 0
   affects: -1
   damage: {x: 5, y: 10}
   damageType: 1

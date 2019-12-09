@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15019dff4c8681541a86ed43f0263cc0, type: 3}
-  m_Name: PlayerClones
+  m_Script: {fileID: 11500000, guid: 12ba7c9668ab65648acd422bf999b7f5, type: 3}
+  m_Name: RedMushroom
   m_EditorClassIdentifier: 
-  mobs: []
+  items:
+  - {fileID: 4218222060723069573, guid: 1c9a9f98d342eb842894019a43c19b3b, type: 3}

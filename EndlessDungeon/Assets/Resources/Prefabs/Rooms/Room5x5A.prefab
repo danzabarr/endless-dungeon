@@ -770,6 +770,53 @@ MonoBehaviour:
   index: 0
   useGravity: 1
   isKinematic: 0
+--- !u!1 &4511715935816631102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8707100019273999659}
+  - component: {fileID: 69439349223152043}
+  m_Layer: 0
+  m_Name: RedMushroom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8707100019273999659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4511715935816631102}
+  m_LocalRotation: {x: 0.032487947, y: -0.37973303, z: 0.013345264, w: 0.9244291}
+  m_LocalPosition: {x: 4.002, y: 0.015, z: 3.0296}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1102092114213173511}
+  m_RootOrder: 68
+  m_LocalEulerAnglesHint: {x: 4.026, y: -44.663002, z: 0}
+--- !u!114 &69439349223152043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4511715935816631102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569e30953e901da45923375828eb47f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: {fileID: 11400000, guid: 5394088ed213d21468a0b854a84e242c, type: 2}
+  index: 0
+  useGravity: 0
+  isKinematic: 1
 --- !u!1 &4883568020612487036
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +1003,7 @@ Transform:
   - {fileID: 8949827140438295050}
   - {fileID: 7127344005389644913}
   - {fileID: 3956622196349734771}
+  - {fileID: 8707100019273999659}
   m_Father: {fileID: 5681897236508031470}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1827,6 +1875,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc54a16ce27509143ae84316e809fd4b, type: 3}
+--- !u!4 &8468534331060732308 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8317623607840198905, guid: dc54a16ce27509143ae84316e809fd4b,
+    type: 3}
+  m_PrefabInstance: {fileID: 497759364952920429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1633884101297082790 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1172305274625327307, guid: dc54a16ce27509143ae84316e809fd4b,
@@ -1839,12 +1893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea4382a0191b5b4d9ad8f2dc754396e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8468534331060732308 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8317623607840198905, guid: dc54a16ce27509143ae84316e809fd4b,
-    type: 3}
-  m_PrefabInstance: {fileID: 497759364952920429}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &592289857582534720
 PrefabInstance:
   m_ObjectHideFlags: 0

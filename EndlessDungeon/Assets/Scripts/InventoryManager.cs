@@ -97,9 +97,14 @@ public class InventoryManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            bool active = inventoryPanel.gameObject.activeSelf;
-            inventoryPanel.SetActive(!active);
+            inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            inventoryPanel.SetActive(false);
+        }
+
         JustDropped = false;
         if (heldItem != null && Input.GetMouseButtonDown(0) && !eventSystem.IsPointerOverGameObject())
         {

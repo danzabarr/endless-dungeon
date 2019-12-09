@@ -24,6 +24,7 @@ MonoBehaviour:
   cooldown: 0
   speed: 1
   abilityType: 3
+  updates: 1
   channelled: 1
   channellingTickInterval: 0.25
   affects: 1

@@ -90,6 +90,9 @@ public class Ability : ScriptableObject
     private AbilityType abilityType;
 
     [SerializeField]
+    private bool updates;
+
+    [SerializeField]
     private bool channelled;
 
     [SerializeField]
@@ -149,6 +152,7 @@ public class Ability : ScriptableObject
     public string Description => description;
     public Texture2D Icon => icon;
     public AbilityType Type => abilityType;
+    public bool Updates => updates;
     public bool Channelled => channelled;
     public float ChannellingTickInterval => channellingTickInterval;
     public WeaponHand Hand => weaponHand;
@@ -165,6 +169,20 @@ public class Ability : ScriptableObject
     public Placeable Placeable => placeable;
     public bool UsePattern => usePattern;
     public string Pattern => pattern;
+
+    public struct AbilityArgs
+    {
+        public Unit caster;
+        public Unit target;
+        public Vector3 castTarget;
+        public Vector3 throwTarget;
+        public Vector3 floorTarget;
+        public float swingTime;
+        public bool offHandSwing;
+        public int patternPosition;
+        public bool channelling;
+        public GameObject objects;
+    }
     public bool Compatible(EquipmentObject.Class mainHand, EquipmentObject.Class offHand, EquipmentObject.Class activeHand)
     {
         return mainHandRequirement.IsCompatible(mainHand) && offHandRequirement.IsCompatible(offHand) && activeHandRequirement.IsCompatible(activeHand);
@@ -199,112 +217,52 @@ public class Ability : ScriptableObject
 
         return strings[Random.Range(0, strings.Count)];
     }
-    public virtual void OnStartCasting
-    (
-        Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public virtual void OnStartCasting(AbilityArgs args)
     {
         if (Type == AbilityType.Auto)
         {
-            AbilityType abilityType = offHandSwing ? caster.Stats.OffHandItemClass.StandardAbilityType() : caster.Stats.MainHandItemClass.StandardAbilityType();
+            AbilityType abilityType = args.offHandSwing ? args.caster.Stats.OffHandItemClass.StandardAbilityType() : args.caster.Stats.MainHandItemClass.StandardAbilityType();
             if (abilityType == AbilityType.Projectile)
             {
                 Projectile projectile = Projectile;
                 if (projectile == null)
-                    projectile = offHandSwing ? caster.Stats.OffHandProjectile : caster.Stats.MainHandProjectile;
+                    projectile = args.offHandSwing ? args.caster.Stats.OffHandProjectile : args.caster.Stats.MainHandProjectile;
 
-                caster.CockedMHProjectile = Instantiate(projectile);
+                args.caster.CockedMHProjectile = Instantiate(projectile);
             }
         }
     }
 
-    public virtual void OnStartChannelling
-    (
-        Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public virtual void OnStartChannelling(AbilityArgs args)
     {
 
     }
 
-    public virtual void OnChannellingPulse
-    (
-       Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public virtual void OnChannellingPulse(AbilityArgs args)
     {
 
     }
 
-    public virtual void OnUpdate
-    (
-        Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public virtual void OnUpdate(AbilityArgs args)
     {
-        Vector3 castDirection = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
-        caster.YawToDirection(castDirection);
-        caster.PitchToDirection(castDirection);
+        Vector3 castDirection = args.target == null ? (args.castTarget - args.caster.GetCastPosition()).normalized : (args.target.GetCenterPosition() - args.caster.GetCastPosition()).normalized;
+        args.caster.YawToDirection(castDirection);
+        args.caster.PitchToDirection(castDirection);
     }
-    public virtual void OnPulse
-    (
-        Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public virtual void OnPulse(AbilityArgs args)
     {
         if (Type == AbilityType.Auto)
         {
             Vector3 castDirection;
-            AbilityType abilityType = offHandSwing ? caster.Stats.OffHandItemClass.StandardAbilityType() : caster.Stats.MainHandItemClass.StandardAbilityType();
+            AbilityType abilityType = args.offHandSwing ? args.caster.Stats.OffHandItemClass.StandardAbilityType() : args.caster.Stats.MainHandItemClass.StandardAbilityType();
             switch (abilityType)
             {
                 case AbilityType.Melee:
-                    castDirection = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
-                    List<Unit> targets = GetTargets(caster, target, castDirection, offHandSwing);
+                    castDirection = args.target == null ? (args.castTarget - args.caster.GetCastPosition()).normalized : (args.target.GetCenterPosition() - args.caster.GetCastPosition()).normalized;
+                    List<Unit> targets = GetTargets(args.caster, args.target, castDirection, args.offHandSwing);
                     foreach (Unit hp in targets)
                     {
-                        hp.Damage(this, caster.GetCastPosition(), caster, damageType, ((offHandSwing ? caster.Stats.OffHandDamage : caster.Stats.MainHandDamage) * damage).Roll(), true, true);
+                        hp.Damage(this, args.caster.GetCastPosition(), args.caster, damageType, ((args.offHandSwing ? args.caster.Stats.OffHandDamage : args.caster.Stats.MainHandDamage) * damage).Roll(), true, true);
                         //hp.Knockback(castDirection, 100 / (Vector3.Distance(caster.GetCastPosition(), hp.GetCenterPosition())));
                     }
 
@@ -313,18 +271,18 @@ public class Ability : ScriptableObject
 
                 case AbilityType.Projectile:
 
-                    if (caster.CockedMHProjectile != null)
+                    if (args.caster.CockedMHProjectile != null)
                     {
-                        Vector3 projectilePosition = caster.CockedMHProjectile.transform.position;
-                        castDirection = target == null ? (castTarget - projectilePosition).normalized : (target.GetCenterPosition() - projectilePosition).normalized;
-                        caster.ShootMHProjectile(castDirection, projectileSpeed, (offHandSwing ? caster.Stats.OffHandDamage : caster.Stats.MainHandDamage) * damage, damageType, affects);
+                        Vector3 projectilePosition = args.caster.CockedMHProjectile.transform.position;
+                        castDirection = args.target == null ? (args.castTarget - projectilePosition).normalized : (args.target.GetCenterPosition() - projectilePosition).normalized;
+                        args.caster.ShootMHProjectile(castDirection, projectileSpeed, (args.offHandSwing ? args.caster.Stats.OffHandDamage : args.caster.Stats.MainHandDamage) * damage, damageType, affects);
                     }
 
                     break;
 
                 case AbilityType.Thrown:
 
-                    Instantiate(Throwable).ThrowAt(caster, throwTarget, (offHandSwing ? caster.Stats.OffHandDamage : caster.Stats.MainHandDamage) * damage, damageType);
+                    Instantiate(Throwable).ThrowAt(args.caster, args.throwTarget, (args.offHandSwing ? args.caster.Stats.OffHandDamage : args.caster.Stats.MainHandDamage) * damage, damageType);
 
                     break;
             
@@ -332,47 +290,23 @@ public class Ability : ScriptableObject
         }
     }
 
-    public virtual void OnEnd
-    (
-        Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public virtual void OnEnd(AbilityArgs args)
     {
-        
+
         if (Type == AbilityType.Auto)
         {
-            AbilityType abilityType = offHandSwing ? caster.Stats.OffHandItemClass.StandardAbilityType() : caster.Stats.MainHandItemClass.StandardAbilityType();
+            AbilityType abilityType = args.offHandSwing ? args.caster.Stats.OffHandItemClass.StandardAbilityType() : args.caster.Stats.MainHandItemClass.StandardAbilityType();
             if (abilityType == AbilityType.Projectile)
-                caster.CockedMHProjectile = null;
+                args.caster.CockedMHProjectile = null;
         }
     }
 
-    public virtual void OnCancel
-    (
-        Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public virtual void OnCancel(AbilityArgs args)
     {
-        AbilityType abilityType = offHandSwing ? caster.Stats.OffHandItemClass.StandardAbilityType() : caster.Stats.MainHandItemClass.StandardAbilityType();
+        AbilityType abilityType = args.offHandSwing ? args.caster.Stats.OffHandItemClass.StandardAbilityType() : args.caster.Stats.MainHandItemClass.StandardAbilityType();
         if (abilityType == AbilityType.Projectile)
         {
-            caster.CockedMHProjectile = null;
+            args.caster.CockedMHProjectile = null;
         }
     }
 

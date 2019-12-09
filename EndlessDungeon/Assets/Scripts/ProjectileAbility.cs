@@ -4,21 +4,9 @@ using UnityEngine;
 
 public class ProjectileAbility : Ability
 {
-    public override void OnPulse
-    (
-        Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public override void OnPulse(AbilityArgs args)
     {
-        Vector3 direction = target == null ? (castTarget - caster.GetCastPosition()).normalized : (target.GetCenterPosition() - caster.GetCastPosition()).normalized;
-        Instantiate(Projectile, objects.transform).Shoot(caster, direction, projectileSpeed, GetDamage(offHandSwing, caster.Stats), DmgType, AbilityAffects);
+        Vector3 direction = args.target == null ? (args.castTarget - args.caster.GetCastPosition()).normalized : (args.target.GetCenterPosition() - args.caster.GetCastPosition()).normalized;
+        Instantiate(Projectile, args.objects.transform).Shoot(args.caster, direction, projectileSpeed, GetDamage(args.offHandSwing, args.caster.Stats), DmgType, AbilityAffects);
     }
 }

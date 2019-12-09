@@ -358,7 +358,8 @@ public class Level : MonoBehaviour
         //Profiler.EndSample();
 
         //Profiler.BeginSample("Generate Visible Area Mesh");
-        visibleAreaMesh = LineOfSight.GenerateMesh(visibleAreaMesh, playerPosition, visibleArea);
+        if (displayVisibleArea)
+            visibleAreaMesh = LineOfSight.GenerateMesh(visibleAreaMesh, playerPosition, visibleArea);
         //Profiler.EndSample();
 
 
@@ -1686,7 +1687,7 @@ public class Level : MonoBehaviour
 
     public void AssignObjectLocation(DynamicObject obj)
     {
-        
+        //return;
 
         MapNode node = GetNode(obj.transform.position);
         Location location = GetLocation(node);
@@ -1789,7 +1790,7 @@ public class Level : MonoBehaviour
         foreach (ItemSpawner spawner in GetComponentsInChildren<ItemSpawner>())
         {
             ItemObject item = spawner.Spawn();
-            if (item != null) items.Add(item);
+            //if (item != null) items.Add(item);
         }
     }
 

@@ -166,6 +166,7 @@ public class ItemObject : MonoBehaviour, RegisterablePrefab, Interactive
     }
     public virtual void Start()
     {
+        Level.Instance.EnableItem(this);
         ShowOutline(false);
         UpdateDisplayName();
     }

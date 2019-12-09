@@ -17,35 +17,23 @@ public class LightningAbility : Ability
     private float chainRange;
 
 
-    public override void OnPulse
-    (
-        Unit caster,
-        Unit target,
-        Vector3 castTarget,
-        Vector3 throwTarget,
-        Vector3 floorTarget,
-        float swingTime,
-        bool offHandSwing,
-        int patternPosition,
-        bool channelling,
-        GameObject objects
-    )
+    public override void OnPulse(AbilityArgs args)
     {
-        ProceduralLightning lightning = Instantiate(lightningPrefab, caster.GetCastPosition(), Quaternion.identity, caster.GetCast());
-        lightning.target = target.GetCenter();
+        ProceduralLightning lightning = Instantiate(lightningPrefab, args.caster.GetCastPosition(), Quaternion.identity, args.caster.GetCast());
+        lightning.target = args.target.GetCenter();
         lightning.Generate();
-        Instantiate(particles, target.GetCenterPosition(), Quaternion.identity, target.GetCenter());
+        Instantiate(particles, args.target.GetCenterPosition(), Quaternion.identity, args.target.GetCenter());
 
-        Vector2 damage = GetDamage(offHandSwing, caster.Stats);
+        Vector2 damage = GetDamage(args.offHandSwing, args.caster.Stats);
 
-        target.Damage(this, caster.GetCastPosition(), caster, DmgType, damage.Roll(), true, false);
+        args.target.Damage(this, args.caster.GetCastPosition(), args.caster, DmgType, damage.Roll(), true, false);
 
         List<Unit> targets = new List<Unit>();
-        targets.Add(target);
+        targets.Add(args.target);
 
         for (int i = 0; i < chainCount; i++)
         {
-            List<Mob> mobs = Level.Instance.MobsInRadius(target.GetCenterPosition(), chainRange, true);
+            List<Mob> mobs = Level.Instance.MobsInRadius(args.target.GetCenterPosition(), chainRange, true);
 
             float nearest = float.MaxValue;
             Mob next = null;
@@ -56,7 +44,7 @@ public class LightningAbility : Ability
                     continue;
                 if (targets.Contains(mob as Unit))
                     continue;
-                float distanceSquared = Level.SquareDistance(target.GetCenterPosition(), mob.GetCenterPosition());
+                float distanceSquared = Level.SquareDistance(args.target.GetCenterPosition(), mob.GetCenterPosition());
                 if (nearest > distanceSquared)
                 {
                     nearest = distanceSquared;
@@ -69,13 +57,13 @@ public class LightningAbility : Ability
                 return;
             }
 
-            lightning = Instantiate(lightningPrefab, target.GetCenterPosition(), Quaternion.identity, target.GetCenter());
+            lightning = Instantiate(lightningPrefab, args.target.GetCenterPosition(), Quaternion.identity, args.target.GetCenter());
             lightning.target = next.GetCenter();
             lightning.Generate();
             Instantiate(particles, next.GetCenterPosition(), Quaternion.identity, next.GetCenter());
-            next.Damage(this, target.GetCenterPosition(), caster, DmgType, damage.Roll(), true, false);
-            target = next;
-            targets.Add(target);
+            next.Damage(this, args.target.GetCenterPosition(), args.caster, DmgType, damage.Roll(), true, false);
+            args.target = next;
+            targets.Add(args.target);
         }
     }
 }

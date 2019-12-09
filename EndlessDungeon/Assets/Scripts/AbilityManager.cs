@@ -143,19 +143,23 @@ public class AbilityManager : MonoBehaviour
             swingTime = 0;
         else
         {
-            Active.OnUpdate
-            (
-                caster,
-                target,
-                castTarget,
-                throwTarget,
-                floorTarget,
-                swingTime,
-                offHandSwing,
-                patternPosition,
-                channelling,
-                objects[activeIndex]
-            );
+            if (active.Updates)
+                active.OnUpdate
+                (
+                    new Ability.AbilityArgs
+                    {
+                        caster = caster,
+                        target = target,
+                        castTarget = castTarget,
+                        throwTarget = throwTarget,
+                        floorTarget = floorTarget,
+                        swingTime = swingTime,
+                        offHandSwing = offHandSwing,
+                        patternPosition = patternPosition,
+                        channelling = channelling,
+                        objects = objects[activeIndex]
+                    }
+                );
         }
 
         if (active != null && !channelling && active.UsePattern && active.Pattern.Length > 0)
@@ -166,16 +170,19 @@ public class AbilityManager : MonoBehaviour
                 {
                     active.OnPulse
                     (
-                        caster,
-                        target,
-                        castTarget,
-                        throwTarget,
-                        floorTarget,
-                        swingTime,
-                        offHandSwing,
-                        patternPosition,
-                        channelling,
-                        objects[activeIndex]
+                        new Ability.AbilityArgs
+                        {
+                            caster = caster,
+                            target = target,
+                            castTarget = castTarget,
+                            throwTarget = throwTarget,
+                            floorTarget = floorTarget,
+                            swingTime = swingTime,
+                            offHandSwing = offHandSwing,
+                            patternPosition = patternPosition,
+                            channelling = channelling,
+                            objects = objects[activeIndex]
+                        }
                     );
 
                     if (stats != null)
@@ -195,32 +202,38 @@ public class AbilityManager : MonoBehaviour
                     {
                         active.OnStartChannelling
                         (
-                            caster,
-                            target,
-                            castTarget,
-                            throwTarget,
-                            floorTarget,
-                            swingTime,
-                            offHandSwing,
-                            patternPosition,
-                            channelling,
-                            objects[activeIndex]
+                            new Ability.AbilityArgs
+                            {
+                                caster = caster,
+                                target = target,
+                                castTarget = castTarget,
+                                throwTarget = throwTarget,
+                                floorTarget = floorTarget,
+                                swingTime = swingTime,
+                                offHandSwing = offHandSwing,
+                                patternPosition = patternPosition,
+                                channelling = channelling,
+                                objects = objects[activeIndex]
+                            }
                         );
                     }
                     else
                     {
                         active.OnChannellingPulse
                         (
-                            caster,
-                            target,
-                            castTarget,
-                            throwTarget,
-                            floorTarget,
-                            swingTime,
-                            offHandSwing,
-                            patternPosition,
-                            channelling,
-                            objects[activeIndex]
+                            new Ability.AbilityArgs
+                            {
+                                caster = caster,
+                                target = target,
+                                castTarget = castTarget,
+                                throwTarget = throwTarget,
+                                floorTarget = floorTarget,
+                                swingTime = swingTime,
+                                offHandSwing = offHandSwing,
+                                patternPosition = patternPosition,
+                                channelling = channelling,
+                                objects = objects[activeIndex]
+                            }
                         );
                     }
 
@@ -235,16 +248,19 @@ public class AbilityManager : MonoBehaviour
                 {
                     active.OnPulse
                     (
-                        caster,
-                        target,
-                        castTarget,
-                        throwTarget,
-                        floorTarget,
-                        swingTime,
-                        offHandSwing,
-                        patternPosition,
-                        channelling,
-                        objects[activeIndex]
+                        new Ability.AbilityArgs
+                        {
+                            caster = caster,
+                            target = target,
+                            castTarget = castTarget,
+                            throwTarget = throwTarget,
+                            floorTarget = floorTarget,
+                            swingTime = swingTime,
+                            offHandSwing = offHandSwing,
+                            patternPosition = patternPosition,
+                            channelling = channelling,
+                            objects = objects[activeIndex]
+                        }
                     );
 
                     if (stats != null)
@@ -255,16 +271,19 @@ public class AbilityManager : MonoBehaviour
                 {
                     active.OnEnd
                     (
-                        caster,
-                        target,
-                        castTarget,
-                        throwTarget,
-                        floorTarget,
-                        swingTime,
-                        offHandSwing,
-                        patternPosition,
-                        channelling,
-                        objects[activeIndex]
+                        new Ability.AbilityArgs
+                        {
+                            caster = caster,
+                            target = target,
+                            castTarget = castTarget,
+                            throwTarget = throwTarget,
+                            floorTarget = floorTarget,
+                            swingTime = swingTime,
+                            offHandSwing = offHandSwing,
+                            patternPosition = patternPosition,
+                            channelling = channelling,
+                            objects = objects[activeIndex]
+                        }
                     );
 
                     if (stats != null)
@@ -336,16 +355,19 @@ public class AbilityManager : MonoBehaviour
 
                 active.OnStartCasting
                 (
-                    caster,
-                    target,
-                    castTarget,
-                    throwTarget,
-                    floorTarget,
-                    swingTime,
-                    offHandSwing,
-                    patternPosition,
-                    channelling,
-                    objects[activeIndex]
+                    new Ability.AbilityArgs
+                    {
+                        caster = caster,
+                        target = target,
+                        castTarget = castTarget,
+                        throwTarget = throwTarget,
+                        floorTarget = floorTarget,
+                        swingTime = swingTime,
+                        offHandSwing = offHandSwing,
+                        patternPosition = patternPosition,
+                        channelling = channelling,
+                        objects = objects[activeIndex]
+                    }
                 );
 
                 if (stats != null)
@@ -394,16 +416,19 @@ public class AbilityManager : MonoBehaviour
 
         active.OnEnd
         (
-            caster,
-            target,
-            castTarget,
-            throwTarget,
-            floorTarget,
-            swingTime,
-            offHandSwing,
-            patternPosition,
-            channelling,
-            objects[activeIndex]
+            new Ability.AbilityArgs
+            {
+                caster = caster,
+                target = target,
+                castTarget = castTarget,
+                throwTarget = throwTarget,
+                floorTarget = floorTarget,
+                swingTime = swingTime,
+                offHandSwing = offHandSwing,
+                patternPosition = patternPosition,
+                channelling = channelling,
+                objects = objects[activeIndex]
+            }
         );
 
         if (stats != null)
@@ -441,7 +466,22 @@ public class AbilityManager : MonoBehaviour
 
     public void CancelActive()
     {
-        Active?.OnCancel(caster, target, castTarget, throwTarget, floorTarget, swingTime, offHandSwing, patternPosition, channelling, objects[activeIndex]);
+        Active?.OnCancel
+        (
+            new Ability.AbilityArgs
+            {
+                caster = caster,
+                target = target,
+                castTarget = castTarget,
+                throwTarget = throwTarget,
+                floorTarget = floorTarget,
+                swingTime = swingTime,
+                offHandSwing = offHandSwing,
+                patternPosition = patternPosition,
+                channelling = channelling,
+                objects = objects[activeIndex]
+            }
+        );
         activeIndex = -1;
         swingTime = 0;
         channelling = false;
