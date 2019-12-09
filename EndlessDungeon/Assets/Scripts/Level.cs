@@ -439,6 +439,7 @@ public class Level : MonoBehaviour
                 }
 
             }
+            /*
             foreach(DynamicObject dobj in location.DynamicObjects)
             {
                 foreach (Renderer renderer in dobj.Renderers)
@@ -463,6 +464,60 @@ public class Level : MonoBehaviour
                         renderer.enabled = false;
                         renderer.gameObject.layer = ignoreRayCastLayer;
                     }
+                }
+            }
+            */
+        }
+
+        foreach(ItemObject item in items)
+        {
+            foreach (Renderer renderer in item.DynamicObject.Renderers)
+            {
+                int layer = renderer.gameObject.layer;
+                // Debug.Log("huh? " + renderer.gameObject);
+                if (disableMask != (disableMask | (1 << layer))) continue;
+
+                Vector2 position = new Vector2(renderer.transform.position.x / scale, renderer.transform.position.z / scale);
+                if (visibleArea == null || (LineOfSight.CircleContainsPoint(playerPosition, playerVisibleRadius, position) && LineOfSight.PolygonContainsPoint(visibleArea, position)))
+                {
+                    renderer.enabled = true;
+                    if (renderer.CompareTag("Interactive"))
+                        renderer.gameObject.layer = interactiveLayer;
+                    else if (renderer.CompareTag("Mob"))
+                        renderer.gameObject.layer = mobsLayer;
+                    else
+                        renderer.gameObject.layer = defaultLayer;
+                }
+                else
+                {
+                    renderer.enabled = false;
+                    renderer.gameObject.layer = ignoreRayCastLayer;
+                }
+            }
+        }
+        foreach(Mob mob in mobs)
+        {
+            foreach (Renderer renderer in mob.DynamicObject.Renderers)
+            {
+                int layer = renderer.gameObject.layer;
+                // Debug.Log("huh? " + renderer.gameObject);
+                if (disableMask != (disableMask | (1 << layer))) continue;
+
+                Vector2 position = new Vector2(renderer.transform.position.x / scale, renderer.transform.position.z / scale);
+                if (visibleArea == null || (LineOfSight.CircleContainsPoint(playerPosition, playerVisibleRadius, position) && LineOfSight.PolygonContainsPoint(visibleArea, position)))
+                {
+                    renderer.enabled = true;
+                    if (renderer.CompareTag("Interactive"))
+                        renderer.gameObject.layer = interactiveLayer;
+                    else if (renderer.CompareTag("Mob"))
+                        renderer.gameObject.layer = mobsLayer;
+                    else
+                        renderer.gameObject.layer = defaultLayer;
+                }
+                else
+                {
+                    renderer.enabled = false;
+                    renderer.gameObject.layer = ignoreRayCastLayer;
                 }
             }
         }
@@ -1684,7 +1739,6 @@ public class Level : MonoBehaviour
         items.Add(item);
         AssignObjectLocation(item.DynamicObject);
     }
-
     public void AssignObjectLocation(DynamicObject obj)
     {
         //return;

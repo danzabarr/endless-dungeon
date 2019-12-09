@@ -23,19 +23,20 @@ public class Player : Unit
     private BuffBar buffBar, debuffBar;
 
     [SerializeField]
+    private BagDisplay bagSlots;
+
+    [SerializeField]
+    private Text goldDisplay;
+
+    [SerializeField]
     private ParticleSystem destinationIndicator;
-
-    private float slowestWalkSpeed = .25f;
-
-    private int cLvl = 1;
-
-    public int CharacterLevel => cLvl;
-
-    private float WalkSpeed => Stats.WalkSpeed;
 
     [SerializeField]
     private float rotateSpeed;
 
+    private float slowestWalkSpeed = .25f;
+    private long gold;
+    
     private float targetRotation;
     private float currentRotation;
     private bool moving;
@@ -61,12 +62,19 @@ public class Player : Unit
     private int queuedAbilityIndex = -1;
     private bool queuedFloorTargetValid;
     private bool lClickDown;
-    
+    public long Gold
+    {
+        get => gold;
+        set
+        {
+            gold = value;
+            goldDisplay.text = gold.ToString();
+        }
+    }
+    public int CharacterLevel { get; private set; } = 1;
+    public float WalkSpeed => Stats.WalkSpeed;
+
     public Buff testBuffPrefab;
-
-    public BagDisplay bagSlots;
-
-
     [ContextMenu("Apply Buff")]
     public void TestApplyBuff()
     {
@@ -438,7 +446,14 @@ public class Player : Unit
                 if (queuedTarget is ItemObject)
                 {
                     ItemObject targetItem = queuedTarget as ItemObject;
-                    if (bagSlots.Inventory.Add(targetItem))
+                    if (targetItem.ItemQuality == ItemObject.Quality.Gold)
+                    {
+                        Gold += targetItem.Quantity;
+                        Level.Instance.RemoveItem(targetItem);
+                        Destroy(targetItem.gameObject);
+                        SetHover(null);
+                    }
+                    else if (bagSlots.Inventory.Add(targetItem))
                     {
                         bagSlots.Refresh(targetItem);   
                         Level.Instance.RemoveItem(targetItem);

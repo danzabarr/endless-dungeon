@@ -115,7 +115,7 @@ public class InventoryManager : MonoBehaviour
             heldItem.Rigidbody.isKinematic = false;
             heldItem.Rigidbody.useGravity = true;
             heldItem.Rigidbody.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
-            Level.Instance.EnableItem(heldItem);
+            //Level.Instance.EnableItem(heldItem);
             HeldItem = null;
             JustDropped = true;
         }
