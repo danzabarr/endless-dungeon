@@ -1,0 +1,124 @@
+ENDLESS DUNGEON DESIGN DOCUMENT
+
+************************************************************************************************************************************
+GENERAL OVERVIEW
+
+* Endless Dungeon is an indie take on an ARPG such as Diablo, POE, Torchlite, etc. Thematically, it is a typical historical fantasy,
+includes medieval technology and magic spells etc.
+
+* The camera view is 'isometric' (perspective 3rd person camera fixed on the player rotated 45 degrees around the y-axis and approx
+45-60 degrees around the x axis). The character occupies approximately one sixth to one eighth of the height of the screen.
+
+* Gameplay can be divided into two modes, character customisation and combat. Character customisation requires the player decide
+what kind of abilities and strengths the character focuses on. Combat is fast and requires the player to manage and make decisions
+about when and where to move to and when and what abilities to use in order to stay alive and defeat enemies.
+
+* The world is dark and eerie, rooms and their contents are not visible until the player enters them. Exploring a level is
+initially suspenseful but can suddenly become hectic.
+
+* In early levels the game is easy, but in later levels it is unforgiving. The vast majority of damage is avoidable by moving. Damage
+from sources found in character-level appropriate areas is non-lethal (deals less than 100% of a typical character's maximum health)
+in nearly all cases.
+
+
+************************************************************************************************************************************
+LORE
+
+* The player starts in a small town, which is home to a number of townspeople, and also contains the entrance to a crypt. Talking to
+the townspeople, the player learns about some of the evil monsters that come out of the crypt to haunt the town.
+
+* The townspeople are merchants or provide the usual RPG services to the player - item trade and repair, etc.
+
+
+************************************************************************************************************************************
+DIFFICULTY LEVELS
+
+* Entering the crypt, the player finds himself in the first of an endless number of underground levels. Monster difficulty and loot
+quality is scaled with this level, such that monsters become more difficult the deeper into the crypt the player goes, and the loot
+becomes more plentiful and more valuable.
+
+
+************************************************************************************************************************************
+LEVEL GENERATION
+
+* Levels are procedurally generated, generating a unique layout with each new level and each new game. Levels consist chiefly of
+rooms and corridors. These elements are pre-designed prefab assets.
+
+* Room prefabs may contain unique encounters or other story elements.
+
+* Every level contains a start-room and an end-room, with a staircase allowing access to the previous/next level.
+
+* Whether a certain room exists on a certain level is subject to the generation settings for that level, which may select
+randomly from a number of rooms.
+
+* All entrances to a room are from a corridor, and not from another room.
+
+* Corridors generate in such a way that all rooms are made accessible. Rooms are designed in such a way that all entrances are
+accessible to one another internally within the room.
+
+* The 'style' of level is configured via the generation settings. Level style determines which corridor and room prefabs are
+selected from in the generation of the level. Lighting and background/ambient music is set according to level style. Level style
+also determines the kinds of enemies that can spawn when the level is generated.
+
+
+************************************************************************************************************************************
+STATE & PERSISTENCE
+
+* At the start of every level after the first, there is a permanent portal in the start-room which allows the player to instantly
+travel between portals: the one in the town, and the portals at the start of previously visited levels. The list of available
+portals persists between games.
+
+* Level layout, spawned enemies and bosses, and dropped loot do not persist between games. Starting a new game and entering a level
+causes it to be regenerated, and new enemies to spawn.
+
+* Certain rooms' state is persistent between games, for example certain story elements that are only available to be used once, or
+rewards that can only be received once. Certain rooms will also cease to appear in a level after certain story conditions are
+completed, or may appear in a different state. Certain rooms may also only start to appear in a level after some other conditions
+are previously met.
+
+
+************************************************************************************************************************************
+BOSS ENCOUNTERS
+
+* After every ten levels, the player encounters a boss, which uses unique abilities, and requires additional strategy to defeat.
+The boss drops items from an improved and unique loot table.
+
+* The doorway/stairs to the next level after a boss-level is locked until that boss has been defeated for the first time.
+
+
+************************************************************************************************************************************
+CHARACTER CUSTOMISATION
+
+* There are no predetermined character classes. The player can specialise as he levels up. Each level-up grants the player a single
+stat-point which can be put towards one of the three primary stats.
+
+* The primary stats are Strength, Dexterity and Magic. Primary stats provide a certain amount of other secondary stats. Strength
+provides additional maximum health, weapon damage, and hit recovery speed, dexterity improves block, attack and cast speed, and magic
+increases the rate of health regeneration and the amount of spell damage dealt.
+
+* Primary stats cannot be found on items, their only source is from levelling up the character.
+
+* Stat-point allocation can be reset by one of the townspeople.
+
+* Abilities unlock automatically when the player has enough of a certain primary stat(s). The player can choose which abilities he
+wants to have on the ability bar. Abilities may also have held-weapon requirements to use.
+
+
+************************************************************************************************************************************
+ITEMISATION
+
+* All items are of a certain quality: Junk, Normal, Magic, Rare, or Legendary.
+
+* The stats on items are randomly generated, based on weights. The same stat cannot roll twice on an item.
+
+* The amount of each stat is also random, defined within a range.
+
+* Stats which improve weapon damage are only found on weapons.
+
+* There can be requirements to equipping an item: that the character be over a certain level, and/or have a sufficient amount of a
+primary stat(s).
+
+
+************************************************************************************************************************************
+ART STYLE
+
