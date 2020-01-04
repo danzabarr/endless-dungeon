@@ -9,16 +9,25 @@ includes medieval technology and magic spells etc.
 * The camera view is 'isometric' (perspective 3rd person camera fixed on the player rotated 45 degrees around the y-axis and approx
 45-60 degrees around the x axis). The character occupies approximately one sixth to one eighth of the height of the screen.
 
+* The world is dark and eerie, rooms and their contents are not visible until the player enters them. Exploring a level is
+initially suspenseful but can suddenly become hectic.
+
 * Gameplay can be divided into two modes, character customisation and combat. Character customisation requires the player decide
 what kind of abilities and strengths the character focuses on. Combat is fast and requires the player to manage and make decisions
 about when and where to move to and when and what abilities to use in order to stay alive and defeat enemies.
 
-* The world is dark and eerie, rooms and their contents are not visible until the player enters them. Exploring a level is
-initially suspenseful but can suddenly become hectic.
-
 * In early levels the game is easy, but in later levels it is unforgiving. The vast majority of damage is avoidable by moving. Damage
 from sources found in character-level appropriate areas is non-lethal (deals less than 100% of a typical character's maximum health)
 in nearly all cases.
+
+* General Rule #1: the logic of the game design should support sustainable and sustained gameplay, sacrificing realism. A good
+example of this is that the 'endlessness' of the dungeon can be taken literally. No story-based justification is presented to
+explain how or why the player is descending through potentially hundreds or even thousands of levels beneath the ground.
+
+* General Rule #2: the game's rules and features aim to be self-explanatory. At least to any player with some experience playing
+another ARPG. There is no tutorial, or dialogue which explains the controls or the interface. The game can and should build upon
+existing assumptions and clichés found in the genre. The game does not instruct the player how or when to interact with the world,
+there are no "press A to inspect" or other such messages. 
 
 
 ************************************************************************************************************************************
