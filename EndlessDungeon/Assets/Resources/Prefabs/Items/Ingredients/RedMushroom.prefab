@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4218222060723069573}
   - component: {fileID: 3975216739728361327}
   - component: {fileID: 3592230172048820601}
+  - component: {fileID: 2683071585704919931}
   m_Layer: 8
   m_Name: RedMushroom
   m_TagString: Interactive
@@ -268,6 +269,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.059999995, y: 0.019334927, z: 0.06}
   m_Center: {x: -0.0027029999, y: 0.045289703, z: 0.0010084994}
+--- !u!114 &2683071585704919931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368779008202129822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 6162792767208444746}
 --- !u!1 &1228493765715742283
 GameObject:
   m_ObjectHideFlags: 0

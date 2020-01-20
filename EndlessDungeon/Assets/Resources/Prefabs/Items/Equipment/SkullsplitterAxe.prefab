@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 274852876859863105}
   - component: {fileID: 8069069274619646711}
   - component: {fileID: 6891874413453695278}
+  - component: {fileID: -3012616148197521977}
   m_Layer: 8
   m_Name: SkullsplitterAxe
   m_TagString: Interactive
@@ -366,3 +367,17 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &-3012616148197521977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286094176870966708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 2420195315712340769}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2805015037902805787}
   - component: {fileID: 7779790829766536880}
   - component: {fileID: 3342013320705845820}
+  - component: {fileID: 672673624157372172}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -80,6 +81,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &672673624157372172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764623524658702597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 3342013320705845820}
 --- !u!1 &6389102953117595994
 GameObject:
   m_ObjectHideFlags: 0

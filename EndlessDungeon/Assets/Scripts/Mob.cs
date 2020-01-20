@@ -23,8 +23,6 @@ public class Mob : Unit, RegisterablePrefab, Interactive
     public int GetPrefabID() => prefabID;
     public void SetPrefabID(int id) => prefabID = id;
 
-    
-
     public override void Awake()
     {
         base.Awake();
@@ -53,12 +51,6 @@ public class Mob : Unit, RegisterablePrefab, Interactive
                 UpdateDestination();
         }
     }
-
-    
-
-   
-
-    
 
     private Transform navigationTarget;
 
@@ -179,30 +171,19 @@ public class Mob : Unit, RegisterablePrefab, Interactive
             o.hideOutline = !show;
     }
 
-    public void ShowLabelText(bool show)
-    {
-        Label.LabelEnabled = show;
-    }
+    public void ShowLabelText(bool show) => Label.LabelEnabled = show;
 
-    public void ShowBar(bool show)
-    {
-        Label.BarEnabled = show;
-    }
+    public void ShowBar(bool show) => Label.BarEnabled = show;
 
-    public Transform GetWorldTransform()
-    {
-        return transform;
-    }
+    public Transform GetWorldTransform() => transform;
 
-    public float GetInteractDistance()
-    {
-        return 1;
-    }
+    public float GetInteractDistance() => 1;
 
     public void Interact()
     {
         
     }
-
+    public string GetLabelText() => null;
+    public bool HasLabelText() => false;
 
 }

@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 4730572973320207400}
   - component: {fileID: 3381259947430761162}
   - component: {fileID: 1761116982703861898}
+  - component: {fileID: -1302116643490221152}
   m_Layer: 0
-  m_Name: WallRiserRight
+  m_Name: InteriorWallRiserRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -107,6 +108,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -2432090755550338912, guid: 5aaa8f3badd9ba04cb49fe75a6380b99, type: 3}
+--- !u!114 &-1302116643490221152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934328381397988768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 4730572973320207400}
 --- !u!1 &7980701212802557132
 GameObject:
   m_ObjectHideFlags: 0

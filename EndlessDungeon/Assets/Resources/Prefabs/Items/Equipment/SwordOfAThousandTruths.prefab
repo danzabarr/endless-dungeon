@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 2155804464229531297}
   - component: {fileID: 583566234073300563}
   - component: {fileID: -5435297023160591190}
+  - component: {fileID: 3561163229540469182}
   m_Layer: 8
   m_Name: SwordOfAThousandTruths
   m_TagString: Interactive
@@ -370,3 +371,17 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &3561163229540469182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329347774429260622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 1395401863195885019}

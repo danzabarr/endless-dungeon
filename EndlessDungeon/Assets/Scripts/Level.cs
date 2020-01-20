@@ -34,7 +34,6 @@ public class Level : MonoBehaviour
     public bool displayVisibleArea;
     public bool displayTileOutlines;
     public bool displayNodeConnections;
-    
 
     [System.Serializable]
     public struct NavMeshBuildSettingsSerialized
@@ -62,6 +61,8 @@ public class Level : MonoBehaviour
     private List<MapNode> entrances = new List<MapNode>();
     private List<Mob> mobs = new List<Mob>();
     private List<ItemObject> items = new List<ItemObject>();
+    private List<ItemObject> itemsShowingLabel = new List<ItemObject>();
+    private List<LineOfSightObject> losObjects = new List<LineOfSightObject>();
     private MapNode[,] nodes;
     private List<Location> locations;
     private List<Location> visibleLocations;
@@ -73,6 +74,8 @@ public class Level : MonoBehaviour
     private float visibleRadius;
     private Mesh visibleAreaMesh;
     private Color visibleAreaColor = new Color(1, 0, 1, .3f);
+    public float lineOfSightObjectInset;
+
     public int XSize => nodes.GetLength(0);
     public int ZSize => nodes.GetLength(1);
     public MapNode this[int x, int z] => x < 0 || x >= nodes.GetLength(0) || z < 0 || z >= nodes.GetLength(1) ? null : nodes[x, z];
@@ -232,6 +235,38 @@ public class Level : MonoBehaviour
         return nodes[corridor.X, corridor.Z];
     }
 
+    public void ShowAllItemLabels(bool show)
+    {
+        foreach (ItemObject obj in itemsShowingLabel)
+        {
+            if (obj == null)
+                continue;
+            obj.ShowLabelText(false);
+        }
+        itemsShowingLabel.Clear();
+
+        if (show)
+        {
+            const float rangeSquared = 20;
+            Location playerLocation = PlayerLocation;
+            foreach(ItemObject obj in items)
+            {
+                if (obj == null)
+                    continue;
+
+                float dSq = SquareDistance(Player.Instance.GetGroundPosition(), obj.GetGroundPosition());
+                if (dSq > rangeSquared)
+                    continue;
+
+                
+
+                obj.ShowLabelText(true);
+                itemsShowingLabel.Add(obj);
+
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
         if (displayVisibleArea)
@@ -373,13 +408,8 @@ public class Level : MonoBehaviour
         playerLocation = getLocation;
         playerNodePosition = getNodePos;
 
-        int defaultLayer = LayerMask.NameToLayer("Default");
         int wallsLayer = LayerMask.NameToLayer("Walls");
         int ignoreRayCastLayer = LayerMask.NameToLayer("Ignore Raycast");
-        int interactiveLayer = LayerMask.NameToLayer("Interactive");
-        int mobsLayer = LayerMask.NameToLayer("Mobs");
-
-        LayerMask disableMask = LayerMask.GetMask("Default", "Walls", "Mobs", "Interactive", "Ignore Raycast");
 
         //Profiler.BeginSample("Show Walls");
         #region Show walls
@@ -387,10 +417,7 @@ public class Level : MonoBehaviour
         {
             foreach (Wall wall in location.Walls)
             {
-                int layer = wall.gameObject.layer;
-                if (disableMask != (disableMask | (1 << layer))) continue;
                 Renderer renderer = wall.Renderer;
-                
                 
                 bool shown =
                 (
@@ -406,237 +433,49 @@ public class Level : MonoBehaviour
             }
         }
         #endregion
-        //Profiler.EndSample();
-
-        //Profiler.BeginSample("Show visible objects");
-
         #region Show visible objects
 
-        foreach (Location location in locations)
+        foreach (LineOfSightObject losObject in losObjects)
         {
-            foreach (Renderer renderer in location.ContentsRenderers)
+            Bounds bounds = losObject.Bounds;
+            
+            bounds.size = new Vector3(Mathf.Max(bounds.size.x + lineOfSightObjectInset * scale, 0), bounds.size.y, Mathf.Max(bounds.size.z + lineOfSightObjectInset * scale, 0));
+            Vector2 boundsMin = new Vector2(losObject.Bounds.min.x, losObject.Bounds.min.z) / scale;// new Vector2(losObject.Bounds.min.x, losObject.Bounds.min.z) / scale + Vector2.one * lineOfSightObjectInset;
+            Vector2 boundsMax = new Vector2(losObject.Bounds.max.x, losObject.Bounds.max.z) / scale;// new Vector2(losObject.Bounds.max.x, losObject.Bounds.max.z) / scale - Vector2.one * lineOfSightObjectInset;
+
+
+            if (visibleArea == null)
             {
-                int layer = renderer.gameObject.layer;
-                   // Debug.Log("huh? " + renderer.gameObject);
-                if (disableMask != (disableMask | (1 << layer))) continue;
-
-                Vector2 position = new Vector2(renderer.transform.position.x / scale, renderer.transform.position.z / scale);
-                if (visibleArea == null || (LineOfSight.CircleContainsPoint(playerPosition, playerVisibleRadius, position) && LineOfSight.PolygonContainsPoint(visibleArea, position)))
-                {
-                    renderer.enabled = true;
-                    
-                    if (renderer.CompareTag("Interactive"))
-                        renderer.gameObject.layer = interactiveLayer;
-                    else if (renderer.CompareTag("Mob"))
-                        renderer.gameObject.layer = mobsLayer;
-                    else
-                        renderer.gameObject.layer = defaultLayer;
-                }
-                else
-                {
-                    renderer.enabled = false;
-                    renderer.gameObject.layer = ignoreRayCastLayer;
-                }
-
+                losObject.Show();
+                losObject.boundsColor = new Color(1, 0, 1, .2f);
             }
-            /*
-            foreach(DynamicObject dobj in location.DynamicObjects)
+            else if (LineOfSight.CircleIntersectsBounds(playerPosition, playerVisibleRadius, boundsMin, boundsMax) && LineOfSight.PolygonIntersectsBounds(visibleArea, boundsMin, boundsMax, out LineOfSight.PolygonBoundsIntersectionType intersectionType))
             {
-                foreach (Renderer renderer in dobj.Renderers)
-                {
-                    int layer = renderer.gameObject.layer;
-                    // Debug.Log("huh? " + renderer.gameObject);
-                    if (disableMask != (disableMask | (1 << layer))) continue;
+                if (intersectionType == LineOfSight.PolygonBoundsIntersectionType.BoundsContainsPolygonPoint)
+                    losObject.boundsColor = new Color(1, 0, 0, .2f);
+                else if (intersectionType == LineOfSight.PolygonBoundsIntersectionType.PolygonContainsBoundsCorner)
+                    losObject.boundsColor = new Color(0, 1, 0, .2f);
+                else if (intersectionType == LineOfSight.PolygonBoundsIntersectionType.LineSegmentsIntersect)
+                    losObject.boundsColor = new Color(0, 0, 1, .2f);
 
-                    Vector2 position = new Vector2(renderer.transform.position.x / scale, renderer.transform.position.z / scale);
-                    if (visibleArea == null || (LineOfSight.CircleContainsPoint(playerPosition, playerVisibleRadius, position) && LineOfSight.PolygonContainsPoint(visibleArea, position)))
-                    {
-                        renderer.enabled = true;
-                        if (renderer.CompareTag("Interactive"))
-                            renderer.gameObject.layer = interactiveLayer;
-                        else if (renderer.CompareTag("Mob"))
-                            renderer.gameObject.layer = mobsLayer;
-                        else
-                            renderer.gameObject.layer = defaultLayer;
-                    }
-                    else
-                    {
-                        renderer.enabled = false;
-                        renderer.gameObject.layer = ignoreRayCastLayer;
-                    }
-                }
+                losObject.Show();
             }
-            */
-        }
-
-        foreach(ItemObject item in items)
-        {
-            foreach (Renderer renderer in item.DynamicObject.Renderers)
+            else
             {
-                int layer = renderer.gameObject.layer;
-                // Debug.Log("huh? " + renderer.gameObject);
-                if (disableMask != (disableMask | (1 << layer))) continue;
-
-                Vector2 position = new Vector2(renderer.transform.position.x / scale, renderer.transform.position.z / scale);
-                if (visibleArea == null || (LineOfSight.CircleContainsPoint(playerPosition, playerVisibleRadius, position) && LineOfSight.PolygonContainsPoint(visibleArea, position)))
-                {
-                    renderer.enabled = true;
-                    if (renderer.CompareTag("Interactive"))
-                        renderer.gameObject.layer = interactiveLayer;
-                    else if (renderer.CompareTag("Mob"))
-                        renderer.gameObject.layer = mobsLayer;
-                    else
-                        renderer.gameObject.layer = defaultLayer;
-                }
-                else
-                {
-                    renderer.enabled = false;
-                    renderer.gameObject.layer = ignoreRayCastLayer;
-                }
-            }
-        }
-        foreach(Mob mob in mobs)
-        {
-            foreach (Renderer renderer in mob.DynamicObject.Renderers)
-            {
-                int layer = renderer.gameObject.layer;
-                // Debug.Log("huh? " + renderer.gameObject);
-                if (disableMask != (disableMask | (1 << layer))) continue;
-
-                Vector2 position = new Vector2(renderer.transform.position.x / scale, renderer.transform.position.z / scale);
-                if (visibleArea == null || (LineOfSight.CircleContainsPoint(playerPosition, playerVisibleRadius, position) && LineOfSight.PolygonContainsPoint(visibleArea, position)))
-                {
-                    renderer.enabled = true;
-                    if (renderer.CompareTag("Interactive"))
-                        renderer.gameObject.layer = interactiveLayer;
-                    else if (renderer.CompareTag("Mob"))
-                        renderer.gameObject.layer = mobsLayer;
-                    else
-                        renderer.gameObject.layer = defaultLayer;
-                }
-                else
-                {
-                    renderer.enabled = false;
-                    renderer.gameObject.layer = ignoreRayCastLayer;
-                }
+                losObject.Hide();
             }
         }
 
-        //Profiler.EndSample();
-
-        //Profiler.BeginSample("Lights");
-
-        foreach(Location location in locations)
-        foreach (Light light in location.GetComponentsInChildren<Light>())
+        foreach (Light light in GetComponentsInChildren<Light>())
         {
             Vector2 position = new Vector2(light.transform.position.x / scale, light.transform.position.z / scale);
-                light.enabled = visibleArea == null || (LineOfSight.CircleContainsPoint(playerPosition, playerVisibleRadius, position) && LineOfSight.PolygonContainsPoint(visibleArea, position));
+            light.enabled = visibleArea == null || (LineOfSight.CircleContainsPoint(playerPosition, playerVisibleRadius, position) && LineOfSight.PolygonContainsPoint(visibleArea, position));
         }
-
-        //Profiler.EndSample();
-
-
-
-
-        #region Selectively re-enable renderers
-        /*
-        visibleLocations = FloodFilledLocations(playerNodePosition.x, playerNodePosition.y, locationViewDistance);
-        foreach (Location location in visibleLocations)
-        {
-            location.gameObject.layer = defaultLayer;
-
-            #region Floors
-            foreach (Renderer renderer in location.Floor.GetComponentsInChildren<Renderer>())
-            {
-                int layer = renderer.gameObject.layer;
-                if (layerMask != (layerMask | (1 << layer))) continue;
-                renderer.enabled = true;
-                renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-                renderer.gameObject.layer = floorLayer;
-            }
-            #endregion
-
-            #region Walls
-            foreach (Renderer renderer in location.Walls.GetComponentsInChildren<Renderer>())
-            {
-                int layer = renderer.gameObject.layer;
-                if (layerMask != (layerMask | (1 << layer))) continue;
-                renderer.enabled = true;
-
-                Wall wall = renderer.GetComponent<Wall>();
-                if (wall)
-                {
-                    bool shown =
-                    (
-                        (wall.transform.position.z > player.transform.position.z) ||
-                        ((int)wall.WorldRotation % 2 == 0 && location is Corridor && playerLocation is Corridor) ||
-                        ((int)wall.WorldRotation % 2 == 0 && location is Room && location == playerLocation) ||
-                        ((int)wall.WorldRotation % 2 == 0 && location is Room && playerLocation is Corridor && wall.Outside) ||
-                        ((int)wall.WorldRotation % 2 == 0 && location is Corridor && playerLocation is Room && (location.X < playerLocation.X || location.X >= playerLocation.MaxX()))
-                    );
-
-                    renderer.gameObject.layer = shown ? wallsLayer : ignoreRayCastLayer;
-                    renderer.shadowCastingMode = shown ? UnityEngine.Rendering.ShadowCastingMode.On : UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-                }
-                else
-                {
-                    renderer.gameObject.layer = wallsLayer;
-                    renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-                }
-            }
-            */
         #endregion
-        #region All Other
-        /*
-        if (
-            playerLocation is Corridor && location is Corridor
-        ||  playerLocation is Room && location == playerLocation
-      //||  playerLocation is Room && location is Corridor && GetNode(location as Corridor).type == MapNode.NodeType.EntranceOutside
-        )
-        {
-            location.visibility = Location.Visibility.Shown;
 
-            foreach (Renderer renderer in location.Contents.GetComponentsInChildren<Renderer>())
-            {
-                int layer = renderer.gameObject.layer;
-                if (layerMask != (layerMask | (1 << layer))) continue;
-                renderer.enabled = true;
-
-                int layer1 = ignoreRayCastLayer;
-
-                if (location == playerLocation)
-                {
-                    if (renderer.CompareTag("Interactive"))
-                        layer1 = interactiveLayer;
-                    else if (renderer.CompareTag("Mob"))
-                        layer1 = mobsLayer;
-                    else
-                        layer1 = defaultLayer;
-                }
-
-                renderer.gameObject.layer = layer1;
-                renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-            }
-
-            foreach (Light light in location.GetComponentsInChildren<Light>())
-                light.enabled = true;
-        }
-        else
-        {
-            location.visibility = Location.Visibility.ContentsHidden;
-
-            foreach (Light light in location.GetComponentsInChildren<Light>())
-                light.enabled = false;
-        }
+        #endregion
     }
-        */
-        #endregion
 
-        #endregion
-
-
-
-    }
     private List<Location> FloodFilledLocations(int x, int z, int distance)
     {
         List<MapNode> nodes = FloodFill(x, z, distance);
@@ -686,7 +525,6 @@ public class Level : MonoBehaviour
         FloodFill(list, distance - 1);
         return list;
     }
-    #endregion
     #region Path Finding
     public static readonly float ROOT_2 = Mathf.Sqrt(2f);
     public static float Distance(MapNode n1, MapNode n2)
@@ -933,6 +771,7 @@ public class Level : MonoBehaviour
         items = null;
         locations = null;
         visibleLocations = null;
+        losObjects = null;
     }
     private bool Generate(LevelGenerationPreset preset)
     {
@@ -951,6 +790,7 @@ public class Level : MonoBehaviour
         entrances = new List<MapNode>();
         items = new List<ItemObject>();
         mobs = new List<Mob>();
+        losObjects = new List<LineOfSightObject>();
 
         #region Add Required Rooms
 
@@ -1374,7 +1214,14 @@ public class Level : MonoBehaviour
 
         ItemSpawners();
 
+        GetLineOfSightObjects();
+
         return true;
+    }
+
+    private void GetLineOfSightObjects()
+    {
+        losObjects = new List<LineOfSightObject>(GetComponentsInChildren<LineOfSightObject>());
     }
 
     [ContextMenu("Bake Nav Mesh")]

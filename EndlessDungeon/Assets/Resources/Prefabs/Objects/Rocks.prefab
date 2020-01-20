@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 5799120885139616835}
   - component: {fileID: 2375092120671926756}
   - component: {fileID: 3872356638384563036}
+  - component: {fileID: 31535241878136581}
   m_Layer: 0
   m_Name: Rocks
   m_TagString: Untagged
@@ -211,3 +212,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: 0
+--- !u!114 &31535241878136581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8826367769534197114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 5102848095272424506}

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 7691595987682606791}
   - component: {fileID: 1822414276896582756}
   - component: {fileID: 7083437706557524355}
+  - component: {fileID: 2762470312504405079}
   m_Layer: 0
   m_Name: InteriorWall
   m_TagString: Untagged
@@ -183,3 +184,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: 1
+--- !u!114 &2762470312504405079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8554665159492187998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 7691595987682606791}

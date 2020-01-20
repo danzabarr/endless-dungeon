@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5995122864358067620}
   - component: {fileID: 3530214682783111527}
   - component: {fileID: -2500586170227642350}
+  - component: {fileID: 6905901939011452035}
   m_Layer: 8
   m_Name: DoubleAxe
   m_TagString: Interactive
@@ -289,6 +290,20 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &6905901939011452035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891080715977414737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 8175387468082859716}
 --- !u!1 &8049307060077983773
 GameObject:
   m_ObjectHideFlags: 0

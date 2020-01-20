@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 4315335491011991863}
   - component: {fileID: 6353458896998403572}
   - component: {fileID: 3863508594332198017}
+  - component: {fileID: -1691650687097276467}
   m_Layer: 8
   m_Name: RecurveBow
   m_TagString: Interactive
@@ -354,3 +355,17 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &-1691650687097276467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714365611854630082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 1847915309517183575}

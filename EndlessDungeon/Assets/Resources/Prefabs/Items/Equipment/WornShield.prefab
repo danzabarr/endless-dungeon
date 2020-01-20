@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7063023842578653520}
   - component: {fileID: 7224147475008154220}
   - component: {fileID: 8151099542069690611}
+  - component: {fileID: -4316534862693140688}
   m_Layer: 8
   m_Name: WornShield
   m_TagString: Interactive
@@ -276,6 +277,20 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &-4316534862693140688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877607162474408341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 5235093500509732608}
 --- !u!1 &6225914519293069785
 GameObject:
   m_ObjectHideFlags: 0

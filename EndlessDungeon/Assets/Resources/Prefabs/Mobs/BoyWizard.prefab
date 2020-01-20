@@ -1365,6 +1365,7 @@ GameObject:
   - component: {fileID: 4105642643229702607}
   - component: {fileID: 3171890668683913671}
   - component: {fileID: 8568499881296386991}
+  - component: {fileID: 8533362329561494273}
   m_Layer: 14
   m_Name: BoyWizard
   m_TagString: Mob
@@ -1722,6 +1723,20 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &8533362329561494273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681721245325448215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 8244213826550588998}
 --- !u!1 &4688579272292820557
 GameObject:
   m_ObjectHideFlags: 0

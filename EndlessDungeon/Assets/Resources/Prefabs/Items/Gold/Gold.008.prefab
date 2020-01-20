@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2347078563253618453}
   - component: {fileID: -2899481256680326072}
   - component: {fileID: -4142719114791604675}
+  - component: {fileID: 8479764416944843383}
   m_Layer: 8
   m_Name: Gold.008
   m_TagString: Interactive
@@ -234,7 +235,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -314,6 +315,21 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &8479764416944843383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595036955134414016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundsColor: {r: 1, g: 0.1, b: 1, a: 0.2}
+  renderers:
+  - {fileID: 2347078563253618453}
 --- !u!1 &2039077448823711045
 GameObject:
   m_ObjectHideFlags: 0

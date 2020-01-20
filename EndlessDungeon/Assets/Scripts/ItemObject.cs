@@ -196,15 +196,8 @@ public class ItemObject : MonoBehaviour, RegisterablePrefab, Interactive
             o.hideOutline = !show;
     }
 
-    public void ShowLabelText(bool show)
-    {
-        Label.LabelEnabled = show;
-    }
-
-    public void ShowBar(bool show)
-    {
-        Label.BarEnabled = show;
-    }
+    public void ShowLabelText(bool show) => Label.LabelEnabled = show;
+    public void ShowBar(bool show) => Label.BarEnabled = show;
 
     public ItemData WriteData()
     {
@@ -235,13 +228,8 @@ public class ItemObject : MonoBehaviour, RegisterablePrefab, Interactive
         //Debug.Log("Picking...");
     }
 
-    public Vector3 GetGroundPosition()
-    {
-        return transform.position;
-    }
-
-    public Vector3 GetCenterPosition()
-    {
-        return transform.position;
-    }
+    public Vector3 GetGroundPosition() => transform.position;
+    public Vector3 GetCenterPosition() => transform.position;
+    public string GetLabelText() => displayName;
+    public bool HasLabelText() => true;
 }

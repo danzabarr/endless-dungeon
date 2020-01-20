@@ -1848,6 +1848,7 @@ GameObject:
   - component: {fileID: 2606300111407073026}
   - component: {fileID: -2180375546893952818}
   - component: {fileID: 6005327175349929913}
+  - component: {fileID: -5466472246120002118}
   m_Layer: 8
   m_Name: Gold.256
   m_TagString: Interactive
@@ -2364,6 +2365,20 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &-5466472246120002118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104350063987901051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 2606300111407073026}
 --- !u!1 &1137420231107785817
 GameObject:
   m_ObjectHideFlags: 0

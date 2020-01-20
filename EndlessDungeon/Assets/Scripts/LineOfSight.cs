@@ -6,45 +6,26 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class LineOfSight : MonoBehaviour
 {
-    public Transform center;
-    public Transform test;
-    public float xsize, zsize;
-    public float radius;
-    public int circumferenceResolution;
-    public int numEdges;
-    public bool addRadialEdges;
-    public bool addBoundaryEdges;
 
-    private List<Edge> edges = new List<Edge>();
-    private Mesh mesh;
+    public Vector2[] polygon;
+    public Bounds bounds;
 
-    public void Start()
+    public void OnDrawGizmos()
     {
-        LevelEdges();
-    }
+        if (PolygonIntersectsBounds(polygon, bounds.min, bounds.max, out _))
+            Gizmos.color = Color.red;
+        else
+            Gizmos.color = Color.white;
 
-    [ContextMenu("Random Edges")]
-    public void RandomEdges()
-    {
-        edges = new List<Edge>();
-        if (addBoundaryEdges)
+        Gizmos.DrawCube(bounds.center, bounds.size);
+        
+        if (polygon.Length > 1)
+        for (int i = 0; i < polygon.Length; i++)
         {
-            edges.Add(new Edge(new Vector2(-1, 0), new Vector2(xsize + 1, 0)));
-            edges.Add(new Edge(new Vector2(xsize, -1), new Vector2(xsize, zsize + 1)));
-            edges.Add(new Edge(new Vector2(xsize + 1, zsize), new Vector2(-1, zsize)));
-            edges.Add(new Edge(new Vector2(0, zsize + 1), new Vector2(0, -1)));
+            Vector2 p0 = polygon[i];
+            Vector2 p1 = polygon[(i + 1) % polygon.Length];
+            Gizmos.DrawLine(p0, p1);
         }
-
-        for (int i = 0; i < numEdges; i++)
-        {
-            edges.Add(new Edge(new Vector2(Random.Range(0, xsize), Random.Range(0, zsize)), new Vector2(Random.Range(0, xsize), Random.Range(0, zsize))));
-        }
-    }
-
-    [ContextMenu("Level Edges")]
-    public void LevelEdges()
-    {
-        edges = GenerateEdges(Level.Instance, addBoundaryEdges);
     }
 
     public static List<Edge> GenerateEdges(Level level, bool addBoundaryEdges)
@@ -179,94 +160,6 @@ public class LineOfSight : MonoBehaviour
         return edges;
     }
 
-    public void OnDrawGizmos()
-    {
-        
-        float arrowHeadAngle = Mathf.PI * 0.9f;
-        float arrowHeadLength = 0.25f;
-
-
-        foreach (Edge edge in edges)
-        {
-            if (edge.door != null)
-            {
-                if (edge.door.Open)
-                    Gizmos.color = Color.green;
-                else
-                    Gizmos.color = Color.red;
-            }
-            else Gizmos.color = Color.white;
-
-            Gizmos.DrawLine(edge.p1, edge.p2);
-            float angle0 = Mathf.Atan2(edge.p1.y - edge.p2.y, edge.p1.x - edge.p2.x);
-            Gizmos.DrawLine(edge.p1, edge.p1 + new Vector2(Mathf.Cos(angle0 + arrowHeadAngle), Mathf.Sin(angle0 + arrowHeadAngle)) * arrowHeadLength);
-            Gizmos.DrawLine(edge.p1, edge.p1 + new Vector2(Mathf.Cos(angle0 - arrowHeadAngle), Mathf.Sin(angle0 - arrowHeadAngle)) * arrowHeadLength);
-
-
-            float angle1 = Mathf.Atan2(edge.p1.y - edge.p2.y, edge.p1.x - edge.p2.x) + Mathf.PI;
-            Gizmos.DrawLine(edge.p2, edge.p2 + new Vector2(Mathf.Cos(angle1 + arrowHeadAngle), Mathf.Sin(angle1 + arrowHeadAngle)) * arrowHeadLength);
-            Gizmos.DrawLine(edge.p2, edge.p2 + new Vector2(Mathf.Cos(angle1 - arrowHeadAngle), Mathf.Sin(angle1 - arrowHeadAngle)) * arrowHeadLength);
-        }
-
-        Transform player = Player.Instance.transform;
-
-        center.position = new Vector3(player.position.x / 10, player.position.z / 10, 0);
-        Vector2 origin = new Vector2(center.position.x, center.position.y);
-        Vector2[] visibleArea = CalculateVisibleArea(edges, addRadialEdges, center.position, radius, circumferenceResolution);
-
-        List<Vector3> vertices = new List<Vector3>();
-        List<int> triangles = new List<int>();
-        vertices.Add(center.position);
-
-        for (int i = 0; i < visibleArea.Length; i++)
-        {
-            vertices.Add(visibleArea[i]);
-            triangles.Add(0);
-
-            if (i >= visibleArea.Length - 1)
-            {
-                triangles.Add(i + 1);
-                triangles.Add(1);
-            }
-            else
-            {
-                triangles.Add(i + 1);
-                triangles.Add(i + 2);
-            }
-        }
-
-        if (mesh == null) mesh = new Mesh();
-        mesh.triangles = new int[] { };
-
-        mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
-
-        mesh.RecalculateNormals();
-        mesh.RecalculateBounds();
-
-        Gizmos.color = Color.magenta;
-
-        Gizmos.DrawMesh(mesh);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(origin, .25f);
-
-        /*
-        if (PolygonContainsPoint(visibleArea, test.position))
-            Gizmos.color = Color.green;
-        else
-            Gizmos.color = Color.red;
-
-        Gizmos.DrawSphere(test.position, .5f);
-        */
-
-        //Gizmos.DrawLine(center.position, intersections[i]);
-        //Gizmos.DrawLine(center.position, intersections[(i + 1) % directions.Count]);
-        //Gizmos.DrawLine(intersections[i], intersections[(i + 1) % directions.Count]);
-        //GetComponent<MeshFilter>().mesh = mesh;
-        //Gizmos.DrawMesh(mesh);
-        //DestroyImmediate(mesh);
-    }
 
     public static Mesh GenerateMesh(Mesh mesh, Vector2 center, Vector2[] visibleArea)
     {
@@ -330,6 +223,98 @@ public class LineOfSight : MonoBehaviour
             j = i;
         }
         return result;
+    }
+
+    public static bool CircleIntersectsBounds(Vector2 center, float radius, Vector2 boundsMin, Vector2 boundsMax)
+    {
+        Rect rect1 = new Rect(boundsMin.x, boundsMin.y - radius, boundsMax.x - boundsMin.x, boundsMax.y - boundsMin.y + radius * 2);
+        Rect rect2 = new Rect(boundsMin.x - radius, boundsMin.y, boundsMax.x - boundsMin.x + radius * 2, boundsMax.y - boundsMin.y);
+
+        if (rect1.Contains(center))
+            return true;
+
+        if (rect2.Contains(center))
+            return true;
+
+        if (CircleContainsPoint(boundsMin, radius, center))
+            return true;
+
+        if (CircleContainsPoint(boundsMax, radius, center))
+            return true;
+
+        if (CircleContainsPoint(new Vector2(boundsMin.x, boundsMax.y), radius, center))
+            return true;
+
+        if (CircleContainsPoint(new Vector2(boundsMax.x, boundsMin.y), radius, center))
+            return true;
+
+        return false;
+    }
+
+    public enum PolygonBoundsIntersectionType
+    {
+        None,
+        BoundsContainsPolygonPoint,
+        PolygonContainsBoundsCorner,
+        LineSegmentsIntersect
+    }
+
+
+    public static bool PolygonIntersectsBounds(Vector2[] polygon, Vector2 boundsMin, Vector2 boundsMax, out PolygonBoundsIntersectionType intersectionType)
+    {
+        Vector2 c00 = new Vector3(boundsMin.x, boundsMin.y);
+        Vector2 c01 = new Vector3(boundsMin.x, boundsMax.y);
+        Vector2 c11 = new Vector3(boundsMax.x, boundsMax.y);
+        Vector2 c10 = new Vector3(boundsMax.x, boundsMin.y);
+
+        intersectionType = PolygonBoundsIntersectionType.BoundsContainsPolygonPoint;
+
+        foreach (Vector2 p in polygon)
+        {
+            if (p.x > boundsMin.x && p.x <= boundsMax.x &&
+                p.y > boundsMin.y && p.y <= boundsMax.y)
+            {
+                return true;
+            }
+        }
+
+        intersectionType = PolygonBoundsIntersectionType.PolygonContainsBoundsCorner;
+
+        if (PolygonContainsPoint(polygon, c00))
+            return true;
+
+        if (PolygonContainsPoint(polygon, c01))
+            return true;
+
+        if (PolygonContainsPoint(polygon, c11))
+            return true;
+
+        if (PolygonContainsPoint(polygon, c10))
+            return true;
+
+        intersectionType = PolygonBoundsIntersectionType.LineSegmentsIntersect;
+
+        if (polygon.Length > 1)
+        for (int i = 0; i < polygon.Length; i++)
+        {
+            Vector2 p0 = polygon[i];
+            Vector2 p1 = polygon[(i + 1) % polygon.Length];
+
+            if (LineSegmentIntersection(p0, p1, c00, c01, out _))
+                return true;
+
+            if (LineSegmentIntersection(p0, p1, c01, c11, out _))
+                return true;
+
+            if (LineSegmentIntersection(p0, p1, c11, c10, out _))
+                return true;
+
+            if (LineSegmentIntersection(p0, p1, c10, c00, out _))
+                return true;
+        }
+
+        intersectionType = PolygonBoundsIntersectionType.None;
+        return false;
     }
 
     public static float SqDist(Vector2 v1, Vector2 v2)
@@ -487,5 +472,62 @@ public class LineOfSight : MonoBehaviour
         intersection = Vector2.zero;
         distance = -1;
         return false;
+    }
+
+    public static bool LineSegmentIntersection(Vector2 l1Start, Vector2 l1End, Vector2 l2Start, Vector2 l2End, out Vector2 intersection)
+    {
+        intersection = Vector3.zero;
+        float deltaACy = l1Start.y - l2Start.y;
+        float deltaDCx = l2End.x - l2Start.x;
+        float deltaACx = l1Start.x - l2Start.x;
+        float deltaDCy = l2End.y - l2Start.y;
+        float deltaBAx = l1End.x - l1Start.x;
+        float deltaBAy = l1End.y - l1Start.y;
+
+        float denominator = deltaBAx * deltaDCy - deltaBAy * deltaDCx;
+        float numerator = deltaACy * deltaDCx - deltaACx * deltaDCy;
+
+        if (denominator == 0)
+        {
+            return false;
+            if (numerator == 0)
+            {
+                // collinear. Potentially infinite intersection points.
+                // Check and return one of them.
+                if (l1Start.x >= l2Start.x && l1Start.x <= l2End.x)
+                {
+                    intersection = l1Start;
+                    return true;
+                }
+                else if (l2Start.x >= l1Start.x && l2Start.x <= l1End.x)
+                {
+                    intersection = l2Start;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            { // parallel
+                return false;
+            }
+        }
+
+        float r = numerator / denominator;
+        if (r < 0 || r > 1)
+        {
+            return false;
+        }
+
+        float s = (deltaACy * deltaBAx - deltaACx * deltaBAy) / denominator;
+        if (s < 0 || s > 1)
+        {
+            return false;
+        }
+
+        intersection = new Vector2((float)(l1Start.x + r * deltaBAx), (float)(l1Start.y + r * deltaBAy));
+        return true;
     }
 }

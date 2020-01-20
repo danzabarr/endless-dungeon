@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RandomPotion
   m_EditorClassIdentifier: 
   items:
-  - {fileID: -3326736951439123437, guid: f105c1707d5714c40857f6bd4b648596, type: 3}
-  - {fileID: 5335122345898192613, guid: 41db400b94b12aa42844c093bc7be187, type: 3}
-  - {fileID: 1979682627585124633, guid: 1ff3607535ff7be408a6fa51450109cd, type: 3}
-  - {fileID: 6469680446213538954, guid: 8ec70fc0d5300b944af2444bb29d9337, type: 3}
-  - {fileID: 3854838769565835017, guid: ac34c3d6d1c3f864db16a6c054aba609, type: 3}
+  - {fileID: 4982368082563027746, guid: bb38e7c030e585a449fc4c5880a4df12, type: 3}
+  - {fileID: 6613258863425786574, guid: 3a9764881e520ff478c4cf1e507b355c, type: 3}
+  - {fileID: 823118240082336777, guid: 6b599eabb8864794f9884ab3bdd0e8b0, type: 3}
+  - {fileID: 8735095711163197175, guid: 69b94f28da006ad4b882063697d42d85, type: 3}
+  - {fileID: 8666831235311749927, guid: 3de649de4467da34ca2e436e7c20e9e8, type: 3}

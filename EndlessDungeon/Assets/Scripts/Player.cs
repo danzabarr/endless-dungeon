@@ -62,6 +62,7 @@ public class Player : Unit
     private int queuedAbilityIndex = -1;
     private bool queuedFloorTargetValid;
     private bool lClickDown;
+    private bool showingAllItemLabels;
     public long Gold
     {
         get => gold;
@@ -113,8 +114,7 @@ public class Player : Unit
         if (this.hover != null)
         {
             this.hover.ShowOutline(false);
-            if (!(this.hover is Mob))
-                this.hover.ShowObjectLabel(false);
+            this.hover.ShowObjectLabel(false);
         }
 
         this.hover = hover;
@@ -122,8 +122,7 @@ public class Player : Unit
         if (hover != null)
         {
             hover.ShowOutline(true);
-            if (!(this.hover is Mob))
-                hover.ShowObjectLabel(true);
+            hover.ShowObjectLabel(true);
         }
     }
 
@@ -133,8 +132,6 @@ public class Player : Unit
              + (b.y - a.y) * (b.y - a.y)
              + (b.z - a.z) * (b.z - a.z);
     }
-
-    
 
     protected override void Update()
     {

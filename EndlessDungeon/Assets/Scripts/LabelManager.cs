@@ -37,6 +37,10 @@ public class LabelManager : MonoBehaviour
     {
         if (obj == null)
             return null;
+
+        if (!obj.HasLabelText())
+            return null;
+        
         if (instance.labels.ContainsKey(obj))
             return instance.labels[obj];
         ObjectLabel label = Instantiate(instance.prefab, instance.transform);
@@ -54,6 +58,17 @@ public class LabelManager : MonoBehaviour
         {
             instance.labels.Remove(obj);
             Destroy(label.gameObject);
+        }
+    }
+
+    public static void HideAllItemLabels()
+    {
+        foreach(KeyValuePair<Interactive, ObjectLabel> pair in instance.labels)
+        {
+            if (pair.Key is ItemObject)
+            {
+
+            }
         }
     }
 
@@ -275,10 +290,6 @@ public class LabelManager : MonoBehaviour
 
         (tip.transform as RectTransform).anchoredPosition = screen;
     }
-
-        
-
-    
 
     public static Rect GetWorldSpaceRect(RectTransform rt)
     {

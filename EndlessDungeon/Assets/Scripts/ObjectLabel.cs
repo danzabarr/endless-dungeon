@@ -26,7 +26,7 @@ public class ObjectLabel : FollowWorldTransform
     private float fadeInSpeed, fadeOutSpeed;
     public bool Hover { set => color = value ? 2 : 0; }
     public bool LabelEnabled { set => labelBackground.gameObject.SetActive(value); }
-    public string LabelText { set => labelText.text = value; }
+    public string LabelText { set => labelText.text = value; get => labelText.text; }
     public int LabelTextFontSize { set => labelText.fontSize = value; }
     public Color LabelTextColor { set => labelText.color = value; }
     public Vector3 LabelWorldOffset { set => worldOffset = value; }

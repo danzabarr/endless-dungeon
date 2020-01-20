@@ -54,8 +54,6 @@ public class Room : Location
         }
     }
 
-    
-
     public int OpenEdgesLength => openEdges.Length;
 
     public override LocationData.LocationType GetLocationType()

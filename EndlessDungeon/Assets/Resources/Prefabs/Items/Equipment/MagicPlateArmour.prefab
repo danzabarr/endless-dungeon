@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 1745583754563701925}
   - component: {fileID: 2196694714295568281}
   - component: {fileID: 5717125015978678383}
+  - component: {fileID: -7548112950351414787}
   m_Layer: 8
   m_Name: MagicPlateArmour
   m_TagString: Interactive
@@ -360,3 +361,17 @@ MonoBehaviour:
   hideOutline: 0
   originalLayer: 0
   originalMaterials: []
+--- !u!114 &-7548112950351414787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8507452523032183904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 3646684395582198517}

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 7349892502458634433}
   - component: {fileID: 7349892502458634400}
   - component: {fileID: 7349892502458634395}
+  - component: {fileID: 8365877828842237178}
   m_Layer: 0
   m_Name: Pot00
   m_TagString: Untagged
@@ -184,3 +185,17 @@ CapsuleCollider:
   m_Height: 0.15
   m_Direction: 1
   m_Center: {x: 0, y: 0.06, z: 0}
+--- !u!114 &8365877828842237178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7349892502458634645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 7349892502458634433}

@@ -13,6 +13,8 @@ public class Interactable : MonoBehaviour, Interactive
         get
         {
             label = LabelManager.Add(this);
+            if (label == null)
+                return null;
             label.ZSort = true;
             label.BarEnabled = false;
             label.worldTransform = transform;
@@ -27,7 +29,6 @@ public class Interactable : MonoBehaviour, Interactive
 
     [SerializeField]
     private float interactDistance;
-
     [SerializeField]
     [TextArea]
     private string labelText;
@@ -46,10 +47,7 @@ public class Interactable : MonoBehaviour, Interactive
         ShowOutline(false);
     }
 
-    public virtual void Interact()
-    {
-
-    }
+    public virtual void Interact() { }
 
     public void ShowOutline(bool show)
     {
@@ -59,38 +57,20 @@ public class Interactable : MonoBehaviour, Interactive
 
     public void ShowObjectLabel(bool show)
     {
+        if (Label == null)
+            return;
         if (show)
             Label.gameObject.SetActive(show);
         else
             LabelManager.Remove(this);
     }
 
-    public void ShowLabelText(bool show)
-    {
-        Label.LabelEnabled = show;
-    }
-
-    public void ShowBar(bool show)
-    {
-        Label.BarEnabled = show;
-    }
-
-    public Transform GetWorldTransform()
-    {
-        return transform;
-    }
-
-    public Vector3 GetGroundPosition()
-    {
-        return GetWorldTransform().position;
-    }
-    public Vector3 GetCenterPosition()
-    {
-        return GetWorldTransform().position;
-    }
-
-    public float GetInteractDistance()
-    {
-        return interactDistance;
-    }
+    public void ShowLabelText(bool show) => Label.LabelEnabled = show;
+    public bool HasLabelText() => !string.IsNullOrEmpty(labelText);
+    public string GetLabelText() => labelText;
+    public void ShowBar(bool show) => Label.BarEnabled = show;
+    public Transform GetWorldTransform() => transform;
+    public Vector3 GetGroundPosition() => GetWorldTransform().position;
+    public Vector3 GetCenterPosition() => GetWorldTransform().position;
+    public float GetInteractDistance() => interactDistance;
 }

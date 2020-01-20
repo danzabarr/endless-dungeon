@@ -90,8 +90,9 @@ GameObject:
   - component: {fileID: 7133932460362762}
   - component: {fileID: 8353567816532074153}
   - component: {fileID: 642392532742503246}
+  - component: {fileID: -1560158346285680384}
   m_Layer: 0
-  m_Name: WallThreeQuarterLower
+  m_Name: InteriorWallThreeQuarterLower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -183,3 +184,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: 1
+--- !u!114 &-1560158346285680384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026363825631249811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 7133932460362762}

@@ -12,5 +12,7 @@ public interface Interactive
     void ShowOutline(bool show);
     void ShowLabelText(bool show);
     void ShowBar(bool show);
+    string GetLabelText();
+    bool HasLabelText();
 
 }

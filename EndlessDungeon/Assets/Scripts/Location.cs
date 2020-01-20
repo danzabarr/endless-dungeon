@@ -31,11 +31,8 @@ public abstract class Location : MonoBehaviour, RegisterablePrefab
     public GameObject WallsContainer => wallsContainer;
     public GameObject FloorsContainer => floorsContainer;
 
-
     private List<DynamicObject> dynamicObjects = new List<DynamicObject>();
-
     public Renderer[] WallRenderers { get; private set; }
-    public Renderer[] ContentsRenderers { get; private set; }
     public Renderer[] FloorRenderers { get; private set; }
     public List<DynamicObject> DynamicObjects { get; private set; }
     public Wall[] Walls { get; private set; }
@@ -54,7 +51,6 @@ public abstract class Location : MonoBehaviour, RegisterablePrefab
     public void Awake()
     {
         WallRenderers = wallsContainer.GetComponentsInChildren<Renderer>();
-        ContentsRenderers = contentsContainer.GetComponentsInChildren<Renderer>();
         FloorRenderers = floorsContainer.GetComponentsInChildren<Renderer>();
         Walls = wallsContainer.GetComponentsInChildren<Wall>();
         DynamicObjects = new List<DynamicObject>();

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 6950404777147835960}
   - component: {fileID: 1376244166105190750}
   - component: {fileID: 3020130910309551166}
+  - component: {fileID: 7999524984951559470}
   m_Layer: 0
   m_Name: BrickPile
   m_TagString: Untagged
@@ -183,3 +184,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.31019986, y: 0.20182478, z: 0.2631222}
   m_Center: {x: 0.009043843, y: 0.0799454, z: -0.014594793}
+--- !u!114 &7999524984951559470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690580651443494776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 6950404777147835960}

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 2075454567939976358}
   - component: {fileID: 3550020860414435873}
   - component: {fileID: 8043662546385918912}
+  - component: {fileID: 4999353017940348109}
   m_Layer: 0
   m_Name: StonePillar
   m_TagString: Untagged
@@ -183,3 +184,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: 1
+--- !u!114 &4999353017940348109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332870209644336614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd2edbb17ce4cf44adeabb9b24cf735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 2075454567939976358}
